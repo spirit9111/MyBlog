@@ -2196,3 +2196,14 @@ color:#FFF;
 #loginModal .modal-body input {
 	color: #A0A0A0;
 }
+.tags{
+cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px 10px 5px;
+    margin: 5px 5px 5px 0px;
+    color: #FFF;
+    font-size: 15px;
+    background-color: #3399CC;
+    opacity: 0.85;
+}
