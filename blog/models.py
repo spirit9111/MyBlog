@@ -40,21 +40,15 @@ class Article(models.Model):
 	views = models.PositiveIntegerField(default=0, verbose_name='浏览量')
 	tags = models.ManyToManyField(Tag, blank=True, verbose_name='标签')
 	is_show = models.BooleanField(default=True, verbose_name='是否显示')
-	image = models.ImageField(upload_to='upload/', null=True, blank=True, verbose_name='图片(220*150)')
-	banner_image = models.ImageField(upload_to='upload/', null=True, blank=True, verbose_name='轮播图(820*200)')
+	image = models.ImageField(upload_to='upload', null=True, blank=True,
+							  verbose_name='图(820*200)')
 
 	# 评论 pass
 	# 获取图片的url
 	def image_url(self):
 		if not self.image:
 			return '/static/images/upload/default_image.jpg'
-		return self.image.url
-
-	# 获取轮播图url
-	def banner_image_url(self):
-		if not self.image:
-			return '/static/images/upload/default_banner_image.jpg'
-		return self.banner_image.url
+		return '/static/images/'+self.image.url
 
 	class Meta:
 		verbose_name = '文章'  # 在admin站点中显示的名称

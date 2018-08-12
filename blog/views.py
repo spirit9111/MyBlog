@@ -21,7 +21,7 @@ class IndexView(View):
 			'tags': tags,
 			'sidebar_articles': sidebar_articles,
 		}
-		return render(request, 'index.html', context)
+		return render(request, 'index_test.html', context)
 
 
 class ArticleView(View):
@@ -38,4 +38,4 @@ class ArticleView(View):
 			'sidebar_articles': sidebar_articles,
 			'article': article,
 		}
-		return render(request, 'article.html', context)
+		return render(request, 'article_test.html', context)
