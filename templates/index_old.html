@@ -77,6 +77,23 @@
 							 alt="" class="img-responsive"></a>
 					</div>
 					{% endfor %}
+
+
+					{#					<div class="item active">#}
+					{#						<a href="" target="_blank">#}
+					{#							<img src="/static/images/banner/banner_01.jpg"#}
+					{#								 alt="" class="img-responsive"></a>#}
+					{#						<!--<div class="carousel-caption"> </div>-->#}
+					{#					</div>#}
+					{#					<div class="item">#}
+					{#						<a href="" target="_blank">#}
+					{#							<img src="/static/images/banner/banner_02.jpg" alt="" class="img-responsive"></a>#}
+					{#						<!--<div class="carousel-caption"> </div>-->#}
+					{#					</div>#}
+					{#					<div class="item"><a href="" target="_blank">#}
+					{#						<img src="/static/images/banner/banner_03.jpg" alt="" class="img-responsive"></a>#}
+					{#						<!--<div class="carousel-caption"> </div>-->#}
+					{#					</div>#}
 					</div>
 					<a class="left carousel-control" href="#focusslide" role="button" data-slide="prev" rel="nofollow">
 						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span
@@ -136,17 +153,31 @@
 			<div class="widget widget_hot">
 				<h3>热门文章</h3>
 				<ul>
-					{% for sidebar_article in sidebar_articles %}
-
-						<li><a href=""><span class="thumbnail"><img class="thumb"
-																	data-original="{{ sidebar_article.image_url }}"
-																	src="{{ sidebar_article.image_url }}" alt=""></span><span
-								class="text">{{ sidebar_article.title }}</span><span class="muted"><i
-								class="glyphicon glyphicon-time"></i> {{ sidebar_article.created_time }} </span><span class="muted"><i
-								class="glyphicon glyphicon-eye-open"></i> {{ sidebar_article.views }}</span></a></li>
-					{% endfor %}
-
-
+					<li><a href=""><span class="thumbnail"><img class="thumb" data-original="/static/images/excerpt.jpg"
+																src="/static/images/excerpt.jpg" alt=""></span><span
+							class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i
+							class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i
+							class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
+					<li><a href=""><span class="thumbnail"><img class="thumb" data-original="/static/images/excerpt.jpg"
+																src="/static/images/excerpt.jpg" alt=""></span><span
+							class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i
+							class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i
+							class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
+					<li><a href=""><span class="thumbnail"><img class="thumb" data-original="/static/images/excerpt.jpg"
+																src="/static/images/excerpt.jpg" alt=""></span><span
+							class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i
+							class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i
+							class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
+					<li><a href=""><span class="thumbnail"><img class="thumb" data-original="/static/images/excerpt.jpg"
+																src="/static/images/excerpt.jpg" alt=""></span><span
+							class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i
+							class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i
+							class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
+					<li><a href=""><span class="thumbnail"><img class="thumb" data-original="/static/images/excerpt.jpg"
+																src="/static/images/excerpt.jpg" alt=""></span><span
+							class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i
+							class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i
+							class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
 				</ul>
 			</div>
 		</aside>
@@ -222,6 +253,16 @@
 			</form>
 		</div>
 	</div>
+</div>
+<!--右键菜单列表-->
+<div id="rightClickMenu">
+	<ul class="list-group rightClickMenuList">
+		<li class="list-group-item disabled">欢迎访问异清轩博客</li>
+		<li class="list-group-item"><span>IP：</span>172.16.10.129</li>
+		<li class="list-group-item"><span>地址：</span>河南省郑州市</li>
+		<li class="list-group-item"><span>系统：</span>Windows10</li>
+		<li class="list-group-item"><span>浏览器：</span>Chrome47</li>
+	</ul>
 </div>
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/jquery.ias.js"></script>

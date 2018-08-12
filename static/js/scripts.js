@@ -126,7 +126,7 @@ jQuery.ias({
 	next: '.next-page a',
 	trigger: '查看更多',
 	loader: '<div class="pagination-loading"><img src="/static/images/loading.gif" /></div>',
-	triggerPageThreshold: 3, // 阀值
+	triggerPageThreshold: 2, // 滚动阀值,
 	onRenderComplete: function() {
 		$('.excerpt .thumb').lazyload({
 			placeholder: '/Home/images/occupying.png',
@@ -196,12 +196,12 @@ $(window).scroll(function () {
 })();
 
 /*禁止键盘操作*/
-document.onkeydown=function(event){
-	var e = event || window.event || arguments.callee.caller.arguments[0];
-	if((e.keyCode === 123) || (e.ctrlKey) || (e.ctrlKey) && (e.keyCode === 85)){
-		return false;
-	}
-}; 
+// document.onkeydown=function(event){
+// 	var e = event || window.event || arguments.callee.caller.arguments[0];
+// 	if((e.keyCode === 123) || (e.ctrlKey) || (e.ctrlKey) && (e.keyCode === 85)){
+// 		return false;
+// 	}
+// };
 
 /*文章评论*/
 $(function(){
