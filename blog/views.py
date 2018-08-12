@@ -13,7 +13,7 @@ class IndexView(View):
 	def get(self, request):
 		banner_articles = Tag.objects.get(id=12).article_set.filter(is_show=True)  # 轮播图
 		articles = Article.objects.filter(is_show=True).all()  # articles
-		tags = Tag.objects.filter(is_show=True)[:5]
+		tags = Tag.objects.filter(is_show=True)
 		sidebar_articles = Article.objects.order_by('-views')[:3]  # 侧边栏
 		context = {
 			'banner_articles': banner_articles,
@@ -34,8 +34,10 @@ class ArticleView(View):
 		except Exception as e:
 			return HttpResponse('<h1>NOT FOUNT</h1>')
 		sidebar_articles = Article.objects.order_by('-views')[:3]  # 侧边栏
+		tags = Tag.objects.filter(is_show=True)
 		context = {
 			'sidebar_articles': sidebar_articles,
 			'article': article,
+			'tags': tags,
 		}
 		return render(request, 'article_test.html', context)

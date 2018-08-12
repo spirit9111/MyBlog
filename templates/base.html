@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>
 		{% block titleBlcok %}
-		
+
 		{% endblock %}
 	</title>
 	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
@@ -59,9 +59,9 @@
 <section class="container">
 	<div class="content-wrap">
 		<div class="content">
-{% block contentBlock %}
+			{% block contentBlock %}
 
-{% endblock %}
+			{% endblock %}
 		</div>
 		<aside class="sidebar">
 			<div class="widget widget_sentence">
@@ -76,7 +76,6 @@
 				<h3>热门文章</h3>
 				<ul>
 					{% for sidebar_article in sidebar_articles %}
-
 						<li><a href=""><span class="thumbnail"><img class="thumb"
 																	data-original="{{ sidebar_article.image_url }}"
 																	src="{{ sidebar_article.image_url }}" alt=""></span><span
@@ -85,10 +84,21 @@
 								class="muted"><i
 								class="glyphicon glyphicon-eye-open"></i> {{ sidebar_article.views }}</span></a></li>
 					{% endfor %}
-
-
 				</ul>
 			</div>
+			<div class="widget ">
+{#			 article-tags#}
+				<h3>标签</h3>
+				{% for tag in tags %}
+					<li><a href="">{{ tag.name }}</a></li>
+				{% endfor %}
+			</div>
+			{#			<div class="article-tags">#}
+			{#				<h3>分类</h3>#}
+			{#				{% for tag in tags %}#}
+			{#					<a href="">{{ tag.name }}</a>#}
+			{#				{% endfor %}#}
+			{#			</div>#}
 		</aside>
 </section>
 <footer class="footer">
