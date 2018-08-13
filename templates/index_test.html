@@ -11,14 +11,14 @@
 			<li data-target="#focusslide" data-slide-to="2"></li>
 		</ol>
 		<div class="carousel-inner" role="listbox">
-			{% for banner_article in banner_articles %}
+			{% for article in banner_articles %}
 				{% if forloop.counter == 1 %}
 					<div class="item active">
 				{% else %}
 					<div class="item">
 				{% endif %}
-			<a href="" target="_blank">
-				<img src="{{ banner_article.image_url }}"
+			<a href="/article/{{ article.id }}" target="_blank">
+				<img src="{{ article.image_url }}"
 					 alt="" class="img-responsive"></a>
 			</div>
 			{% endfor %}

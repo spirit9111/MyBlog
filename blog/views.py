@@ -1,3 +1,4 @@
+import markdown
 from django.core import serializers
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse, JsonResponse
@@ -44,6 +45,9 @@ class ArticleView(View):
 			return HttpResponse('<h1>NOT FOUNT</h1>')
 		try:
 			article = Article.objects.get(id=id)
+			# 展示markdown语法
+			article.body = markdown.markdown(article.body, ['extra', 'codehilite', 'toc', ])
+
 		except Exception as e:
 			return HttpResponse('<h1>NOT FOUNT</h1>')
 		sidebar_articles = Article.objects.order_by('-views')[:3]  # 侧边栏

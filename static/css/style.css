@@ -164,13 +164,13 @@ body, input, button, textarea, select {
 }
 
 /*禁止文字选中*/
-.user-select {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-khtml-user-select: none;
-	user-select: none;
-}
+/*.user-select {*/
+	/*-webkit-user-select: none;*/
+	/*-moz-user-select: none;*/
+	/*-ms-user-select: none;*/
+	/*-khtml-user-select: none;*/
+	/*user-select: none;*/
+/*}*/
 
 /*鼠标选中内容样式*/
 ::selection {

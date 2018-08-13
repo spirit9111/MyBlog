@@ -11,10 +11,10 @@
 	<header class="article-header">
 		<h1 class="article-title"><a href="article.html">{{ article.title }}</a></h1>
 		<div class="article-meta"> <span class="item article-meta-time">
-          <time class="time" data-toggle="tooltip" data-placement="bottom" title="时间：{{ article.created_time }}"><i
-				  class="glyphicon glyphicon-time"></i> {{ article.created_time }}</time>
-          </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom"
-						title="作者：{{ article.author }}"><i
+<time class="time" data-toggle="tooltip" data-placement="bottom" title="时间：{{ article.created_time }}"><i
+		class="glyphicon glyphicon-time"></i> {{ article.created_time }}</time>
+</span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom"
+			  title="作者：{{ article.author }}"><i
 				class="glyphicon glyphicon-globe"></i> {{ article.author }}</span> <span
 				class="item article-meta-category" data-toggle="tooltip" data-placement="bottom"
 				title="分类：{{ article.category }}"><i class="glyphicon glyphicon-list"></i> <a href="program"
@@ -29,9 +29,9 @@
 					title="评论：0"><i
 					class="glyphicon glyphicon-comment"></i> 0评论</span></div>
 	</header>
-	<article class="article-content">
+	<article class="article-content markdown-body">
 		<p><img data-original="{{ article.image_url }}" src="{{ article.image_url }}" alt=""/></p>
-		{{ article.body }}
+		{{ article.body | safe }}
 	</article>
 	<div class="article-tags">标签：
 		{% for tag in article.tags.all %}
@@ -56,19 +56,19 @@
 		</h3>
 	</div>
 	<!--<div id="respond">
-      <div class="comment-signarea">
-        <h3 class="text-muted">评论前必须登录！</h3>
-        <p> <a href="javascript:;" class="btn btn-primary login" rel="nofollow">立即登录</a> &nbsp; <a href="javascript:;" class="btn btn-default register" rel="nofollow">注册</a> </p>
-        <h3 class="text-muted">当前文章禁止评论</h3>
-      </div>
+    <div class="comment-signarea">
+    <h3 class="text-muted">评论前必须登录！</h3>
+    <p> <a href="javascript:;" class="btn btn-primary login" rel="nofollow">立即登录</a> &nbsp; <a href="javascript:;" class="btn btn-default register" rel="nofollow">注册</a> </p>
+    <h3 class="text-muted">当前文章禁止评论</h3>
+    </div>
     </div>-->
 	<div id="respond">
 		<form action="" method="post" id="comment-form">
 			<div class="comment">
 				<div class="comment-title"><img class="avatar" src="/static/images/icon/icon.png" alt=""/></div>
 				<div class="comment-box">
-							<textarea placeholder="您的评论可以一针见血" name="comment" id="comment-textarea" cols="100%" rows="3"
-									  tabindex="1"></textarea>
+<textarea placeholder="您的评论可以一针见血" name="comment" id="comment-textarea" cols="100%" rows="3"
+		  tabindex="1"></textarea>
 					<div class="comment-ctrl"><span class="emotion"><img src="/static/images/face/5.png" width="20"
 																		 height="20" alt=""/>表情</span>
 						<div class="comment-prompt"><i class="fa fa-spin fa-circle-o-notch"></i> <span

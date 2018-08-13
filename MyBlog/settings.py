@@ -36,6 +36,7 @@ INSTALLED_APPS = [
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
 	# apps
+	'mdeditor',  # markdown
 	'blog.apps.BlogConfig',
 ]
 
@@ -125,7 +126,4 @@ STATICFILES_DIRS = [
 
 # MEDIA_ROOT
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
-# MEDIA_URL = os.path.join(BASE_DIR, 'static/images')
-# MEDIA_URL=[
-# 	os.path.join(BASE_DIR, 'static/images'),
-# ]
+MEDIA_URL = '/static/images/'

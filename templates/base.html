@@ -16,6 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css">
 	<link rel="apple-touch-icon-precomposed" href="/static/images/icon/icon.png">
 	<link rel="shortcut icon" href="/static/images/icon/favicon.ico">
+	<link rel="stylesheet" href="/static/css/highlights/github.css">
 	<script src="/static/js/jquery-2.1.4.min.js"></script>
 	<script src="/static/js/nprogress.js"></script>
 	<script src="/static/js/jquery.lazyload.min.js"></script>
@@ -56,15 +57,16 @@
 			{% endblock %}
 		</div>
 		<aside class="sidebar">
-		<div class="widget widget_search">
-        <form class="navbar-form" action="/Search" method="post">
-          <div class="input-group">
-            <input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
-            <span class="input-group-btn">
+			<div class="widget widget_search">
+				<form class="navbar-form" action="/Search" method="post">
+					<div class="input-group">
+						<input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字"
+							   maxlength="15" autocomplete="off">
+						<span class="input-group-btn">
             <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
-            </span> </div>
-        </form>
-      </div>
+            </span></div>
+				</form>
+			</div>
 			<div class="widget widget_sentence">
 				<h3>每日一句</h3>
 				<div class="widget-sentence-content">
@@ -78,8 +80,9 @@
 				<ul>
 					{% for article in sidebar_articles %}
 						<li><a href="/article/{{ article.id }}"><span class="thumbnail"><img class="thumb"
-																	data-original="{{ article.image_url }}"
-																	src="{{ article.image_url }}" alt=""></span><span
+																							 data-original="{{ article.image_url }}"
+																							 src="{{ article.image_url }}"
+																							 alt=""></span><span
 								class="text">{{ article.title }}</span><span class="muted"><i
 								class="glyphicon glyphicon-time"></i> {{ article.created_time }} </span><span
 								class="muted"><i

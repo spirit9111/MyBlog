@@ -6,6 +6,7 @@ from django.db import models
 # class OtherManager(models.Manager):
 # 	def get_by_natural_key(self, name):
 # 		return self.get(name=name)
+from mdeditor.fields import MDTextField
 
 
 class Category(models.Model):
@@ -40,7 +41,7 @@ class Article(models.Model):
 	modified_time = models.DateTimeField(verbose_name='修改日期')
 	author = models.ForeignKey(User, verbose_name='作者')
 	category = models.ForeignKey(Category, verbose_name='分类')
-	body = models.TextField(verbose_name='内容')
+	body = MDTextField(verbose_name='内容')
 	views = models.PositiveIntegerField(default=0, verbose_name='浏览量')
 	tags = models.ManyToManyField(Tag, blank=True, verbose_name='标签')
 	is_show = models.BooleanField(default=True, verbose_name='是否显示')
