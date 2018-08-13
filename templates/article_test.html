@@ -35,7 +35,7 @@
 	</article>
 	<div class="article-tags">标签：
 		{% for tag in article.tags.all %}
-			<a href="" rel="tag">
+			<a href="/article/{{ tag.name }}" rel="tag">
 				{{ tag }}
 			</a>
 		{% endfor %}

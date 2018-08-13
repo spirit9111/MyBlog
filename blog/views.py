@@ -13,9 +13,9 @@ class IndexView(View):
 	"""首页"""
 
 	def get(self, request):
-		banner_articles = Tag.objects.get(id=12).article_set.filter(is_show=True)  # 轮播图
+		banner_articles = Article.objects.filter(is_show=True, is_banner=True)  # 轮播图
 		articles_list = Article.objects.filter(is_show=True)  # 文章列表
-		tags = Tag.objects.filter(is_show=True)
+		tags = Tag.objects.all()
 		sidebar_articles = Article.objects.filter(is_show=True, views__gt=0).order_by('-views')[:5]  # 热门文章
 		# 分页
 		paginator = Paginator(articles_list, 2)  # 显示3条数据
@@ -47,7 +47,7 @@ class ArticleView(View):
 		except Exception as e:
 			return HttpResponse('<h1>NOT FOUNT</h1>')
 		sidebar_articles = Article.objects.order_by('-views')[:3]  # 侧边栏
-		tags = Tag.objects.filter(is_show=True)
+		tags = Tag.objects.all()
 		context = {
 			'sidebar_articles': sidebar_articles,
 			'article': article,
@@ -69,5 +69,14 @@ class TagView(View):
 		except EmptyPage:
 			# 如果用户请求的页码号超过了最大页码号，显示最后一页
 			articles = paginator.page(paginator.num_pages)
-		json_data = serializers.serialize('json', articles)
-		return HttpResponse(json_data, content_type='application/json')
+		sidebar_articles = Article.objects.filter(is_show=True, views__gt=0).order_by('-views')[:5]  # 热门文章
+		tags = Tag.objects.all()
+		context = {
+			# 'banner_articles': banner_articles,
+			'articles': articles,
+			'tags': tags,
+			'sidebar_articles': sidebar_articles,
+			'tag': tag,
+		}
+
+		return render(request, 'tags.html', context)

@@ -33,7 +33,7 @@
 			<h3>最新发布</h3>
 			<div class="more">
 				{% for tag in tags %}
-					<a href="javascript:;" tag="{{ tag.name }}">{{ tag.name }}</a>
+					<a href="/article/{{ tag.name }}" tag="{{ tag.name }}">{{ tag.name }}</a>
 				{% endfor %}
 			</div>
 		</div>

@@ -3,9 +3,14 @@ from django.db import models
 
 
 # Create your models here.
+# class OtherManager(models.Manager):
+# 	def get_by_natural_key(self, name):
+# 		return self.get(name=name)
+
 
 class Category(models.Model):
 	"""分类"""
+	# objects = OtherManager()
 	name = models.CharField(max_length=100, verbose_name='分类')
 
 	class Meta:
@@ -19,7 +24,6 @@ class Category(models.Model):
 class Tag(models.Model):
 	"""标签"""
 	name = models.CharField(max_length=100, verbose_name='标签', unique=True)
-	is_show = models.BooleanField(default=True, verbose_name='是否显示')
 
 	class Meta:
 		verbose_name = '标签'  # 在admin站点中显示的名称
@@ -40,6 +44,7 @@ class Article(models.Model):
 	views = models.PositiveIntegerField(default=0, verbose_name='浏览量')
 	tags = models.ManyToManyField(Tag, blank=True, verbose_name='标签')
 	is_show = models.BooleanField(default=True, verbose_name='是否显示')
+	is_banner = models.BooleanField(default=False, verbose_name='是否轮播')
 	image = models.ImageField(upload_to='upload', null=True, blank=True,
 							  verbose_name='图(820*200)')
 
@@ -54,7 +59,6 @@ class Article(models.Model):
 		verbose_name = '文章'  # 在admin站点中显示的名称
 		verbose_name_plural = verbose_name  # 显示的复数名称
 		ordering = ['-created_time', ]
-
 
 	def __str__(self):
 		return self.title
