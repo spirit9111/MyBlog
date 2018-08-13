@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block titleBlcok %}
-Home|首页
+	Home|首页
 {% endblock %}
 
 {% block contentBlock %}
@@ -33,7 +33,7 @@ Home|首页
 			<h3>最新发布</h3>
 			<div class="more">
 				{% for tag in tags %}
-					<a href="">{{ tag.name }}</a>
+					<a href="javascript:;" tag="{{ tag.name }}">{{ tag.name }}</a>
 				{% endfor %}
 			</div>
 		</div>
@@ -55,17 +55,23 @@ Home|首页
 				</p>
 				<p class="note">{{ article.body }}</p>
 			</article>
-
 		{% endfor %}
-
-		<nav class="pagination" style="display: none;">
-			<ul>
-				<li class="prev-page"></li>
-				<li class="active"><span>1</span></li>
-				<li><a href="?page=2">2</a></li>
-				<li class="next-page"><a href="?page=2">下一页</a></li>
-				<li><span>共 2 页</span></li>
-			</ul>
-		</nav>
+		{#分页#}
+		<div class='pagination'>
+			{% if articles.has_previous %}
+				<a href='?page={{ articles.previous_page_number }}'><span>上一页</span></a>
+			{% endif %}
+			{% for page in articles.paginator.page_range %}
+				{% if page == articles.number %}
+					<a title='当前页:{{ page }}'><span>{{ page }}</span></a>
+				{% else %}
+					<a href='?page={{ page }}' title='{{ page }}'
+					><span>{{ page }}</span></a>
+				{% endif %}
+			{% endfor %}
+			{% if articles.has_next %}
+				<a href='?page={{ articles.next_page_number }}'><span>下一页</span></a>
+			{% endif %}
+		</div>
 	</div>
 {% endblock %}

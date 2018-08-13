@@ -48,12 +48,13 @@ class Article(models.Model):
 	def image_url(self):
 		if not self.image:
 			return '/static/images/upload/default_image.jpg'
-		return '/static/images/'+self.image.url
+		return '/static/images/' + self.image.url
 
 	class Meta:
 		verbose_name = '文章'  # 在admin站点中显示的名称
 		verbose_name_plural = verbose_name  # 显示的复数名称
 		ordering = ['-created_time', ]
+
 
 	def __str__(self):
 		return self.title
