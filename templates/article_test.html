@@ -9,7 +9,7 @@
 
 {% block contentBlock %}
 	<header class="article-header">
-		<h1 class="article-title"><a href="article.html">{{ article.title }}</a></h1>
+		<h1 class="article-title"><a href="/article/{{ article.id }}">{{ article.title }}</a></h1>
 		<div class="article-meta"> <span class="item article-meta-time">
 <time class="time" data-toggle="tooltip" data-placement="bottom" title="时间：{{ article.created_time }}"><i
 		class="glyphicon glyphicon-time"></i> {{ article.created_time }}</time>
@@ -17,7 +17,7 @@
 			  title="作者：{{ article.author }}"><i
 				class="glyphicon glyphicon-globe"></i> {{ article.author }}</span> <span
 				class="item article-meta-category" data-toggle="tooltip" data-placement="bottom"
-				title="分类：{{ article.category }}"><i class="glyphicon glyphicon-list"></i> <a href="program"
+				title="分类：{{ article.category }}"><i class="glyphicon glyphicon-list"></i> <a href="#"
 																							  title="">{{ article.category }}</a></span>
 			<span
 					class="item article-meta-views" data-toggle="tooltip" data-placement="bottom"
@@ -29,7 +29,7 @@
 					title="评论：0"><i
 					class="glyphicon glyphicon-comment"></i> 0评论</span></div>
 	</header>
-	<article class="article-content markdown-body">
+	<article class="article-content">
 		<p><img data-original="{{ article.image_url }}" src="{{ article.image_url }}" alt=""/></p>
 		{{ article.body | safe }}
 	</article>
@@ -94,7 +94,7 @@
 		</ol>
 
 		<div class="quotes"><span class="disabled">首页</span><span class="disabled">上一页</span><a class="current">1</a><a
-				href="">2</a><span class="disabled">下一页</span><span class="disabled">尾页</span></div>
+				href="#">2</a><span class="disabled">下一页</span><span class="disabled">尾页</span></div>
 	</div>
 	</div>
 {% endblock %}

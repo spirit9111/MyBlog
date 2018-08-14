@@ -165,11 +165,11 @@ body, input, button, textarea, select {
 
 /*禁止文字选中*/
 /*.user-select {*/
-	/*-webkit-user-select: none;*/
-	/*-moz-user-select: none;*/
-	/*-ms-user-select: none;*/
-	/*-khtml-user-select: none;*/
-	/*user-select: none;*/
+/*-webkit-user-select: none;*/
+/*-moz-user-select: none;*/
+/*-ms-user-select: none;*/
+/*-khtml-user-select: none;*/
+/*user-select: none;*/
 /*}*/
 
 /*鼠标选中内容样式*/
@@ -2596,7 +2596,6 @@ body, input, button, textarea, select {
 	opacity: 0.85;
 }
 
-
 .pagination {
 	margin-top: 25px;
 	text-align: center;
@@ -2638,4 +2637,19 @@ body, input, button, textarea, select {
 	line-height: 38px;
 	padding: 0 8px;
 	margin-right: 4px;
+}
+
+pre {
+	background-color: #eaeaea;
+	border: 1px solid #ddd;
+	font-size: 13px;
+	line-height: 19px;
+	overflow: auto;
+	padding: 6px 10px;
+	border-radius: 3px;
+}
+
+pre code, pre tt {
+	background-color: transparent;
+	border: none;
 }

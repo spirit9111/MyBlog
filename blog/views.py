@@ -84,3 +84,46 @@ class TagView(View):
 		}
 
 		return render(request, 'tags.html', context)
+
+
+class ArchivesView(View):
+	def get(self, request):
+		sidebar_articles = Article.objects.filter(is_show=True, views__gt=0).order_by('-views')[:5]  # 热门文章
+		tags = Tag.objects.all()
+		articles_list = Article.objects.filter(is_show=True)  # 文章列表
+		dates = Article.objects.datetimes('created_time', 'month', order='DESC')
+		"""
+		{
+		2018:[1,2,3],
+		2017:[4,5,6]
+		}
+		"""
+		year_month = {}
+		for t in dates:
+			if t.year not in year_month:
+				year_month[t.year] = []
+			year_month[t.year].append('%02d' % t.month)
+
+		print(year_month)  #
+		context = {
+			'sidebar_articles': sidebar_articles,
+			'tags': tags,
+			'dates': dates,
+			'year_month': year_month
+		}
+		return render(request, 'archives.html', context)
+
+
+class ListView(View):
+	def get(self, request):
+		year = request.GET.get('year')
+		month = request.GET.get('month')
+		articles = Article.objects.filter(created_time__year=year, created_time__month=month)
+		data = []
+		for article in articles:
+			temp_dict = {}
+			temp_dict["id"] = article.id
+			temp_dict["title"] = article.title
+			data.append(temp_dict)
+
+		return JsonResponse(data, safe=False)
