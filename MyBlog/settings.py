@@ -38,6 +38,8 @@ INSTALLED_APPS = [
 	# apps
 	'mdeditor',  # markdown
 	'blog.apps.BlogConfig',
+	'user.apps.UserConfig',
+	'captcha'
 ]
 
 MIDDLEWARE = [

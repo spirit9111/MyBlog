@@ -21,7 +21,9 @@ from django.contrib import admin
 urlpatterns = [
 	url(r'^admin/', admin.site.urls),
 	url(r'', include('blog.urls')),
+	url(r'', include('user.urls')),
 	url(r'mdeditor/', include('mdeditor.urls')),  # markdown
+	url(r'^captcha', include('captcha.urls'))  # captcha,
 ]
 if settings.DEBUG:
 	# static files (images, css, javascript, etc.)
