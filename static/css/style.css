@@ -2653,3 +2653,24 @@ pre code, pre tt {
 	background-color: transparent;
 	border: none;
 }
+
+.lists ul h3 {
+	margin-left: 90px;
+}
+
+.lists h1 {
+	margin-left: 0px;
+}
+
+.lists a {
+	margin-left: 150px;
+	font-size: 25px;
+}
+
+/*.div0 {*/
+	/*display: block;*/
+/*}*/
+
+/*.div1 {*/
+	/*display: block;*/
+/*}*/

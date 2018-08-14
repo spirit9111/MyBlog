@@ -1,35 +1,14 @@
 $(function () {
-	var $lists = $('#lists');
-	$lists.delegate('a', 'click', function () {
-		var year = $(this).attr('year');
-		var month = $(this).attr('month');
-		// alert(year);
-		// alert(month);
-		// var params = {};
-
-		$.ajax({
-			url: '/article/lists?year=' + year + '&month=' + month,
-			type: 'get',
-			// data: JSON.stringify(params),
-			contentType: 'application/json',
-			dataType: 'json',
-			// headers: {
-			// 	"X-CSRFToken": getCookie("csrf_token")
-			// },
-			success: function (data) {
-				// alert(data[0].title)
-				for (var i = 0; i < data.length; i++) {
-					alert(data[i].title)
-
-				}
-			},
-			error: function () {
-				alert('error')
-			}
-		});
+	$('.div0').children('h1').click(function () {
+		$(this).siblings('ul').slideToggle().parent().siblings().children('ul').slideUp()
 	})
 })
-
+$(function () {
+	$('.div01').children('h3').click(function () {
+		$(this).siblings('li').slideToggle().parent().siblings().children('li').slideUp()
+	})
+})
+ // $(this).siblings().slideToggle().parent().siblings().children('ul').slideUp()
 
 // $(function () {
 // 	var $div = $('.more');

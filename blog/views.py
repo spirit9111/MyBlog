@@ -91,39 +91,40 @@ class ArchivesView(View):
 		sidebar_articles = Article.objects.filter(is_show=True, views__gt=0).order_by('-views')[:5]  # 热门文章
 		tags = Tag.objects.all()
 		articles_list = Article.objects.filter(is_show=True)  # 文章列表
+		# 获取归档的年/月
 		dates = Article.objects.datetimes('created_time', 'month', order='DESC')
-		"""
-		{
-		2018:[1,2,3],
-		2017:[4,5,6]
-		}
-		"""
 		year_month = {}
 		for t in dates:
 			if t.year not in year_month:
 				year_month[t.year] = []
-			year_month[t.year].append('%02d' % t.month)
-
-		print(year_month)  #
-		context = {
-			'sidebar_articles': sidebar_articles,
-			'tags': tags,
-			'dates': dates,
-			'year_month': year_month
-		}
-		return render(request, 'archives.html', context)
-
-
-class ListView(View):
-	def get(self, request):
-		year = request.GET.get('year')
-		month = request.GET.get('month')
-		articles = Article.objects.filter(created_time__year=year, created_time__month=month)
-		data = []
-		for article in articles:
+			year_month[t.year].append(t.month)
+		# 整理article的数据,year和month用作判断
+		articles = []
+		for article in articles_list:
 			temp_dict = {}
 			temp_dict["id"] = article.id
 			temp_dict["title"] = article.title
-			data.append(temp_dict)
+			temp_dict["year"] = article.created_time.year
+			temp_dict["month"] = article.created_time.month
+			articles.append(temp_dict)
+		context = {
+			'sidebar_articles': sidebar_articles,
+			'tags': tags,
+			'year_month': year_month,
+			'articles': articles
+		}
+		return render(request, 'archives.html', context)
 
-		return JsonResponse(data, safe=False)
+# class ListView(View):
+# 	def get(self, request):
+# 		year = request.GET.get('year')
+# 		month = request.GET.get('month')
+# 		articles = Article.objects.filter(created_time__year=year, created_time__month=month)
+# 		data = []
+# 		for article in articles:
+# 			temp_dict = {}
+# 			temp_dict["id"] = article.id
+# 			temp_dict["title"] = article.title
+# 			data.append(temp_dict)
+#
+# 		return JsonResponse(data, safe=False)
