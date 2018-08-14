@@ -97,7 +97,7 @@ class ArchivesView(View):
 		for t in dates:
 			if t.year not in year_month:
 				year_month[t.year] = []
-			year_month[t.year].append(t.month)
+			year_month[t.year].append('%02d' % t.month)
 		# 整理article的数据,year和month用作判断
 		articles = []
 		for article in articles_list:
@@ -105,7 +105,8 @@ class ArchivesView(View):
 			temp_dict["id"] = article.id
 			temp_dict["title"] = article.title
 			temp_dict["year"] = article.created_time.year
-			temp_dict["month"] = article.created_time.month
+			temp_dict["month"] = '%02d' % article.created_time.month
+			temp_dict["day"] = '%02d' % article.created_time.day
 			articles.append(temp_dict)
 		context = {
 			'sidebar_articles': sidebar_articles,

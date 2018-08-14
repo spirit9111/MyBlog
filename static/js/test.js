@@ -1,14 +1,40 @@
 $(function () {
-	$('.div0').children('h1').click(function () {
+	$('.div0').children('a').click(function () {
 		$(this).siblings('ul').slideToggle().parent().siblings().children('ul').slideUp()
 	})
 })
 $(function () {
-	$('.div01').children('h3').click(function () {
+	$('.div01').children('a').click(function () {
 		$(this).siblings('li').slideToggle().parent().siblings().children('li').slideUp()
 	})
 })
- // $(this).siblings().slideToggle().parent().siblings().children('ul').slideUp()
+
+$(function () {
+	$('.div0').children('a').mouseenter(function () {
+		$(this).css({fontSize: "32.3px", color: "red"})
+	})
+})
+
+$(function () {
+	$('.div0').children('a').mouseleave(function () {
+		$(this).css({fontSize: "32px", color: "#337ab7"})
+	})
+})
+
+$(function () {
+	$('.div01').children('a').mouseenter(function () {
+		$(this).css({fontSize: "26.3px", color: "red"})
+	})
+})
+
+$(function () {
+	$('.div01').children('a').mouseleave(function () {
+		$(this).css({fontSize: "26px", color: "#337ab7"})
+	})
+})
+
+
+// $(this).siblings().slideToggle().parent().siblings().children('ul').slideUp()
 
 // $(function () {
 // 	var $div = $('.more');

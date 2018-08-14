@@ -19,7 +19,7 @@
 	<div class="lists">
 		{% for year,month_list in year_month.items %}
 			<div class="div0">
-				<h1>{{ year }} 年</h1>
+				<a href="javascript:;">{{ year }}年</a>
 				{% if forloop.first %}
 					<ul style="display: block;">
 				{% else %}
@@ -27,11 +27,11 @@
 				{% endif %}
 				{% for month in month_list %}
 					<div class="div01">
-						<h3>{{ month }}月</h3>
+						<a href="javascript:;">{{ month }}月</a>
 						{% for article in articles %}
 							{% if article.year == year and article.month == month %}
 								<li style="display: block;"><a
-										href="/article/{{ article.id }}">{{ article.title }}</a></li>
+										href="/article/{{ article.id }}">{{ article.day }}日&nbsp;&nbsp;&nbsp;{{ article.title }}</a></li>
 							{% endif %}
 						{% endfor %}
 					</div>

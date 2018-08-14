@@ -2654,23 +2654,33 @@ pre code, pre tt {
 	border: none;
 }
 
-.lists ul h3 {
-	margin-left: 90px;
+.div0 a {
+	font-size: 32px;
+	/*margin-left: 10px;*/
+	text-decoration:none;
 }
 
-.lists h1 {
-	margin-left: 0px;
+.div01 a {
+
+	font-size: 26px;
+	margin-left: 60px;
 }
 
-.lists a {
-	margin-left: 150px;
-	font-size: 25px;
+.div01 li a {
+
+	font-size: 20px;
+	margin-left: 72px;
 }
+
+/*.lists a {*/
+/*margin-left: 150px;*/
+/*font-size: 25px;*/
+/*}*/
 
 /*.div0 {*/
-	/*display: block;*/
+/*display: block;*/
 /*}*/
 
 /*.div1 {*/
-	/*display: block;*/
+/*display: block;*/
 /*}*/
