@@ -44,7 +44,7 @@
 		<h3>发表评论</h3>
 	</div>
 	<div id="respond">
-		<form action="/comment/" method="post" id="comment-form">
+		<form action="" method="post" id="comment-form">
 			{% csrf_token %}
 			<div class="comment">
 				<div class="comment-title"><img class="avatar" src="/static/images/icon/icon.png" alt=""/></div>
@@ -55,7 +55,7 @@
 						<div class="comment-prompt"><i class="fa fa-spin fa-circle-o-notch"></i> <span
 								class="comment-prompt-text"></span></div>
 						<input type="hidden" name="article_id" value="{{ article.id }}" class="articleid"/>
-						<button type="submit" name="comment-submit" id="comment-submit" >评论
+						<button type="submit" name="comment-submit" id="comment-submit">评论
 						</button>
 					</div>
 				</div>
@@ -67,11 +67,15 @@
 			<li class="comment-content"><span class="comment-f">#1</span>
 				<div class="comment-avatar"><img class="avatar" src="/static/images/icon/icon.png" alt=""/></div>
 				<div class="comment-main">
-					<p><span class="address">username</span>回复<span>username/article</span><span class="time">(2016-01-06)发布时间</span><br/>
+					<p><span class="address">username</span>回复:<span>username/article</span><span class="time">(2016-01-06)发布时间</span><br/>
 						这是匿名评论的内容这是匿名评论的内容，这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容。</p>
 				</div>
 			</li>
 		</ol>
 	</div>
 	</div>
+{% endblock %}
+
+{% block jsBlock %}
+	<script rel="javascript" type="text/javascript" src="/static/js/test.js"></script>#}
 {% endblock %}

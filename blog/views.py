@@ -1,9 +1,12 @@
 import markdown
 from django.core import serializers
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.forms import model_to_dict
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
+
+from comment.models import Comment
 from .models import Article, Tag
 
 
@@ -39,6 +42,8 @@ class IndexView(View):
 
 
 class ArticleView(View):
+	"""详情页"""
+
 	def get(self, request, id):
 		if not id:
 			# todo 404
@@ -52,10 +57,12 @@ class ArticleView(View):
 			return HttpResponse('<h1>NOT FOUNT</h1>')
 		sidebar_articles = Article.objects.order_by('-views')[:3]  # 侧边栏
 		tags = Tag.objects.all()
+		comments = Article.objects.get(id=id).comment_set.all()
 		context = {
 			'sidebar_articles': sidebar_articles,
 			'article': article,
 			'tags': tags,
+			'comments': comments
 		}
 		return render(request, 'article_test.html', context)
 
@@ -115,17 +122,3 @@ class ArchivesView(View):
 			'articles': articles
 		}
 		return render(request, 'archives.html', context)
-
-# class ListView(View):
-# 	def get(self, request):
-# 		year = request.GET.get('year')
-# 		month = request.GET.get('month')
-# 		articles = Article.objects.filter(created_time__year=year, created_time__month=month)
-# 		data = []
-# 		for article in articles:
-# 			temp_dict = {}
-# 			temp_dict["id"] = article.id
-# 			temp_dict["title"] = article.title
-# 			data.append(temp_dict)
-#
-# 		return JsonResponse(data, safe=False)
