@@ -10,7 +10,7 @@ class User(AbstractUser):
 	# created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
 
 	def __str__(self):
-		return self.name
+		return self.username
 
 	class Meta:
 		ordering = ["-date_joined", ]

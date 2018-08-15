@@ -56,6 +56,11 @@ $(function () {
 })
 
 
+
+$('#comment-form').submit(function () {
+	alert('111')
+})
+
 // $(this).siblings().slideToggle().parent().siblings().children('ul').slideUp()
 
 // $(function () {

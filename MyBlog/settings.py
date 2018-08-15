@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 	'mdeditor',  # markdown
 	'blog.apps.BlogConfig',
 	'user.apps.UserConfig',
+	'comment.apps.CommentConfig',
 	'captcha'
 ]
 
