@@ -1,4 +1,6 @@
 import random
+import re
+
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
@@ -15,8 +17,12 @@ class SendToMes(View):
 
 	def get(self, request):
 		mobile = request.GET.get('mobile', None)
+		print(mobile)
 		if not mobile:
 			message = '手机号未填写'
+			return JsonResponse({'message': message})
+		if not re.match(r'^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$', mobile):
+			message = '手机号格式错误'
 			return JsonResponse({'message': message})
 		# 建立redis连接
 		redis_conn = get_redis_connection('sms_code')
@@ -46,11 +52,40 @@ class RegisterView(View):
 
 	def post(self, request):
 		"""注册"""
-		mobile = request.session.get('mobile', None)
-		password = request.session.get('password', None)
-		password2 = request.session.get('password2', None)
-		sms = request.session.get('sms', None)
-		print(mobile, password, password2, sms)
+		mobile = request.POST.get('mobile', None)
+		password = request.POST.get('password', None)
+		password2 = request.POST.get('password2', None)
+		sms_code = request.POST.get('sms_code', None)
+		print(mobile, password, password2, sms_code)
+
+		# 校验参数
+		if not all([mobile, password, password2, sms_code]):
+			message = '参数不足'
+			return render(request, 'register.html', {'message': message})
+		if not re.match(r'^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$', mobile):
+			message = '手机号格式错误'
+			return render(request, 'register.html', {'message': message})
+		if password != password2:
+			message = '两次密码不一致'
+			return render(request, 'register.html', {'message': message})
+		redis_conn = get_redis_connection('sms_code')
+		real_sms_code = redis_conn.get('sms_%s' % mobile)
+		if not real_sms_code:
+			message = '验证码过期'
+			return render(request, 'register.html', {'message': message})
+		if sms_code != real_sms_code.decode():
+			message = '验证码错误'
+			return render(request, 'register.html', {'message': message})
+		# 保存到数据库
+		try:
+			user = User.objects.create(name=mobile, mobile=mobile, password=password, )
+		except Exception as e:
+			message = '数据库错误'
+			return render(request, 'register.html', {'message': message})
+		request.session['is_login'] = True
+		request.session['user_id'] = user.id
+		request.session['user_name'] = user.name
+		return redirect('/')
 
 
 class LoginView(View):

@@ -39,7 +39,7 @@ $(function () {
 $(function () {
 	$('#sms').click(function () {
 		// alert('sms')
-		var mobile = 15071176826
+		var mobile = $('#mobile').val()
 		$.ajax({
 			url: '/register/sendtomes?mobile=' + mobile,
 			type: 'get',
