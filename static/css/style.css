@@ -2674,33 +2674,50 @@ pre code, pre tt {
 
 #login {
 	width: 70%;
-    margin: auto;
+	margin: auto;
 }
 
 .form-login {
-  max-width: 90%;
-  padding: 15px;
-  margin: 0 auto;
+	max-width: 90%;
+	padding: 15px;
+	margin: 0 auto;
 }
+
 .form-login .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
+	position: relative;
+	height: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 16px;
 }
+
 .form-login .form-control:focus {
-  z-index: 2;
+	z-index: 2;
 }
+
 .form-login input[type="text"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
 }
+
 .form-login input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+#sms {
+	float: right;
+	width: 28%;
+	text-align: center;
+	line-height: 32px;
+	border: 1px solid #DDD;
+	text-decoration: none;
+	background: #3399CC;
+	color: white;
+	border-radius: 4px;
+
 }

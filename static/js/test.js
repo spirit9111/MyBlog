@@ -1,3 +1,4 @@
+// 归档相关
 $(function () {
 	$('.div0').children('a').click(function () {
 		$(this).siblings('ul').slideToggle().parent().siblings().children('ul').slideUp()
@@ -30,6 +31,27 @@ $(function () {
 $(function () {
 	$('.div01').children('a').mouseleave(function () {
 		$(this).css({fontSize: "26px", color: "#337ab7"})
+	})
+})
+
+
+//发送短信
+$(function () {
+	$('#sms').click(function () {
+		// alert('sms')
+		var mobile = 15071176826
+		$.ajax({
+			url: '/register/sendtomes?mobile=' + mobile,
+			type: 'get',
+			contentType: 'application/json',
+			dataType: 'json',
+			success: function (data) {
+				alert(data.message)
+			},
+			error: function () {
+				alert(data.message)
+			}
+		});
 	})
 })
 
