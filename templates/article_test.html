@@ -50,12 +50,12 @@
 				<div class="comment-title"><img class="avatar" src="/static/images/icon/icon.png" alt=""/></div>
 				<div class="comment-box">
 <textarea placeholder="欢迎发表评论" name="comment" id="comment-textarea" cols="100%" rows="3"
-		  tabindex="1"></textarea>
+		  tabindex="1" class="textarea"></textarea>
 					<div class="comment-ctrl">
 						<div class="comment-prompt"><i class="fa fa-spin fa-circle-o-notch"></i> <span
 								class="comment-prompt-text"></span></div>
 						<input type="hidden" name="article_id" value="{{ article.id }}" class="articleid"/>
-						<button type="submit" name="comment-submit" id="comment-submit">评论
+						<button type="button" name="comment-submit" id="comment-submit">评论
 						</button>
 					</div>
 				</div>
@@ -64,18 +64,43 @@
 	</div>
 	<div id="postcomments">
 		<ol class="commentlist">
-			<li class="comment-content"><span class="comment-f">#1</span>
-				<div class="comment-avatar"><img class="avatar" src="/static/images/icon/icon.png" alt=""/></div>
-				<div class="comment-main">
-					<p><span class="address">username</span>回复:<span>username/article</span><span class="time">(2016-01-06)发布时间</span><br/>
-						这是匿名评论的内容这是匿名评论的内容，这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容。</p>
-				</div>
-			</li>
+
+			{% for comment in comments %}
+
+				<li class="comment-content">
+					<p style="float: right;"><a href="javascript:;" style="text-decoration:none;"
+												class="switch">回复</a> {{ forloop.revcounter }}楼 </p>
+					<div class="comment-avatar"><img class="avatar" src="{{ comment.user.icon_url }}" alt=""/></div>
+					<div class="comment-main">
+						<p><span class="address">{{ comment.user.username }}</span>
+							<span>
+								{#如果是评论-评论#}
+								{% if comment.parent %}
+									回复: <span class="address">{{ comment.parent.user.username }}</span>
+								{% endif %}
+							</span>
+							<span class="time">{{ comment.created_time }}</span><br/>{{ comment.content }}
+						</p>
+						<form class="innerhidden" comment_id="{{ comment.id }}">
+							<textarea class="textarea"></textarea>
+							<input type="hidden" name="article_id" value="{{ article.id }}"
+								   class="articleid"/>
+							<input type="button" value="确定" class="reply"/>
+						</form>
+
+					</div>
+
+				</li>
+
+			{% endfor %}
+
+
 		</ol>
 	</div>
 	</div>
 {% endblock %}
 
 {% block jsBlock %}
-	<script rel="javascript" type="text/javascript" src="/static/js/test.js"></script>#}
+	<script rel="javascript" type="text/javascript" src="/static/js/test.js"></script>
+
 {% endblock %}

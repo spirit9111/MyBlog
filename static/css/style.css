@@ -2721,3 +2721,11 @@ pre code, pre tt {
 	border-radius: 4px;
 
 }
+
+.innerhidden {
+	display: none;
+}
+
+.innershow {
+	display: block;
+}

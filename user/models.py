@@ -6,8 +6,15 @@ from django.db import models
 class User(AbstractUser):
 	# name = models.CharField(max_length=128, verbose_name='名字')
 	mobile = models.CharField(max_length=11, unique=True, verbose_name='手机号')
+	icon = models.ImageField(upload_to='icon', null=True, blank=True,
+							 verbose_name='头像(36*36)')
+
 	# password = models.CharField(max_length=256, verbose_name='密码')
 	# created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
+	def icon_url(self):
+		if not self.icon:
+			return '/static/images/icon/icon.png'
+		return '/static/images/' + self.icon.url
 
 	def __str__(self):
 		return self.username

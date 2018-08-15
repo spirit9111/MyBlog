@@ -18,7 +18,7 @@ class CommentView(View):
 		user_id = request.session.get('user_id', None)
 		content = request.POST.get('content', None)
 		article_id = request.POST.get('article_id', None)
-		parent = request.POST.get('parent', None)  # 可以为空,为空时返回''
+		comment_id = request.POST.get('comment_id', None)  # 可以为空,为空时返回''
 
 		if not all([content, article_id]):
 			error = '参数不足'
@@ -35,16 +35,16 @@ class CommentView(View):
 			comment.content = content
 			comment.article_id = article_id
 			comment.user_id = user_id
-			if parent:
+			if comment_id:
 				# 给评论评论
-				comment.parent = parent
+				comment.parent_id = comment_id
 			comment.save()
 		except Exception as e:
 			return JsonResponse({'error': '数据库异常'})
 		# 获取当前文章所有的评论
-		comments = Comment.objects.filter(article_id=article_id)  # query_set
-
-		json_data = serializers.serialize('json', comments, use_natural_foreign_keys=True)
+		# comments = Comment.objects.filter(article_id=article_id)  # query_set
+		#
+		# json_data = serializers.serialize('json', comments, use_natural_foreign_keys=True)
 		# print(json_data)
 		# todo 返回数据
-		return JsonResponse({"error": 'OK', 'data': json_data})
+		return JsonResponse({"error": 'OK'})

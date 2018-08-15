@@ -13,6 +13,11 @@ from .models import Article, Tag
 # Create your views here.
 
 
+# class IndexView(View):
+# 	def get(self, request):
+# 		return render(request, 'index_old.html')
+
+
 class IndexView(View):
 	"""首页"""
 
