@@ -1,5 +1,4 @@
 import markdown
-from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -8,6 +7,8 @@ from django.db import models
 # 		return self.get(name=name)
 from django.utils.html import strip_tags
 from mdeditor.fields import MDTextField
+
+from user.models import User
 
 
 class Category(models.Model):

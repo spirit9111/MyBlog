@@ -78,13 +78,13 @@ class RegisterView(View):
 			return render(request, 'register.html', {'message': message})
 		# 保存到数据库
 		try:
-			user = User.objects.create(name=mobile, mobile=mobile, password=password, )
+			user = User.objects.create(username=mobile, mobile=mobile, password=password, )
 		except Exception as e:
 			message = '数据库错误'
 			return render(request, 'register.html', {'message': message})
 		request.session['is_login'] = True
 		request.session['user_id'] = user.id
-		request.session['user_name'] = user.name
+		request.session['user_name'] = user.username
 		return redirect('/')
 
 
@@ -111,12 +111,12 @@ class LoginView(View):
 			username = login_form.cleaned_data['username']
 			password = login_form.cleaned_data['password']
 			try:
-				user = User.objects.get(name=username)
+				user = User.objects.get(username=username)
 				if user.password == password:
 					# 登录成功保存session
 					request.session['is_login'] = True
 					request.session['user_id'] = user.id
-					request.session['user_name'] = user.name
+					request.session['user_name'] = user.username
 					return redirect('/')
 				else:
 					message = "密码不正确！"
