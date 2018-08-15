@@ -53,17 +53,27 @@ class RegisterView(View):
 	def post(self, request):
 		"""注册"""
 		mobile = request.POST.get('mobile', None)
+		username = request.POST.get('username', None)
 		password = request.POST.get('password', None)
 		password2 = request.POST.get('password2', None)
 		sms_code = request.POST.get('sms_code', None)
-		print(mobile, password, password2, sms_code)
+		print(mobile, username, password, password2, sms_code)
 
 		# 校验参数
-		if not all([mobile, password, password2, sms_code]):
+		if not all([username, mobile, password, password2, sms_code]):
 			message = '参数不足'
 			return render(request, 'register.html', {'message': message})
 		if not re.match(r'^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$', mobile):
 			message = '手机号格式错误'
+			return render(request, 'register.html', {'message': message})
+		try:  # 判断是否已经注册
+			is_register = User.objects.filter(mobile=mobile).count()
+		except Exception as e:
+			# print(e)
+			message = '数据库错误'
+			return render(request, 'register.html', {'message': message})
+		if is_register:
+			message = '手机号已注册'
 			return render(request, 'register.html', {'message': message})
 		if password != password2:
 			message = '两次密码不一致'
@@ -78,7 +88,12 @@ class RegisterView(View):
 			return render(request, 'register.html', {'message': message})
 		# 保存到数据库
 		try:
-			user = User.objects.create(username=mobile, mobile=mobile, password=password, )
+			# user = User.objects.create(username=mobile, mobile=mobile, password=password)
+			user = User()
+			user.username = username
+			user.mobile = mobile
+			user.set_password(password)
+			user.save()
 		except Exception as e:
 			message = '数据库错误'
 			return render(request, 'register.html', {'message': message})
@@ -108,11 +123,12 @@ class LoginView(View):
 		login_form = forms.UserForm(request.POST)
 		message = "请检查填写的内容！"
 		if login_form.is_valid():
-			username = login_form.cleaned_data['username']
+			# username = login_form.cleaned_data['username']
+			mobile = login_form.cleaned_data['mobile']
 			password = login_form.cleaned_data['password']
 			try:
-				user = User.objects.get(username=username)
-				if user.password == password:
+				user = User.objects.get(mobile=mobile)
+				if user.check_password(password):
 					# 登录成功保存session
 					request.session['is_login'] = True
 					request.session['user_id'] = user.id
