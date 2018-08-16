@@ -94,9 +94,9 @@ $('.switch').click(function () {
 $('.reply').click(function (event) {
 	//阻止跳转
 	event.preventDefault();
-	var comment_id = $(this).parent('form').attr('comment_id') //默认没有父评论
-	var article_id = $(this).siblings('.articleid').val();
-	var content = $(this).siblings('.textarea').val();
+	var comment_id = $(this).parent('div').attr('comment_id') //默认没有父评论
+	var article_id = $(this).parent('div').attr('article_id');
+	var content = $(this).parent('div').siblings('.textarea').val();
 	if (!content) {
 		alert('请输入评论内容');
 		return

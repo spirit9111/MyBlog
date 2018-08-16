@@ -26,8 +26,8 @@
 					class="item article-meta-comment"
 					data-toggle="tooltip"
 					data-placement="bottom"
-					title="评论：0"><i
-					class="glyphicon glyphicon-comment"></i> 0评论</span></div>
+					title="评论：{{ article.comment_set.count }}"><i
+					class="glyphicon glyphicon-comment"></i> {{ article.comment_set.count }}评论</span></div>
 	</header>
 	<article class="article-content">
 		<p><img data-original="{{ article.image_url }}" src="{{ article.image_url }}" alt=""/></p>
@@ -47,7 +47,6 @@
 		<form action="" method="post" id="comment-form">
 			{% csrf_token %}
 			<div class="comment">
-				<div class="comment-title"><img class="avatar" src="/static/images/icon/icon.png" alt=""/></div>
 				<div class="comment-box">
 <textarea placeholder="欢迎发表评论" name="comment" id="comment-textarea" cols="100%" rows="3"
 		  tabindex="1" class="textarea"></textarea>
@@ -81,11 +80,15 @@
 							</span>
 							<span class="time">{{ comment.created_time }}</span><br/>{{ comment.content }}
 						</p>
-						<form class="innerhidden" comment_id="{{ comment.id }}">
-							<textarea class="textarea"></textarea>
-							<input type="hidden" name="article_id" value="{{ article.id }}"
-								   class="articleid"/>
-							<input type="button" value="确定" class="reply"/>
+						<form class="innerhidden" >
+							<div id="div00">
+								<textarea class="textarea"></textarea>
+{#								<input type="hidden" name="article_id" value=""#}
+{#									   class="articleid"/>#}
+								<div id="div01" comment_id="{{ comment.id }}" article_id="{{ article.id }}">
+									<input type="button" value="确定" class="reply"/>
+								</div>
+							</div>
 						</form>
 
 					</div>

@@ -24,7 +24,8 @@ urlpatterns = [
 	url(r'', include('user.urls')),
 	url(r'', include('comment.urls')),  # 评论,
 	url(r'mdeditor/', include('mdeditor.urls')),  # markdown
-	url(r'^captcha/', include('captcha.urls')),  # captcha,
+	# url(r'^captcha/', include('captcha.urls')),  # captcha,
+	url(r'^search/', include('haystack.urls')),
 ]
 if settings.DEBUG:
 	# static files (images, css, javascript, etc.)

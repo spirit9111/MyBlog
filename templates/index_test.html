@@ -51,7 +51,7 @@
 					<span class="views"><i
 							class="glyphicon glyphicon-eye-open"></i> 共{{ article.views }}人围观</span>
 					<a class="comment" href="article.html#comment"><i class="glyphicon glyphicon-comment"></i>
-						0条评论</a>
+						{{ article.comment_set.count }}条评论</a>
 				</p>
 				<p class="note">{{ article.excerpt }}</p>
 			</article>

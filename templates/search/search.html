@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+{% if query %}
+	有结果
+	{% for result  in page.object_list %}
+
+		<h1>{{ result.object.title }}</h1>
+		<h1>{{ result.object.excerpt }}</h1>
+		<h1>{{ result.object.created_time }}</h1>
+		<h1>{{ result.object.category }}</h1>
+		<h1>{{ result.object.body }}</h1>
+		<h1>{{ result.object.views }}</h1>
+		<h1>{{ result.object.tags }}</h1>
+		<h1>{{ result.object.image_url }}</h1>
+	{% endfor %}
+
+{% else %}
+	没有结果
+{% endif %}
+
+</body>
+</html>

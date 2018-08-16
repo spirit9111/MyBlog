@@ -2729,3 +2729,55 @@ pre code, pre tt {
 .innershow {
 	display: block;
 }
+
+.textarea {
+	width: 100%;
+	/*height: 80px;*/
+	overflow: hidden;
+	resize: none;
+	/*resize: none;*/
+	/*overflow-x: hidden;*/
+	overflow-y: auto;
+	border: none;
+	line-height: 22px;
+	font-size: 14px;
+	outline: 0;
+	color: #666;
+	height: 68px;
+}
+
+.reply {
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    background: #3399CC;
+    border: none;
+    border: 2px solid;
+    border-color: #3399CC;
+    border-left: none;
+    border-top: none;
+    padding: 0px;
+    width: 85px;
+    height: 32px;
+    color: #FFF;
+    outline: 0;
+    border-radius: 0 0 2px 0;
+    font-size: 14px;
+    z-index: 6;
+}
+
+#div00 {
+	border: 2px solid #CCD4D9;
+	border-radius: 2px;
+	padding: 4px 4px 0px;
+	background-color: #FFF;
+	position: relative;
+	z-index: 10;
+}
+#div01{
+	    background-color: #FBFBFB;
+    height: 30px;
+    margin-left: -4px;
+    border-top: solid 1px #F2F2F2;
+    z-index: 5;
+}

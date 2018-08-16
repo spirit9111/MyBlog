@@ -40,7 +40,8 @@ INSTALLED_APPS = [
 	'blog.apps.BlogConfig',
 	'user.apps.UserConfig',
 	'comment.apps.CommentConfig',
-	'captcha'
+	# 'captcha'
+	'haystack.apps.HaystackConfig',  # 搜索
 ]
 
 MIDDLEWARE = [
@@ -158,4 +159,14 @@ CACHES = {
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "session"
 
-AUTH_USER_MODEL = "user.User"
+AUTH_USER_MODEL = "user.User"  # 用户认证
+
+# 搜索配置
+HAYSTACK_CONNECTIONS = {
+	'default': {
+		'ENGINE': 'blog.whoosh_cn_backends.WhooshEngine',
+		'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+	},
+}
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
