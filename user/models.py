@@ -69,3 +69,22 @@ class User(AbstractUser):
 			message = '数据库错误'
 			return {'message': message}
 		return {'message': 'OK', 'user': user}
+
+	@staticmethod
+	def check_user(mobile, password):
+		if not all([mobile, password]):
+			message = '参数不足'
+			return {'message': message}
+		if not re.match(r'^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$', mobile):
+			message = '手机号格式错误'
+			return {'message': message}
+		user_set = User.objects.filter(mobile=mobile)
+		count = user_set.count()
+		if count == 0:
+			message = '%s,没有注册!' % mobile
+			return {'message': message}
+		user = user_set[0]
+		if not user.check_password(password):
+			message = '密码错误'
+			return {'message': message}
+		return {'message': 'OK', 'user': user}

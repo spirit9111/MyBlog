@@ -6,8 +6,6 @@ from django.views.generic.base import View
 from django_redis import get_redis_connection
 from blog.models import Article, Tag
 from celery_tasks.sms.tasks import send_to_mes
-from libs.dysms_python.send_2_mes import SendMes
-from user import forms
 from user.models import User
 
 
@@ -28,10 +26,8 @@ class SendToMes(View):
 			# 获取is_send,确保一分钟发送一次,能获得表示已发送
 			message = '请求过于频繁'
 			return JsonResponse({'message': message})
-		# sms_obj = SendMes()
 		sms_code = '%06d' % random.randint(0, 999999)
 		print(sms_code)
-		# sms_obj.send_2_mes(mobile, sms_code)
 		# celery异步发送短信,
 		# todo 返回值未做判断
 		send_to_mes.delay(mobile, sms_code)
@@ -42,6 +38,8 @@ class SendToMes(View):
 
 
 class RegisterView(View):
+	"""注册"""
+
 	def get(self, request):
 		sidebar_articles = Article.objects.filter(is_show=True, views__gt=0).order_by('-views')[:5]  # 热门文章
 		tags = Tag.objects.all()
@@ -85,25 +83,16 @@ class LoginView(View):
 	def post(self, request):
 		if request.session.get('is_login', None):
 			return redirect("/")
-		login_form = forms.UserForm(request.POST)
-		message = "请检查填写的内容！"
-		if login_form.is_valid():
-			# username = login_form.cleaned_data['username']
-			mobile = login_form.cleaned_data['mobile']
-			password = login_form.cleaned_data['password']
-			try:
-				user = User.objects.get(mobile=mobile)
-				if user.check_password(password):
-					# 登录成功保存session
-					request.session['is_login'] = True
-					request.session['user_id'] = user.id
-					request.session['user_name'] = user.username
-					return redirect('/')
-				else:
-					message = "密码不正确！"
-			except:
-				message = "用户不存在！"
-		return render(request, 'login.html', locals())
+		mobile = request.POST.get('mobile')
+		password = request.POST.get('password')
+		data = User.check_user(mobile, password)
+		if data['message'] != 'OK':
+			return render(request, 'login.html', data)
+		user = data['user']
+		request.session['is_login'] = True
+		request.session['user_id'] = user.id
+		request.session['user_name'] = user.username
+		return redirect('/')
 
 
 class LoginOutView(View):

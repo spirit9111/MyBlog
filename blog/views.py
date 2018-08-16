@@ -16,20 +16,10 @@ class IndexView(View):
 			'banner_articles': banner_articles,
 		}
 		# 分页
-		articles_list = Article.objects.filter(is_show=True)  # 文章列表
-		if articles_list:
-			paginator = JuncheePaginator(articles_list, 5)  # 显示3条数据
-			page = request.GET.get('page')
-			try:
-				articles = paginator.page(page)
-			except PageNotAnInteger:  # None或者其他
-				# 如果用户请求的页码号不是整数，显示第一页
-				articles = paginator.page(1)
-			except EmptyPage:
-				# 如果用户请求的页码号超过了最大页码号，显示最后一页
-				articles = paginator.page(paginator.num_pages)
+		articles_set = Article.objects.filter(is_show=True)  # 文章列表
+		articles = JuncheePaginator.paging(request, articles_set)
+		if articles:
 			context['articles'] = articles
-
 		return render(request, 'index_test.html', context)
 
 
@@ -44,30 +34,15 @@ class ArticleView(View):
 			article = Article.objects.get(id=id)
 			# 展示markdown语法
 			article.body = markdown.markdown(article.body, ['extra', 'codehilite', 'toc', ])
-
 		except Exception as e:
 			return HttpResponse('<h1>NOT FOUNT</h1>')
-		sidebar_articles = Article.objects.order_by('-views')[:3]  # 侧边栏
-		tags = Tag.objects.all()
-
 		context = {
-			'sidebar_articles': sidebar_articles,
 			'article': article,
-			'tags': tags,
 		}
-		comment_list = Article.objects.get(id=id).comment_set.all()#.order_by('created_time')
 		# 分页
-		if comment_list:
-			paginator = JuncheePaginator(comment_list, 5)  # 显示5条数据
-			page = request.GET.get('page')
-			try:
-				comments = paginator.page(page)
-			except PageNotAnInteger:  # None或者其他
-				# 如果用户请求的页码号不是整数，显示第一页
-				comments = paginator.page(1)
-			except EmptyPage:
-				# 如果用户请求的页码号超过了最大页码号，显示最后一页
-				comments = paginator.page(paginator.num_pages)
+		comments_set = Article.objects.get(id=id).comment_set.all()
+		comments = JuncheePaginator.paging(request, comments_set)
+		if comments:
 			context['comments'] = comments
 		return render(request, 'article_test.html', context)
 
