@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block titleBlcok %}
-	Tag: {{ tag }}
+	{{ type }}: name
 {% endblock %}
 
 {% block content00Block %}
@@ -8,7 +8,7 @@
 
 	</div>
 	<div class="title">
-		<h3>Tag: {{ tag }}</h3>
+		<h3>{{ type }}: name</h3>
 			{% endblock %}
 	{% block content01Block %}
 	</div>
@@ -18,7 +18,7 @@
 				 data-original="{{ article.image_url }}"
 				 src="{{ article.image_url }}"
 				 alt=""></a>
-			<header><a class="cat" href="#">{{ article.category }}<i></i></a>
+			<header><a class="cat" href="/article/category/{{ article.category.id }}">{{ article.category }}<i></i></a>
 				<h2><a href="/article/{{ article.id }}" title="">{{ article.title }}</a></h2>
 			</header>
 			<p class="meta">
@@ -26,7 +26,7 @@
 				<span class="views"><i
 						class="glyphicon glyphicon-eye-open"></i> 共{{ article.views }}人围观</span>
 				<a class="comment" href="#"><i class="glyphicon glyphicon-comment"></i>
-					0条评论</a>
+					{{ article.comment_set.count }}条评论</a>
 			</p>
 			<p class="note">{{ article.excerpt }}</p>
 		</article>

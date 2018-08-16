@@ -40,7 +40,7 @@
 				 data-original="{{ article.image_url }}"
 				 src="{{ article.image_url }}"
 				 alt=""></a>
-			<header><a class="cat" href="program">{{ article.category }}<i></i></a>
+			<header><a class="cat" href="/article/category/{{ article.category.id }}">{{ article.category }}<i></i></a>
 				<h2><a href="article/{{ article.id }}" title="">{{ article.title }}</a></h2>
 			</header>
 			<p class="meta">

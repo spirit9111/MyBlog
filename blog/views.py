@@ -1,6 +1,6 @@
 import markdown
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from utils.paginator_ex import JuncheePaginator
 from .models import Article, Tag
@@ -47,24 +47,23 @@ class ArticleView(View):
 		return render(request, 'article_test.html', context)
 
 
-class TagView(View):
-	def get(self, request, tag):
-		articles_list = Tag.objects.get(name=tag).article_set.all()
-		paginator = Paginator(articles_list, 1)  # 显示3条数据
-		page = request.GET.get('page')
-		try:
-			articles = paginator.page(page)
-		except PageNotAnInteger:  # None或者其他
-			# 如果用户请求的页码号不是整数，显示第一页
-			articles = paginator.page(1)
-		except EmptyPage:
-			# 如果用户请求的页码号超过了最大页码号，显示最后一页
-			articles = paginator.page(paginator.num_pages)
-		context = {
-			'articles': articles,
-			'tag': tag,
-		}
+class ArticleListView(View):
+	def get(self, request, type, id):
+		if type == 'category':
+			articles_set = Article.objects.filter(category_id=id)
+		elif type == 'tag':
+			articles_set = Tag.objects.get(id=id).article_set.all()
+		else:
+			return redirect('/')
 
+		# articles_set = Tag.objects.get(name=tag).article_set.all()
+		context = {
+			'type': type,
+			# 'type': type,
+		}
+		articles = JuncheePaginator.paging(request, articles_set)
+		if articles:
+			context['articles'] = articles
 		return render(request, 'tags.html', context)
 
 

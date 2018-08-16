@@ -22,7 +22,7 @@
 					 data-original="{{ result.object.image_url }}"
 					 src="{{ result.object.image_url }}"
 					 alt=""></a>
-				<header><a class="cat" href="#">{{ result.object.category }}<i></i></a>
+				<header><a class="cat" href="/article/category/{{ result.object.category.id }}">{{ result.object.category }}<i></i></a>
 					<h2><a href="/article/{{ result.object.id }}"
 							{#高亮#}
 						   title="">{% highlight result.object.title with query %}</a></h2>

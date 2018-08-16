@@ -6,8 +6,8 @@
 {% block content00Block %}
 	<div id="focusslide" class="carousel slide" data-ride="carousel"></div>
 	<div class="title">
+	<h3>注册</h3>
 {% endblock %}
-<h3>注册</h3>
 <div class="more">
 	{% for tag in tags %}
 		<a href="/article/{{ tag.name }}" tag="{{ tag.name }}">{{ tag.name }}</a>
@@ -18,12 +18,12 @@
 	<div id="login">
 		<form action="/register" method="post">
 			{% csrf_token %}
-			<div class="modal-header">
-				<h4 class="modal-title" id="loginModalLabel">欢迎注册!</h4>
-			</div>
 			{% if message %}
 				<div class="alert alert-warning">{{ message }}</div>
 			{% endif %}
+			<div class="modal-header">
+				<h2 class="text-center">欢迎注册!</h2>
+			</div>
 			<div class="modal-body">
 				<div class="form-group">
 					<label>手机号</label>

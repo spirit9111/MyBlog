@@ -67,7 +67,7 @@
 					{% get_tags as tags %}
 					<div class="more">
 						{% for tag in tags %}
-							<a href="/article/{{ tag.name }}" tag="{{ tag.name }}">{{ tag.name }}</a>
+							<a href="/article/tag/{{ tag.id }}" tag="{{ tag.name }}">{{ tag.name }}</a>
 						{% endfor %}
 					</div>
 				{% endblock %}
@@ -115,7 +115,7 @@
 				{% get_tags as tags %}
 				<h3>标签</h3>
 				{% for tag in tags %}
-					<a href="/article/{{ tag.name }}" class="tags">{{ tag.name }}({{ tag.article_set.count }})</a>
+					<a href="/article/tag/{{ tag.id }}" class="tags">{{ tag.name }}({{ tag.article_set.count }})</a>
 				{% endfor %}
 			</div>
 		</aside>
