@@ -55,7 +55,7 @@ class ArticleView(View):
 			'article': article,
 			'tags': tags,
 		}
-		comment_list = Article.objects.get(id=id).comment_set.all()
+		comment_list = Article.objects.get(id=id).comment_set.all()#.order_by('created_time')
 		# 分页
 		if comment_list:
 			paginator = JuncheePaginator(comment_list, 5)  # 显示5条数据

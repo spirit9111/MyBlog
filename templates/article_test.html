@@ -65,10 +65,10 @@
 		<ol class="commentlist">
 
 			{% for comment in comments %}
-
 				<li class="comment-content">
 					<p style="float: right;"><a href="javascript:;" style="text-decoration:none;"
-												class="switch">回复</a> {{ forloop.revcounter }}楼 </p>
+												class="switch">回复</a> {{ comment.floor }}楼
+					</p>
 					<div class="comment-avatar"><img class="avatar" src="{{ comment.user.icon_url }}" alt=""/></div>
 					<div class="comment-main">
 						<p><span class="address">{{ comment.user.username }}</span>

@@ -17,3 +17,4 @@ def get_tags():
 	"""tag云"""
 	tags = Tag.objects.all()
 	return tags
+
