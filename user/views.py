@@ -91,13 +91,16 @@ class LoginView(View):
 		mobile = request.POST.get('mobile')
 		password = request.POST.get('password')
 		data = User.check_user(mobile, password)
-		if data['message'] != 'OK':
-			return render(request, 'login.html', data)
+		error = data['error']
+		if error != 'OK':
+			# return render(request, 'login.html', data)
+			return JsonResponse({'error': error})
 		user = data['user']
 		request.session['is_login'] = True
 		request.session['user_id'] = user.id
 		request.session['user_name'] = user.username
-		return redirect('/')
+		# return redirect('/')
+		return JsonResponse({'error': 'OK'})
 
 
 class LoginOutView(View):

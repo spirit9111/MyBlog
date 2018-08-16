@@ -173,7 +173,7 @@ $('#comment-submit').click(function (event) {
 		},
 	});
 });
-
+//登录
 $('#login_mobile').blur(function () {
 	var mobile = $("#login_mobile").val()
 	// var password = $(".login_form #password").val()
@@ -197,7 +197,39 @@ $('#login_password').blur(function () {
 		$("#login-password-err").hide();
 	}
 })
+$('#login_submit').click(function (event) {
+	//阻止跳转
+	event.preventDefault();
+	var password = $("#login_password").val()
+	var mobile = $("#login_mobile").val()
+	if (password && mobile) {
+		var params = {
+			'mobile': mobile,
+			'password': password,
+		};
 
+		$.ajax({
+			url: 'http://127.0.0.1:8000/login/',
+			type: 'post',
+			data: params,
+			// contentType: 'application/json',
+			dataType: 'json',
+			headers: {
+				"X-CSRFToken": getCookie("csrf_token")
+			},
+			success: function (resp) {
+				if (resp.error == 'OK') {
+					//刷新当前页,跳转首页
+					window.location.reload()
+				}
+				else {
+					//简单显示,未做处理
+					alert(resp.error)
+				}
+			},
+		});
+	}
+});
 //注册
 $('#re_mobile').blur(function () {
 	var mobile = $("#re_mobile").val()
@@ -298,8 +330,7 @@ $('#re_submit').click(function (event) {
 			success: function (resp) {
 				console.log(resp.error)
 				if (resp.error == 'OK') {
-					// alert('返回评论数据,拼接字符串!')
-					//跳转首页
+					//刷新当前页,跳转首页
 					window.location.reload()
 				}
 				else {
@@ -309,44 +340,4 @@ $('#re_submit').click(function (event) {
 			},
 		});
 	}
-
-
-	// var comment_id = '' //默认没有父评论
-	// var article_id = $('.articleid').val();
-	// var content = $('.textarea').val();
-	// if (!content) {
-	// 	alert('请输入评论内容');
-	// 	return
-	// }
-	//
-	// var params = {
-	// 	'article_id': article_id,
-	// 	'content': content,
-	// 	'comment_id': comment_id
-	// };
-	//
-	// $.ajax({
-	// 	url: 'http://127.0.0.1:8000/comment',
-	// 	type: 'post',
-	// 	data: params,
-	// 	dataType: 'json',
-	// 	// contentType: 'application/json',
-	// 	headers: {
-	// 		"X-CSRFToken": getCookie("csrf_token")
-	// 	},
-	// 	success: function (resp) {
-	// 		console.log(resp.error)
-	// 		// alert(resp.error);
-	// 		// alert('success')
-	// 		//
-	// 		if (resp.error == 'OK') {
-	// 			// alert('返回评论数据,拼接字符串!')
-	// 			window.location.reload()
-	// 		}
-	// 		else {
-	// 			//简单显示,未做处理
-	// 			alert(resp.error)
-	// 		}
-	// 	},
-	// });
 });

@@ -18,7 +18,7 @@
 	<div id="login">
 		{#        <div class="col-md-4 col-md-offset-4">#}
 
-		<form class='form-login' action="/login/" method="post">
+		<form class='form-login' action="" method="post">
 			{% csrf_token %}
 			{% if message %}
 				<div class="alert alert-warning">{{ message }}</div>
@@ -37,7 +37,7 @@
 				</div>
 			</div>
 			<button type="reset" class="btn btn-default pull-left">重置</button>
-			<button type="submit" class="btn btn-primary pull-right">提交</button>
+			<button type="button" class="btn btn-primary pull-right" id="login_submit">提交</button>
 		</form>
 		{#        </div>#}
 	</div>
