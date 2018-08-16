@@ -1,9 +1,10 @@
 import markdown
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
+from utils.paginator_ex import JuncheePaginator
 from .models import Article, Tag
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 class IndexView(View):
@@ -11,22 +12,24 @@ class IndexView(View):
 
 	def get(self, request):
 		banner_articles = Article.objects.filter(is_show=True, is_banner=True)  # 轮播图
-		articles_list = Article.objects.filter(is_show=True)  # 文章列表
-		# 分页
-		paginator = Paginator(articles_list, 2)  # 显示3条数据
-		page = request.GET.get('page')
-		try:
-			articles = paginator.page(page)
-		except PageNotAnInteger:  # None或者其他
-			# 如果用户请求的页码号不是整数，显示第一页
-			articles = paginator.page(1)
-		except EmptyPage:
-			# 如果用户请求的页码号超过了最大页码号，显示最后一页
-			articles = paginator.page(paginator.num_pages)
 		context = {
 			'banner_articles': banner_articles,
-			'articles': articles,
 		}
+		# 分页
+		articles_list = Article.objects.filter(is_show=True)  # 文章列表
+		if articles_list:
+			paginator = JuncheePaginator(articles_list, 5)  # 显示3条数据
+			page = request.GET.get('page')
+			try:
+				articles = paginator.page(page)
+			except PageNotAnInteger:  # None或者其他
+				# 如果用户请求的页码号不是整数，显示第一页
+				articles = paginator.page(1)
+			except EmptyPage:
+				# 如果用户请求的页码号超过了最大页码号，显示最后一页
+				articles = paginator.page(paginator.num_pages)
+			context['articles'] = articles
+
 		return render(request, 'index_test.html', context)
 
 
@@ -46,13 +49,26 @@ class ArticleView(View):
 			return HttpResponse('<h1>NOT FOUNT</h1>')
 		sidebar_articles = Article.objects.order_by('-views')[:3]  # 侧边栏
 		tags = Tag.objects.all()
-		comments = Article.objects.get(id=id).comment_set.all()
+
 		context = {
 			'sidebar_articles': sidebar_articles,
 			'article': article,
 			'tags': tags,
-			'comments': comments
 		}
+		comment_list = Article.objects.get(id=id).comment_set.all()
+		# 分页
+		if comment_list:
+			paginator = JuncheePaginator(comment_list, 5)  # 显示5条数据
+			page = request.GET.get('page')
+			try:
+				comments = paginator.page(page)
+			except PageNotAnInteger:  # None或者其他
+				# 如果用户请求的页码号不是整数，显示第一页
+				comments = paginator.page(1)
+			except EmptyPage:
+				# 如果用户请求的页码号超过了最大页码号，显示最后一页
+				comments = paginator.page(paginator.num_pages)
+			context['comments'] = comments
 		return render(request, 'article_test.html', context)
 
 
@@ -78,6 +94,8 @@ class TagView(View):
 
 
 class ArchivesView(View):
+	"""归档"""
+
 	def get(self, request):
 		articles_list = Article.objects.filter(is_show=True)  # 文章列表
 		# 获取归档的年/月

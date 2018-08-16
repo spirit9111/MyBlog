@@ -57,7 +57,7 @@ class Article(models.Model):
 	def image_url(self):
 		if not self.image:
 			return '/static/images/upload/default_image.jpg'
-		return '/static/images/' + self.image.url
+		return self.image.url
 
 	class Meta:
 		verbose_name = '文章'  # 在admin站点中显示的名称

@@ -14,7 +14,7 @@ class User(AbstractUser):
 	def icon_url(self):
 		if not self.icon:
 			return '/static/images/icon/icon.png'
-		return '/static/images/' + self.icon.url
+		return self.icon.url
 
 	def __str__(self):
 		return self.username

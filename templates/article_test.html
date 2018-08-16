@@ -80,11 +80,11 @@
 							</span>
 							<span class="time">{{ comment.created_time }}</span><br/>{{ comment.content }}
 						</p>
-						<form class="innerhidden" >
+						<form class="innerhidden">
 							<div id="div00">
 								<textarea class="textarea"></textarea>
-{#								<input type="hidden" name="article_id" value=""#}
-{#									   class="articleid"/>#}
+								{#								<input type="hidden" name="article_id" value=""#}
+								{#									   class="articleid"/>#}
 								<div id="div01" comment_id="{{ comment.id }}" article_id="{{ article.id }}">
 									<input type="button" value="确定" class="reply"/>
 								</div>
@@ -96,8 +96,24 @@
 				</li>
 
 			{% endfor %}
-
-
+			<div class='pagination'>
+				{% if comments %}
+					{% if comments.has_previous %}
+						<a href='?page={{ comments.previous_page_number }}'><span>上一页</span></a>
+					{% endif %}
+					{% for page in comments.paginator.page_range_ext %}
+						{% if page == comments.number %}
+							<a title='当前页:{{ page }}'
+							   style="background: #3399CC;color: white"><span>{{ page }}</span></a>
+						{% else %}
+							<a href='?page={{ page }}' title='{{ page }}'><span>{{ page }}</span></a>
+						{% endif %}
+					{% endfor %}
+					{% if comments.has_next %}
+						<a href='?page={{ comments.next_page_number }}'><span>下一页</span></a>
+					{% endif %}
+				{% endif %}
+			</div>
 		</ol>
 	</div>
 	</div>
@@ -105,5 +121,7 @@
 
 {% block jsBlock %}
 	<script rel="javascript" type="text/javascript" src="/static/js/test.js"></script>
+{% endblock %}
 
+{% block tagBlock %}
 {% endblock %}

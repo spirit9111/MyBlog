@@ -63,14 +63,14 @@
 			{% block content00Block %}
 				{% endblock %}
 
-{#				{% block tagBlock %}#}
+				{% block tagBlock %}
 					{% get_tags as tags %}
 					<div class="more">
 						{% for tag in tags %}
 							<a href="/article/{{ tag.name }}" tag="{{ tag.name }}">{{ tag.name }}</a>
 						{% endfor %}
 					</div>
-{#				{% endblock %}#}
+				{% endblock %}
 
 			{% block content01Block %}
 			{% endblock %}
