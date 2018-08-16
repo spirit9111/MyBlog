@@ -34,30 +34,30 @@ class User(AbstractUser):
 		# 校验参数
 		if not all([username, mobile, password, password2, sms_code]):
 			message = '参数不足'
-			return {'message': message}
+			return {'error': message}
 		if not re.match(r'^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$', mobile):
 			message = '手机号格式错误'
-			return {'message': message}
+			return {'error': message}
 		try:  # 判断是否已经注册
 			is_register = User.objects.filter(mobile=mobile).count()
 		except Exception as e:
 			# print(e)
 			message = '数据库错误'
-			return {'message': message}
+			return {'error': message}
 		if is_register:
 			message = '手机号已注册'
-			return {'message': message}
+			return {'error': message}
 		if password != password2:
 			message = '两次密码不一致'
-			return {'message': message}
+			return {'error': message}
 		redis_conn = get_redis_connection('sms_code')
 		real_sms_code = redis_conn.get('sms_%s' % mobile)
 		if not real_sms_code:
-			message = '验证码过期'
-			return {'message': message}
+			message = '验证码过期或无效'
+			return {'error': message}
 		if sms_code != real_sms_code.decode():
 			message = '验证码错误'
-			return {'message': message}
+			return {'error': message}
 		# 保存到数据库
 		try:
 			user = User()
@@ -67,8 +67,8 @@ class User(AbstractUser):
 			user.save()
 		except Exception as e:
 			message = '数据库错误'
-			return {'message': message}
-		return {'message': 'OK', 'user': user}
+			return {'error': message}
+		return {'error': 'OK', 'user': user}
 
 	@staticmethod
 	def check_user(mobile, password):

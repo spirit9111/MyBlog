@@ -52,7 +52,11 @@ class Article(models.Model):
 	image = models.ImageField(upload_to='upload', null=True, blank=True,
 							  verbose_name='图(820*200)')
 
-	# 评论 pass
+	# 浏览量
+	def add_views(self):
+		self.views += 1
+		self.save(update_fields=['views'])
+
 	# 获取图片的url
 	def image_url(self):
 		if not self.image:

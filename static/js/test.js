@@ -40,25 +40,21 @@ $(function () {
 		$(this).siblings('li').slideToggle().parent().siblings().children('li').slideUp()
 	})
 })
-
 $(function () {
 	$('.div0').children('a').mouseenter(function () {
 		$(this).css({fontSize: "32.3px", color: "red"})
 	})
 })
-
 $(function () {
 	$('.div0').children('a').mouseleave(function () {
 		$(this).css({fontSize: "32px", color: "#337ab7"})
 	})
 })
-
 $(function () {
 	$('.div01').children('a').mouseenter(function () {
 		$(this).css({fontSize: "26.3px", color: "red"})
 	})
 })
-
 $(function () {
 	$('.div01').children('a').mouseleave(function () {
 		$(this).css({fontSize: "26px", color: "#337ab7"})
@@ -70,7 +66,7 @@ $(function () {
 $(function () {
 	$('#sms').click(function () {
 		// alert('sms')
-		var mobile = $('#mobile').val()
+		var mobile = $('#re_mobile').val()
 		$.ajax({
 			url: '/register/sendtomes?mobile=' + mobile,
 			type: 'get',
@@ -85,12 +81,13 @@ $(function () {
 		});
 	})
 })
+//切换回复
 $('.switch').click(function () {
 	$(this).parent('p').siblings().children('form').toggleClass('innershow')
 	// alert('弹出输入框')
 
 })
-
+//回复文章
 $('.reply').click(function (event) {
 	//阻止跳转
 	event.preventDefault();
@@ -133,7 +130,7 @@ $('.reply').click(function (event) {
 		},
 	});
 });
-
+//回复评论
 $('#comment-submit').click(function (event) {
 	//阻止跳转
 	event.preventDefault();
@@ -175,4 +172,181 @@ $('#comment-submit').click(function (event) {
 			}
 		},
 	});
+});
+
+$('#login_mobile').blur(function () {
+	var mobile = $("#login_mobile").val()
+	// var password = $(".login_form #password").val()
+
+	if (!mobile) {
+		$("#login-mobile-err").show();
+	}
+	if (mobile) {
+		$("#login-mobile-err").hide();
+	}
+
+})
+$('#login_password').blur(function () {
+	var password = $("#login_password").val()
+	// var password = $(".login_form #password").val()
+
+	if (!password) {
+		$("#login-password-err").show();
+	}
+	if (password) {
+		$("#login-password-err").hide();
+	}
+})
+
+//注册
+$('#re_mobile').blur(function () {
+	var mobile = $("#re_mobile").val()
+
+	if (!mobile) {
+		$("#login-password-err00").show();
+	}
+	if (mobile) {
+		if (mobile.length != 11) {
+			$("#login-password-err00").html('手机号错误')
+			$("#login-password-err00").show();
+			return
+		}
+		$("#login-password-err00").hide();
+	}
+})
+$('#re_username').blur(function () {
+	var username = $("#re_username").val()
+
+	if (!username) {
+		$("#login-password-err01").show();
+	}
+	if (username) {
+		if (username.length < 5 || username.length > 11) {
+			$("#login-password-err01").html('用户名长度为5-11位')
+			$("#login-password-err01").show();
+			return
+		}
+		$("#login-password-err01").hide();
+	}
+})
+$('#re_password').blur(function () {
+	var password = $("#re_password").val()
+
+	if (!password) {
+		$("#login-password-err02").show();
+	}
+	if (password) {
+		if (password.length < 7 || password.length > 14) {
+			$("#login-password-err02").html('密码长度为8-14位')
+			$("#login-password-err02").show();
+			return
+		}
+		$("#login-password-err02").hide();
+	}
+})
+$('#re_password2').blur(function () {
+	var password = $("#re_password").val()
+	var password2 = $("#re_password2").val()
+	if (password.length != password2.length) {
+		$("#login-password-err03").html('两次密码不一致')
+		$("#login-password-err03").show();
+		return
+	}
+	$("#login-password-err03").hide()
+})
+$('#re_code').blur(function () {
+	var sms_code = $("#re_code").val()
+
+	if (!sms_code) {
+		$("#login-password-err04").show();
+	}
+	if (sms_code) {
+		if (sms_code.length != 6) {
+			$("#login-password-err04").html('验证码长度为6位')
+			$("#login-password-err04").show();
+			return
+		}
+		$("#login-password-err04").hide();
+	}
+})
+
+$('#re_submit').click(function (event) {
+	//阻止跳转
+	event.preventDefault();
+	var mobile = $("#re_mobile").val()
+	var username = $("#re_username").val()
+	var password = $("#re_password").val()
+	var password2 = $("#re_password2").val()
+	var sms_code = $("#re_code").val()
+	if (mobile && username && password && password2 && sms_code) {
+		var params = {
+			'mobile': mobile,
+			'username': username,
+			'password': password,
+			'password2': password2,
+			'sms_code': sms_code,
+		};
+
+		$.ajax({
+			url: 'http://127.0.0.1:8000/register',
+			type: 'post',
+			data: params,
+			dataType: 'json',
+			headers: {
+				"X-CSRFToken": getCookie("csrf_token")
+			},
+			success: function (resp) {
+				console.log(resp.error)
+				if (resp.error == 'OK') {
+					// alert('返回评论数据,拼接字符串!')
+					//跳转首页
+					window.location.reload()
+				}
+				else {
+					//简单显示,未做处理
+					alert(resp.error)
+				}
+			},
+		});
+	}
+
+
+	// var comment_id = '' //默认没有父评论
+	// var article_id = $('.articleid').val();
+	// var content = $('.textarea').val();
+	// if (!content) {
+	// 	alert('请输入评论内容');
+	// 	return
+	// }
+	//
+	// var params = {
+	// 	'article_id': article_id,
+	// 	'content': content,
+	// 	'comment_id': comment_id
+	// };
+	//
+	// $.ajax({
+	// 	url: 'http://127.0.0.1:8000/comment',
+	// 	type: 'post',
+	// 	data: params,
+	// 	dataType: 'json',
+	// 	// contentType: 'application/json',
+	// 	headers: {
+	// 		"X-CSRFToken": getCookie("csrf_token")
+	// 	},
+	// 	success: function (resp) {
+	// 		console.log(resp.error)
+	// 		// alert(resp.error);
+	// 		// alert('success')
+	// 		//
+	// 		if (resp.error == 'OK') {
+	// 			// alert('返回评论数据,拼接字符串!')
+	// 			window.location.reload()
+	// 		}
+	// 		else {
+	// 			//简单显示,未做处理
+	// 			alert(resp.error)
+	// 		}
+	// 	},
+	// });
 });

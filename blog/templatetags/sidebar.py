@@ -18,3 +18,4 @@ def get_tags():
 	tags = Tag.objects.all()
 	return tags
 
+# todo 每日一句

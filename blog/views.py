@@ -32,6 +32,7 @@ class ArticleView(View):
 			return HttpResponse('<h1>NOT FOUNT</h1>')
 		try:
 			article = Article.objects.get(id=id)
+			article.add_views()
 			# 展示markdown语法
 			article.body = markdown.markdown(article.body, ['extra', 'codehilite', 'toc', ])
 		except Exception as e:
@@ -48,6 +49,7 @@ class ArticleView(View):
 
 
 class ArticleListView(View):
+	"""分类"""
 	def get(self, request, type, id):
 		if type == 'category':
 			articles_set = Article.objects.filter(category_id=id)

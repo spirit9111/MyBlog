@@ -61,16 +61,16 @@
 	<div class="content-wrap">
 		<div class="content">
 			{% block content00Block %}
-				{% endblock %}
+			{% endblock %}
 
-				{% block tagBlock %}
-					{% get_tags as tags %}
-					<div class="more">
-						{% for tag in tags %}
-							<a href="/article/tag/{{ tag.id }}" tag="{{ tag.name }}">{{ tag.name }}</a>
-						{% endfor %}
-					</div>
-				{% endblock %}
+			{% block tagBlock %}
+				{% get_tags as tags %}
+				<div class="more">
+					{% for tag in tags %}
+						<a href="/article/tag/{{ tag.id }}" tag="{{ tag.name }}">{{ tag.name }}</a>
+					{% endfor %}
+				</div>
+			{% endblock %}
 
 			{% block content01Block %}
 			{% endblock %}
@@ -89,7 +89,7 @@
 			<div class="widget widget_sentence">
 				<h3>每日一句</h3>
 				<div class="widget-sentence-content">
-					<h4>2016年01月05日星期二</h4>
+					<h4>{% now "Y F jS H:i" %}</h4>
 					<p>Do not let what you cannot do interfere with what you can do.<br/>
 						别让你不能做的事妨碍到你能做的事。（John Wooden）</p>
 				</div>

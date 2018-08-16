@@ -2704,7 +2704,12 @@ pre code, pre tt {
 }
 
 .form-login input[type="password"] {
-	margin-bottom: 10px;
+	margin-bottom: 3px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+.form-login input[type="text"] {
+	margin-bottom: 3px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
@@ -2785,4 +2790,15 @@ pre code, pre tt {
 
 span.highlighted {
 	color: red;
+}
+
+.error_tip {
+	color: #f00;
+	display: none;
+	font-size: 12px;
+	left: auto;
+	right: 0;
+	top: auto;
+	bottom: -20px;
+	display: none;
 }

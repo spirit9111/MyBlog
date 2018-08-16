@@ -41,6 +41,8 @@ class RegisterView(View):
 	"""注册"""
 
 	def get(self, request):
+		if request.session.get('is_login', None):
+			return redirect("/")
 		sidebar_articles = Article.objects.filter(is_show=True, views__gt=0).order_by('-views')[:5]  # 热门文章
 		tags = Tag.objects.all()
 		context = {
@@ -57,13 +59,16 @@ class RegisterView(View):
 		password2 = request.POST.get('password2', None)
 		sms_code = request.POST.get('sms_code', None)
 		data = User.check_create(mobile, username, password, password2, sms_code)
-		if data['message'] != 'OK':
-			return render(request, 'register.html', data)
+		error = data['error']
+		if error != 'OK':
+			# return render(request, 'register.html', data)
+			return JsonResponse({'error': error})
 		user = data['user']
 		request.session['is_login'] = True
 		request.session['user_id'] = user.id
 		request.session['user_name'] = user.username
-		return redirect('/')
+		# return redirect('/')
+		return JsonResponse({'error': "OK"})
 
 
 class LoginView(View):
@@ -103,3 +108,7 @@ class LoginOutView(View):
 			return redirect("/")
 		request.session.flush()
 		return redirect("/")
+
+# 校验手机号是否注册
+# 校验两次密码是否一致
+#
