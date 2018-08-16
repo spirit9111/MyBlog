@@ -3,17 +3,14 @@
 	归档
 {% endblock %}
 
-{% block contentBlock %}
+{% block content00Block %}
 	<div id="focusslide" class="carousel slide" data-ride="carousel">
 
 	</div>
 	<div class="title">
 		<h3>归档</h3>
-		<div class="more">
-			{% for tag in tags %}
-				<a href="/article/{{ tag.name }}" tag="{{ tag.name }}">{{ tag.name }}</a>
-			{% endfor %}
-		</div>
+	{% endblock %}
+{% block content01Block %}
 	</div>
 
 	<div class="lists">

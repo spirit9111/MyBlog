@@ -1,3 +1,4 @@
+{% load sidebar %}
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -59,8 +60,19 @@
 <section class="container">
 	<div class="content-wrap">
 		<div class="content">
-			{% block contentBlock %}
+			{% block content00Block %}
+				{% endblock %}
 
+{#				{% block tagBlock %}#}
+					{% get_tags as tags %}
+					<div class="more">
+						{% for tag in tags %}
+							<a href="/article/{{ tag.name }}" tag="{{ tag.name }}">{{ tag.name }}</a>
+						{% endfor %}
+					</div>
+{#				{% endblock %}#}
+
+			{% block content01Block %}
 			{% endblock %}
 		</div>
 		<aside class="sidebar">
@@ -84,6 +96,7 @@
 			</div>
 			<div class="widget widget_hot">
 				<h3>热门文章</h3>
+				{% get_hot_articles as sidebar_articles %}
 				<ul>
 					{% for article in sidebar_articles %}
 						<li><a href="/article/{{ article.id }}"><span class="thumbnail"><img class="thumb"
@@ -99,6 +112,7 @@
 			</div>
 			<div class="widget">
 				{# article-tags #}
+				{% get_tags as tags %}
 				<h3>标签</h3>
 				{% for tag in tags %}
 					<a href="/article/{{ tag.name }}" class="tags">{{ tag.name }}({{ tag.article_set.count }})</a>

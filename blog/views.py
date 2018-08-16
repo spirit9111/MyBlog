@@ -1,21 +1,9 @@
 import markdown
-from django.core import serializers
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.forms import model_to_dict
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.shortcuts import render
 from django.views import View
-
-from comment.models import Comment
 from .models import Article, Tag
-
-
-# Create your views here.
-
-
-# class IndexView(View):
-# 	def get(self, request):
-# 		return render(request, 'index_old.html')
 
 
 class IndexView(View):
@@ -24,8 +12,6 @@ class IndexView(View):
 	def get(self, request):
 		banner_articles = Article.objects.filter(is_show=True, is_banner=True)  # 轮播图
 		articles_list = Article.objects.filter(is_show=True)  # 文章列表
-		tags = Tag.objects.all()
-		sidebar_articles = Article.objects.filter(is_show=True, views__gt=0).order_by('-views')[:5]  # 热门文章
 		# 分页
 		paginator = Paginator(articles_list, 2)  # 显示3条数据
 		page = request.GET.get('page')
@@ -40,8 +26,6 @@ class IndexView(View):
 		context = {
 			'banner_articles': banner_articles,
 			'articles': articles,
-			'tags': tags,
-			'sidebar_articles': sidebar_articles,
 		}
 		return render(request, 'index_test.html', context)
 
@@ -85,13 +69,8 @@ class TagView(View):
 		except EmptyPage:
 			# 如果用户请求的页码号超过了最大页码号，显示最后一页
 			articles = paginator.page(paginator.num_pages)
-		sidebar_articles = Article.objects.filter(is_show=True, views__gt=0).order_by('-views')[:5]  # 热门文章
-		tags = Tag.objects.all()
 		context = {
-			# 'banner_articles': banner_articles,
 			'articles': articles,
-			'tags': tags,
-			'sidebar_articles': sidebar_articles,
 			'tag': tag,
 		}
 
@@ -100,8 +79,6 @@ class TagView(View):
 
 class ArchivesView(View):
 	def get(self, request):
-		sidebar_articles = Article.objects.filter(is_show=True, views__gt=0).order_by('-views')[:5]  # 热门文章
-		tags = Tag.objects.all()
 		articles_list = Article.objects.filter(is_show=True)  # 文章列表
 		# 获取归档的年/月
 		dates = Article.objects.datetimes('created_time', 'month', order='DESC')
@@ -121,8 +98,6 @@ class ArchivesView(View):
 			temp_dict["day"] = '%02d' % article.created_time.day
 			articles.append(temp_dict)
 		context = {
-			'sidebar_articles': sidebar_articles,
-			'tags': tags,
 			'year_month': year_month,
 			'articles': articles
 		}

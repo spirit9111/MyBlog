@@ -3,7 +3,7 @@
 	Home|首页
 {% endblock %}
 
-{% block contentBlock %}
+{% block content00Block %}
 	<div id="focusslide" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
 			<li data-target="#focusslide" data-slide-to="0" class="active"></li>
@@ -31,11 +31,8 @@
 				class="sr-only">下一个</span> </a></div>
 		<div class="title">
 			<h3>最新发布</h3>
-			<div class="more">
-				{% for tag in tags %}
-					<a href="/article/{{ tag.name }}" tag="{{ tag.name }}">{{ tag.name }}</a>
-				{% endfor %}
-			</div>
+		{% endblock %}
+{% block content01Block %}
 		</div>
 		{% for article in articles %}
 			<article class="excerpt excerpt-1"><a class="focus" href="article/{{ article.id }}" title="">

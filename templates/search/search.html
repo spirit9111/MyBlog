@@ -1,28 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load highlight %}
+{% block titleBlcok %}
+	搜索: {{ query }}
+{% endblock %}
 
-{% if query %}
-	有结果
-	{% for result  in page.object_list %}
+{% block content00Block %}
+	<div id="focusslide" class="carousel slide" data-ride="carousel">
 
-		<h1>{{ result.object.title }}</h1>
-		<h1>{{ result.object.excerpt }}</h1>
-		<h1>{{ result.object.created_time }}</h1>
-		<h1>{{ result.object.category }}</h1>
-		<h1>{{ result.object.body }}</h1>
-		<h1>{{ result.object.views }}</h1>
-		<h1>{{ result.object.tags }}</h1>
-		<h1>{{ result.object.image_url }}</h1>
-	{% endfor %}
+	</div>
+	<div class="title">
+	<h3>关键词:{% highlight query with query %}</h3>
+{% endblock %}
 
-{% else %}
-	没有结果
-{% endif %}
 
-</body>
-</html>
+{% block content01Block %}
+	{% if query %}
+		</div>
+		{% for result in page.object_list %}
+			<article class="excerpt excerpt-1"><a class="focus" href="/article/{{ result.object.id }}" title="">
+				<img class="thumb"
+					 data-original="{{ result.object.image_url }}"
+					 src="{{ result.object.image_url }}"
+					 alt=""></a>
+				<header><a class="cat" href="#">{{ result.object.category }}<i></i></a>
+					<h2><a href="/article/{{ result.object.id }}"
+							{#高亮#}
+						   title="">{% highlight result.object.title with query %}</a></h2>
+				</header>
+				<p class="meta">
+					<time class="time"><i class="glyphicon glyphicon-time"></i>{{ result.object.created_time }}</time>
+					<span class="views"><i
+							class="glyphicon glyphicon-eye-open"></i> 共{{ result.object.views }}人围观</span>
+					<a class="comment" href="#"><i class="glyphicon glyphicon-comment"></i>
+						0条评论</a>
+				</p>
+				<p class="note">{% highlight result.object.excerpt with query %}</p>
+			</article>
+		{% empty %}
+			<div><h1>没有搜索到你想要的结果！</h1></div>
+		{% endfor %}
+		{#分页#}
+		<div class='pagination'>
+			{% if page.has_previous %}
+				<a href='?page={{ page.previous_page_number }}'><span>上一页</span></a>
+			{% endif %}
+			{% for page in page.paginator.page_range %}
+				{% if page == page.number %}
+					<a title='当前页:{{ page }}'><span>{{ page }}</span></a>
+				{% else %}
+					<a href='?page={{ page }}' title='{{ page }}'
+					><span>{{ page }}</span></a>
+				{% endif %}
+			{% endfor %}
+			{% if page.has_next %}
+				<a href='?page={{ page.next_page_number }}'><span>下一页</span></a>
+			{% endif %}
+		</div>
+		</div>
+	{% endif %}
+{% endblock %}
