@@ -1,11 +1,5 @@
-from django.core import serializers
-from django.http import JsonResponse, HttpResponse
-from django.shortcuts import render, redirect
-
-# Create your views here.
+from django.http import JsonResponse
 from django.views import View
-
-from blog.models import Article
 from comment.models import Comment
 from utils.error_code import ErrorCode
 
