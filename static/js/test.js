@@ -63,24 +63,46 @@ $(function () {
 
 
 //发送短信
-$(function () {
-	$('#sms').click(function () {
-		// alert('sms')
-		var mobile = $('#re_mobile').val()
-		$.ajax({
-			url: '/register/sendtomes?mobile=' + mobile,
-			type: 'get',
-			contentType: 'application/json',
-			dataType: 'json',
-			success: function (data) {
-				alert(data.error)
-			},
-			error: function () {
-				alert(data.error)
+function sendSMSCode() {
+	$("#sms").removeAttr("onclick");
+	var mobile = $('#re_mobile').val()
+	$.ajax({
+		url: '/register/sendtomes?mobile=' + mobile,
+		type: 'get',
+		contentType: 'application/json',
+		dataType: 'json',
+		success: function (data) {
+			if (data.error == "OK") {
+				alert('短信验证码已发送');
+				// 设置倒计时60s,期间不能再次点击发送按键
+				var time = 60;
+				var t = setInterval(function () {
+					//倒计时归零,允许再次点击操作
+					if (time == 1) {
+						//	首先清除倒计时t
+						clearInterval(t);
+						//	然后显示 获取验证码
+						$("#sms").html("点击发送");
+						//	回复点击时间,允许再次点击
+						$("#sms").attr("onclick", "sendSMSCode()");
+
+					}
+					//倒计时不为零,阻止点击操作
+					else {
+						time -= 1
+						$("#sms").html(time + 's后重发')
+					}
+				}, 1000)
+			} else {
+				// 表示后端出现了错误，可以将错误信息展示到前端页面中
+				alert(data.error);
+				// 将点击按钮的onclick事件函数恢复回去
+				$("#sms").attr("onclick", "sendSMSCode()");
 			}
-		});
-	})
-})
+		}
+	});
+}
+
 //切换回复
 $('.switch').click(function () {
 	$(this).parent('p').siblings().children('form').toggleClass('innershow')

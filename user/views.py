@@ -32,7 +32,7 @@ class SendToMes(View):
 		send_to_mes.delay(mobile, sms_code)
 		redis_conn.setex("is_send_%s" % mobile, SEND_SMS_CODE_INTERVAL, True)  # 60s一次
 		redis_conn.setex("sms_%s" % mobile, SMS_CODE_REDIS_EXPIRES, sms_code)  # 300s内有效
-		return JsonResponse({'error': ErrorCode.SENDSUCCESSERR})
+		return JsonResponse({'error': ErrorCode.OK})
 
 
 class RegisterView(View):

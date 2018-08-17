@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
 
-from utils.constants import BANNER_COUNT, ARTICLE_PAGINATE_BY, COMMENT_PAGINATE_BY, TYPE_PAGINATE_BY
+from utils.constants import BANNER_COUNT, ARTICLE_PAGINATE_BY, COMMENT_PAGINATE_BY, TYPE_PAGINATE_BY, NEWESTCOUNT
 from utils.paginator_ex import JuncheePaginator
 from .models import Article, Tag, Category
 
@@ -21,7 +21,7 @@ class IndexView(View):
 		}
 		# 分页
 		try:
-			articles_set = Article.objects.filter(is_show=True)  # 文章列表
+			articles_set = Article.objects.filter(is_show=True)[:NEWESTCOUNT]  # 文章列表
 		except Exception as e:
 			articles_set = []
 		articles = JuncheePaginator.paging(request, articles_set, ARTICLE_PAGINATE_BY)
@@ -87,7 +87,6 @@ class ArticleListView(View):
 		articles = JuncheePaginator.paging(request, articles_set, TYPE_PAGINATE_BY)
 		if articles:
 			context['articles'] = articles
-		print(context)
 		return render(request, 'tags.html', context)
 
 

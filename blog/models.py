@@ -55,7 +55,7 @@ class Article(models.Model):
 	# 获取图片的url
 	def image_url(self):
 		if not self.image:
-			return '/static/images/upload/default_image.jpg'
+			return '/static/images/upload/default_image.png'
 		return self.image.url
 
 	class Meta:

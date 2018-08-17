@@ -1,12 +1,7 @@
 import re
-
 from django.contrib.auth.models import AbstractUser
 from django.db import models, IntegrityError
-
-# Create your models here.
-from django.shortcuts import render
 from django_redis import get_redis_connection
-
 from utils.error_code import ErrorCode
 
 
