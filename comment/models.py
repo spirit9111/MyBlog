@@ -1,3 +1,5 @@
+import logging
+
 from django.db import models
 
 # Create your models here.
@@ -39,9 +41,11 @@ class Comment(models.Model):
 			try:
 				comment.floor = Comment.objects.filter(article_id=article_id).count() + 1
 			except Exception as e:
+				logging.error(e)
 				pass
 			comment.save()
 		except Exception as e:
+			logging.error(e)
 			return JsonResponse({'error': ErrorCode.DATAERR})
 
 		return JsonResponse({"error": ErrorCode.OK})

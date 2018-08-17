@@ -1,3 +1,5 @@
+import logging
+
 import markdown
 from django.core import serializers
 from django.core.paginator import Paginator
@@ -5,7 +7,8 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
 
-from utils.constants import BANNER_COUNT, ARTICLE_PAGINATE_BY, COMMENT_PAGINATE_BY, TYPE_PAGINATE_BY, NEWESTCOUNT
+from utils.constants import BANNER_COUNT, ARTICLE_PAGINATE_BY, COMMENT_PAGINATE_BY, TYPE_PAGINATE_BY, NEWESTCOUNT, \
+	BOLG_ARTICLE_COUNT
 from utils.paginator_ex import JuncheePaginator
 from .models import Article, Tag, Category
 
@@ -17,6 +20,7 @@ class IndexView(View):
 		try:
 			banner_articles = Article.objects.filter(is_show=True, is_banner=True)[:BANNER_COUNT]  # 轮播图数据
 		except Exception as e:
+			logging.error(e)
 			banner_articles = []
 		context = {
 			"banner_articles": banner_articles,
@@ -25,6 +29,7 @@ class IndexView(View):
 		try:
 			articles_set = Article.objects.filter(is_show=True)[:NEWESTCOUNT]  # 文章列表
 		except Exception as e:
+			logging.error(e)
 			articles_set = []
 		articles = JuncheePaginator.paging(request, articles_set, ARTICLE_PAGINATE_BY)
 		if articles:
@@ -45,6 +50,7 @@ class ArticleView(View):
 			# 展示markdown语法
 			article.body = markdown.markdown(article.body, ["extra", "codehilite", "toc", ])
 		except Exception as e:
+			logging.error(e)
 			return render(request, "404.html")
 		context = {
 			"article": article,
@@ -53,6 +59,7 @@ class ArticleView(View):
 		try:
 			comments_set = Article.objects.get(id=id, is_show=True).comment_set.all()
 		except Exception as e:
+			logging.error(e)
 			comments_set = []
 		comments = JuncheePaginator.paging(request, comments_set, COMMENT_PAGINATE_BY)
 		if comments:
@@ -69,6 +76,7 @@ class ArticleListView(View):
 				articles_set = Article.objects.filter(category_id=id, is_show=True)
 				name = Category.objects.get(id=id)
 			except Exception as e:
+				logging.error(e)
 				name = ""
 				articles_set = []
 		elif type == "tag":
@@ -76,6 +84,7 @@ class ArticleListView(View):
 				articles_set = Tag.objects.get(id=id).article_set.filter(is_show=True).all()
 				name = Tag.objects.get(id=id)
 			except Exception as e:
+				logging.error(e)
 				name = ""
 				articles_set = []
 		else:
@@ -101,6 +110,7 @@ class ArchivesView(View):
 			# 获取归档的年/月
 			dates = Article.objects.datetimes("created_time", "month", order="DESC")
 		except Exception as e:
+			logging.error(e)
 			articles_list = []
 			dates = []
 		year_month = {}
@@ -140,19 +150,22 @@ class BlogListDataView(View):
 		try:
 			page = int(page)
 		except Exception as e:
+			logging.error(e)
 			page = 1
 
 		try:
 			articles_set = Article.objects.filter(is_show=True).all()
 		except Exception as e:
+			logging.error(e)
 			articles_set = []
-		paginator = Paginator(articles_set, 1)  # 数据按照每页2条进行分页
+		paginator = Paginator(articles_set, BOLG_ARTICLE_COUNT)  # 数据按照每页5c条进行分页
 		total_page = paginator.num_pages
 		data = []
 		if page <= total_page:
 			try:
 				article_list = paginator.page(page)  # 第x页
 			except Exception as e:
+				logging.error(e)
 				article_list = paginator.page(1)  # 出错返回第一页
 
 			if article_list:

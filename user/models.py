@@ -1,3 +1,4 @@
+import logging
 import re
 from django.contrib.auth.models import AbstractUser
 from django.db import models, IntegrityError
@@ -36,7 +37,7 @@ class User(AbstractUser):
 		try:  # 判断是否已经注册
 			is_register = User.objects.filter(mobile=mobile).count()
 		except Exception as e:
-			# print(e)
+			logging.error(e)
 			return {'error': ErrorCode.DBERR}
 		if is_register:
 			return {'error': ErrorCode.MOBILEEXIST}
@@ -58,6 +59,7 @@ class User(AbstractUser):
 		except IntegrityError as e:
 			return {'error': ErrorCode.USERNAMEERR}
 		except Exception as e:
+			logging.error(e)
 			return {'error': ErrorCode.DATAERR}
 		return {'error': ErrorCode.OK, 'user': user}
 
@@ -71,6 +73,7 @@ class User(AbstractUser):
 			user_set = User.objects.filter(mobile=mobile)
 			count = user_set.count()
 		except Exception as e:
+			logging.error(e)
 			return {'error': ErrorCode.DATAERR}
 		if count == 0:
 			return {'error': ErrorCode.SERERR}

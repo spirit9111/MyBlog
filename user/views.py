@@ -1,3 +1,4 @@
+import logging
 import random
 import re
 from django.http import JsonResponse
@@ -26,6 +27,7 @@ class SendToMes(View):
 			# 获取is_send,确保一分钟发送一次,能获得表示已发送
 			return JsonResponse({'error': ErrorCode.REQERR})
 		sms_code = '%06d' % random.randint(0, 999999)
+		logging.error(sms_code)
 		print(sms_code)
 		# celery异步发送短信,
 		# todo 返回值未做判断

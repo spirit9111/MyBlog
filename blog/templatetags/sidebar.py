@@ -1,3 +1,5 @@
+import logging
+
 from django import template
 
 from blog.models import Tag, Article
@@ -11,6 +13,7 @@ def get_hot_articles():
 	try:
 		sidebar_articles = Article.objects.order_by('-views').filter(is_show=True)[:5]  # 侧边栏
 	except Exception as e:
+		logging.error(e)
 		sidebar_articles = []
 	return sidebar_articles
 
@@ -21,6 +24,7 @@ def get_tags():
 	try:
 		tags = Tag.objects.all()
 	except Exception as e:
+		logging.error(e)
 		tags = []
 	return tags
 

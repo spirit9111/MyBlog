@@ -181,9 +181,6 @@ $('#comment-submit').click(function (event) {
 		},
 		success: function (resp) {
 			console.log(resp.error)
-			// alert(resp.error);
-			// alert('success')
-			//
 			if (resp.error == 'OK') {
 				// alert('返回评论数据,拼接字符串!')
 				window.location.reload()
