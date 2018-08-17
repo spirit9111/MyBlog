@@ -43,6 +43,10 @@ INSTALLED_APPS = [
 	'other.apps.OtherConfig',
 	# 'captcha'
 	'haystack.apps.HaystackConfig',  # 搜索
+	# xadmin
+	'xadmin',
+	'crispy_forms',
+	'reversion',
 ]
 
 MIDDLEWARE = [
@@ -210,6 +214,7 @@ LOGGING = {
 			'handlers': ['console', 'file'],  # 可以同时向终端与文件中输出日志
 			'propagate': True,  # 是否继续传递日志信息
 			'level': 'DEBUG',  # 日志器接收的最低日志级别
+			# 'level': 'ERROR',  # 日志器接收的最低日志级别
 		},
 	}
 }

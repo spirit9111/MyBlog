@@ -7,7 +7,6 @@ from utils.error_code import ErrorCode
 
 
 class User(AbstractUser):
-	# name = models.CharField(max_length=128, verbose_name='名字')
 	mobile = models.CharField(max_length=11, unique=True, verbose_name='手机号')
 	icon = models.ImageField(upload_to='icon', null=True, blank=True,
 							 verbose_name='头像(36*36)')

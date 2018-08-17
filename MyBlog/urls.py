@@ -13,19 +13,21 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+import xadmin
 from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 
 urlpatterns = [
-	url(r'^admin/', admin.site.urls),
+	# url(r'^admin/', admin.site.urls),
 	url(r'', include('blog.urls')),
 	url(r'', include('user.urls')),
 	url(r'', include('comment.urls')),  # 评论,
 	url(r'mdeditor/', include('mdeditor.urls')),  # markdown
 	# url(r'^captcha/', include('captcha.urls')),  # captcha,
 	url(r'^search/', include('haystack.urls')),
+	url(r'xadmin/', include(xadmin.site.urls)),  # xadmin
 ]
 if settings.DEBUG:
 	# static files (images, css, javascript, etc.)

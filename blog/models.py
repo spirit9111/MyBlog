@@ -4,6 +4,7 @@ from django.utils.html import strip_tags
 from mdeditor.fields import MDTextField
 from user.models import User
 from utils.constants import EXCERPT_LENGTH
+import django.utils.timezone as timezone
 
 
 class Category(models.Model):
@@ -35,10 +36,10 @@ class Article(models.Model):
 	"""文章"""
 	title = models.CharField(max_length=100, verbose_name='标题')
 	excerpt = models.TextField(max_length=200, blank=True, verbose_name='摘要')
-	created_time = models.DateTimeField(verbose_name='发布日期')
-	modified_time = models.DateTimeField(verbose_name='修改日期')
-	author = models.ForeignKey(User, verbose_name='作者')
-	category = models.ForeignKey(Category, verbose_name='分类')
+	created_time = models.DateTimeField(default=timezone.now, verbose_name='发布日期')
+	modified_time = models.DateTimeField(auto_now=True, verbose_name='修改日期')
+	author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='作者')
+	category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='分类')
 	body = MDTextField(verbose_name='内容')
 	views = models.PositiveIntegerField(default=0, verbose_name='浏览量')
 	tags = models.ManyToManyField(Tag, blank=True, verbose_name='标签')
