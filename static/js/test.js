@@ -73,10 +73,10 @@ $(function () {
 			contentType: 'application/json',
 			dataType: 'json',
 			success: function (data) {
-				alert(data.message)
+				alert(data.error)
 			},
 			error: function () {
-				alert(data.message)
+				alert(data.error)
 			}
 		});
 	})

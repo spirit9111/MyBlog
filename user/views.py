@@ -7,6 +7,8 @@ from django_redis import get_redis_connection
 from blog.models import Article, Tag
 from celery_tasks.sms.tasks import send_to_mes
 from user.models import User
+from utils.constants import SMS_CODE_REDIS_EXPIRES, SEND_SMS_CODE_INTERVAL
+from utils.error_code import ErrorCode
 
 
 class SendToMes(View):
@@ -15,26 +17,22 @@ class SendToMes(View):
 	def get(self, request):
 		mobile = request.GET.get('mobile', None)
 		if not mobile:
-			message = '手机号未填写'
-			return JsonResponse({'message': message})
+			return JsonResponse({'error': ErrorCode.MOBILENONEERR})
 		if not re.match(r'^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$', mobile):
-			message = '手机号格式错误'
-			return JsonResponse({'message': message})
+			return JsonResponse({'error': ErrorCode.MOBILETYPEERR})
 		# 建立redis连接
 		redis_conn = get_redis_connection('sms_code')
 		if redis_conn.get('is_send_%s' % mobile):
 			# 获取is_send,确保一分钟发送一次,能获得表示已发送
-			message = '请求过于频繁'
-			return JsonResponse({'message': message})
+			return JsonResponse({'error': ErrorCode.REQERR})
 		sms_code = '%06d' % random.randint(0, 999999)
 		print(sms_code)
 		# celery异步发送短信,
 		# todo 返回值未做判断
 		send_to_mes.delay(mobile, sms_code)
-		redis_conn.setex("is_send_%s" % mobile, 60, True)  # 60s一次
-		redis_conn.setex("sms_%s" % mobile, 300, sms_code)  # 300s内有效
-		message = '短信验证码已发送'
-		return JsonResponse({'message': message})
+		redis_conn.setex("is_send_%s" % mobile, SEND_SMS_CODE_INTERVAL, True)  # 60s一次
+		redis_conn.setex("sms_%s" % mobile, SMS_CODE_REDIS_EXPIRES, sms_code)  # 300s内有效
+		return JsonResponse({'error': ErrorCode.SENDSUCCESSERR})
 
 
 class RegisterView(View):
@@ -43,13 +41,7 @@ class RegisterView(View):
 	def get(self, request):
 		if request.session.get('is_login', None):
 			return redirect("/")
-		sidebar_articles = Article.objects.filter(is_show=True, views__gt=0).order_by('-views')[:5]  # 热门文章
-		tags = Tag.objects.all()
-		context = {
-			'sidebar_articles': sidebar_articles,
-			'tags': tags,
-		}
-		return render(request, 'register.html', context)
+		return render(request, 'register.html')
 
 	def post(self, request):
 		"""注册"""
@@ -68,7 +60,7 @@ class RegisterView(View):
 		request.session['user_id'] = user.id
 		request.session['user_name'] = user.username
 		# return redirect('/')
-		return JsonResponse({'error': "OK"})
+		return JsonResponse({'error': error})
 
 
 class LoginView(View):
@@ -77,13 +69,7 @@ class LoginView(View):
 	def get(self, request):
 		if request.session.get('is_login', None):
 			return redirect("/")
-		sidebar_articles = Article.objects.filter(is_show=True, views__gt=0).order_by('-views')[:5]  # 热门文章
-		tags = Tag.objects.all()
-		context = {
-			'sidebar_articles': sidebar_articles,
-			'tags': tags,
-		}
-		return render(request, 'login.html', context)
+		return render(request, 'login.html')
 
 	def post(self, request):
 		if request.session.get('is_login', None):
@@ -100,7 +86,7 @@ class LoginView(View):
 		request.session['user_id'] = user.id
 		request.session['user_name'] = user.username
 		# return redirect('/')
-		return JsonResponse({'error': 'OK'})
+		return JsonResponse({'error': error})
 
 
 class LoginOutView(View):

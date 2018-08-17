@@ -1,11 +1,13 @@
 import re
 
 from django.contrib.auth.models import AbstractUser
-from django.db import models
+from django.db import models, IntegrityError
 
 # Create your models here.
 from django.shortcuts import render
 from django_redis import get_redis_connection
+
+from utils.error_code import ErrorCode
 
 
 class User(AbstractUser):
@@ -33,31 +35,24 @@ class User(AbstractUser):
 	def check_create(mobile, username, password, password2, sms_code):
 		# 校验参数
 		if not all([username, mobile, password, password2, sms_code]):
-			message = '参数不足'
-			return {'error': message}
+			return {'error': ErrorCode.PARAMERR}
 		if not re.match(r'^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$', mobile):
-			message = '手机号格式错误'
-			return {'error': message}
+			return {'error': ErrorCode.MOBILETYPEERR}
 		try:  # 判断是否已经注册
 			is_register = User.objects.filter(mobile=mobile).count()
 		except Exception as e:
 			# print(e)
-			message = '数据库错误'
-			return {'error': message}
+			return {'error': ErrorCode.DBERR}
 		if is_register:
-			message = '手机号已注册'
-			return {'error': message}
+			return {'error': ErrorCode.MOBILEEXIST}
 		if password != password2:
-			message = '两次密码不一致'
-			return {'error': message}
+			return {'error': ErrorCode.PASSCHECKERR}
 		redis_conn = get_redis_connection('sms_code')
 		real_sms_code = redis_conn.get('sms_%s' % mobile)
 		if not real_sms_code:
-			message = '验证码过期或无效'
-			return {'error': message}
+			return {'error': ErrorCode.SMSCODEERRR}
 		if sms_code != real_sms_code.decode():
-			message = '验证码错误'
-			return {'error': message}
+			return {'error': ErrorCode.SMSCODECHECKERRR}
 		# 保存到数据库
 		try:
 			user = User()
@@ -65,26 +60,26 @@ class User(AbstractUser):
 			user.mobile = mobile
 			user.set_password(password)
 			user.save()
+		except IntegrityError as e:
+			return {'error': ErrorCode.USERNAMEERR}
 		except Exception as e:
-			message = '数据库错误'
-			return {'error': message}
-		return {'error': 'OK', 'user': user}
+			return {'error': ErrorCode.DATAERR}
+		return {'error': ErrorCode.OK, 'user': user}
 
 	@staticmethod
 	def check_user(mobile, password):
 		if not all([mobile, password]):
-			message = '参数不足'
-			return {'error': message}
+			return {'error': ErrorCode.PARAMERR}
 		if not re.match(r'^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$', mobile):
-			message = '手机号格式错误'
-			return {'error': message}
-		user_set = User.objects.filter(mobile=mobile)
-		count = user_set.count()
+			return {'error': ErrorCode.MOBILETYPEERR}
+		try:
+			user_set = User.objects.filter(mobile=mobile)
+			count = user_set.count()
+		except Exception as e:
+			return {'error': ErrorCode.DATAERR}
 		if count == 0:
-			message = '%s,没有注册!' % mobile
-			return {'error': message}
+			return {'error': ErrorCode.SERERR}
 		user = user_set[0]
 		if not user.check_password(password):
-			message = '密码错误'
-			return {'error': message}
-		return {'error': 'OK', 'user': user}
+			return {'error': ErrorCode.PASSWORDERR}
+		return {'error': ErrorCode.OK, 'user': user}

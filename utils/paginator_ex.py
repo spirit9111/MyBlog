@@ -1,10 +1,12 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
+from utils.constants import PAGE_RANGE_NUM
+
 
 class JuncheePaginator(Paginator):
-	"""分页拓展,默认左右当前页左右个5条"""
+	"""分页拓展,默认左右当前页左右个3条"""
 
-	def __init__(self, object_list, per_page, range_num=3, orphans=0, allow_empty_first_page=True):
+	def __init__(self, object_list, per_page, range_num=PAGE_RANGE_NUM, orphans=0, allow_empty_first_page=True):
 		Paginator.__init__(self, object_list, per_page, orphans, allow_empty_first_page)
 		self.range_num = range_num
 
@@ -34,11 +36,10 @@ class JuncheePaginator(Paginator):
 	page_range_ext = property(_page_range_ext)
 
 	@staticmethod
-	def paging(request, query_set):
-		paginate_by = 5  # 每页显示n条
+	def paging(request, query_set, paginate_by):
 		if query_set:
 			page = request.GET.get('page')
-			paginator = JuncheePaginator(query_set, paginate_by)  # 显示3条数据
+			paginator = JuncheePaginator(query_set, paginate_by)
 			try:
 				page_obj = paginator.page(page)
 			except PageNotAnInteger:  # None或者其他

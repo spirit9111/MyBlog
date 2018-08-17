@@ -1,14 +1,9 @@
 import markdown
 from django.db import models
-
-# Create your models here.
-# class OtherManager(models.Manager):
-# 	def get_by_natural_key(self, name):
-# 		return self.get(name=name)
 from django.utils.html import strip_tags
 from mdeditor.fields import MDTextField
-
 from user.models import User
+from utils.constants import EXCERPT_LENGTH
 
 
 class Category(models.Model):
@@ -72,8 +67,8 @@ class Article(models.Model):
 		"""保存时,自动生成摘要"""
 		if not self.excerpt:
 			md = markdown.Markdown(['extra', 'codehilite', 'toc', ])
-			excerpt = strip_tags(md.convert(self.body))[:150]
-			if len(excerpt) < 150:
+			excerpt = strip_tags(md.convert(self.body))[:EXCERPT_LENGTH]
+			if len(excerpt) < EXCERPT_LENGTH:
 				self.excerpt = excerpt
 			else:
 				self.excerpt = excerpt + '......'

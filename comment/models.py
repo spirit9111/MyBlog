@@ -5,6 +5,7 @@ from django.http import JsonResponse
 
 from blog.models import Article
 from user.models import User
+from utils.error_code import ErrorCode
 
 
 class Comment(models.Model):
@@ -19,11 +20,11 @@ class Comment(models.Model):
 	@staticmethod
 	def check_create(user_id, content, article_id, comment_id):
 		if not all([content, article_id]):
-			return JsonResponse({'error': '参数不足'})
+			return JsonResponse({'error': ErrorCode.PARAMERR})
 		if content.isspace():  # 如果content的内容为空格等
-			return JsonResponse({'error': '请输入评论内容'})
+			return JsonResponse({'error': ErrorCode.COMMENTNONEERR})
 		if not article_id:
-			return JsonResponse({'error': '缺少文章id'})
+			return JsonResponse({'error': ErrorCode.PARAMERR})
 		# 尝试保存新评论
 		try:
 			comment = Comment()
@@ -35,12 +36,15 @@ class Comment(models.Model):
 			comment.content = content
 			comment.article_id = article_id
 			comment.user_id = user_id
-			comment.floor = Comment.objects.filter(article_id=article_id).count() + 1
+			try:
+				comment.floor = Comment.objects.filter(article_id=article_id).count() + 1
+			except Exception as e:
+				pass
 			comment.save()
 		except Exception as e:
-			return JsonResponse({'error': '数据库异常'})
+			return JsonResponse({'error': ErrorCode.DATAERR})
 
-		return JsonResponse({"error": 'OK'})
+		return JsonResponse({"error": ErrorCode.OK})
 
 	class Meta:
 		ordering = ["-created_time", ]
