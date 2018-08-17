@@ -3,8 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
 from utils.paginator_ex import JuncheePaginator
-from .models import Article, Tag
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from .models import Article, Tag, Category
 
 
 class IndexView(View):
@@ -29,14 +28,16 @@ class ArticleView(View):
 	def get(self, request, id):
 		if not id:
 			# todo 404
-			return HttpResponse('<h1>NOT FOUNT</h1>')
+			# return HttpResponse('<h1>NOT FOUNT</h1>')
+			return render(request, '404.html')
 		try:
 			article = Article.objects.get(id=id)
 			article.add_views()
 			# 展示markdown语法
 			article.body = markdown.markdown(article.body, ['extra', 'codehilite', 'toc', ])
 		except Exception as e:
-			return HttpResponse('<h1>NOT FOUNT</h1>')
+			return render(request, '404.html')
+			# return HttpResponse('<h1>NOT FOUNT</h1>')
 		context = {
 			'article': article,
 		}
@@ -50,22 +51,26 @@ class ArticleView(View):
 
 class ArticleListView(View):
 	"""分类"""
+
 	def get(self, request, type, id):
 		if type == 'category':
 			articles_set = Article.objects.filter(category_id=id)
+			name = Category.objects.filter(id=id)[0]
 		elif type == 'tag':
 			articles_set = Tag.objects.get(id=id).article_set.all()
+			name = Tag.objects.filter(id=id)[0]
 		else:
 			return redirect('/')
 
 		# articles_set = Tag.objects.get(name=tag).article_set.all()
 		context = {
 			'type': type,
-			# 'type': type,
+			'name': name,
 		}
 		articles = JuncheePaginator.paging(request, articles_set)
 		if articles:
 			context['articles'] = articles
+		print(context)
 		return render(request, 'tags.html', context)
 
 

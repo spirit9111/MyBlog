@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 	'blog.apps.BlogConfig',
 	'user.apps.UserConfig',
 	'comment.apps.CommentConfig',
+	'other.apps.OtherConfig',
 	# 'captcha'
 	'haystack.apps.HaystackConfig',  # 搜索
 ]

@@ -127,7 +127,7 @@ body, input, button, textarea, select {
 }
 
 .title h3, .pagetitle h1, .pagetitle h2 {
-	font-size: 20px;
+	font-size: 26px;
 	margin: 0;
 	float: left;
 	cursor: pointer;
@@ -749,7 +749,7 @@ body, input, button, textarea, select {
 
 .excerpt h2 {
 	display: inline;
-	font-size: 18px;
+	font-size: 22px;
 	line-height: 24px;
 	margin-top: 0;
 	font-weight: bold;
@@ -789,7 +789,7 @@ body, input, button, textarea, select {
 }
 
 .excerpt .note {
-	font-size: 12px;
+	font-size: 16px;
 	color: #999;
 	word-wrap: break-word;
 	line-height: 20px;
@@ -891,7 +891,7 @@ body, input, button, textarea, select {
 
 .article-title {
 	margin-top: 0;
-	font-size: 26px;
+	font-size: 36px;
 	line-height: 36px;
 }
 
@@ -948,8 +948,8 @@ body, input, button, textarea, select {
 
 /*文章内容*/
 .article-content {
-	font-size: 15px;
-	line-height: 25px;
+	font-size: 24px;
+	line-height: 30px;
 	word-wrap: break-word;
 	cursor: default;
 }
@@ -1570,7 +1570,7 @@ body, input, button, textarea, select {
 }
 
 .widget-sentence-content p {
-	font-size: 12px;
+	font-size: 16px;
 	color: #AAA;
 }
 
@@ -1582,7 +1582,7 @@ body, input, button, textarea, select {
 	overflow: hidden;
 	position: relative;
 	display: block;
-	font-size: 14px;
+	font-size: 16px;
 }
 
 .widget_hot li a:hover {
@@ -1844,7 +1844,7 @@ body, input, button, textarea, select {
 	}
 
 	.excerpt h2, .excerpt-minic h2 {
-		font-size: 16px;
+		font-size: 18px;
 		line-height: 18px;
 	}
 
@@ -2594,6 +2594,7 @@ body, input, button, textarea, select {
 	font-size: 15px;
 	background-color: #3399CC;
 	opacity: 0.85;
+	border-radius: 15px;
 }
 
 .pagination {
@@ -2708,6 +2709,7 @@ pre code, pre tt {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
+
 .form-login input[type="text"] {
 	margin-bottom: 3px;
 	border-top-left-radius: 0;
@@ -2801,4 +2803,8 @@ span.highlighted {
 	top: auto;
 	bottom: -20px;
 	display: none;
+}
+
+.text-center {
+	height: 870px;
 }

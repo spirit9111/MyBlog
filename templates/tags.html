@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load sidebar %}
 {% block titleBlcok %}
-	{{ type }}: name
+	{{ type|type_filter }}: {{ name|capfirst }}
 {% endblock %}
 
 {% block content00Block %}
@@ -8,9 +9,9 @@
 
 	</div>
 	<div class="title">
-		<h3>{{ type }}: name</h3>
-			{% endblock %}
-	{% block content01Block %}
+	<h3>{{ type|type_filter }}: {{ name|capfirst }}</h3>
+{% endblock %}
+{% block content01Block %}
 	</div>
 	{% for article in articles %}
 		<article class="excerpt excerpt-1"><a class="focus" href="/article/{{ article.id }}" title="">

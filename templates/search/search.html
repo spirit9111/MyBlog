@@ -32,7 +32,7 @@
 					<span class="views"><i
 							class="glyphicon glyphicon-eye-open"></i> 共{{ result.object.views }}人围观</span>
 					<a class="comment" href="#"><i class="glyphicon glyphicon-comment"></i>
-						0条评论</a>
+						{{ result.object.views }}条评论</a>
 				</p>
 				<p class="note">{% highlight result.object.excerpt with query %}</p>
 			</article>

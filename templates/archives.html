@@ -8,8 +8,8 @@
 
 	</div>
 	<div class="title">
-		<h3>归档</h3>
-	{% endblock %}
+	<h3>归档</h3>
+{% endblock %}
 {% block content01Block %}
 	</div>
 
@@ -28,7 +28,8 @@
 						{% for article in articles %}
 							{% if article.year == year and article.month == month %}
 								<li style="display: block;"><a
-										href="/article/{{ article.id }}">{{ article.day }}日&nbsp;&nbsp;&nbsp;{{ article.title }}</a></li>
+										href="/article/{{ article.id }}">{{ article.day }}日&nbsp;&nbsp;&nbsp;{{ article.title }}</a>
+								</li>
 							{% endif %}
 						{% endfor %}
 					</div>

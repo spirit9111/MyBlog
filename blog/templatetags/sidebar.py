@@ -8,7 +8,7 @@ register = template.Library()
 @register.simple_tag
 def get_hot_articles():
 	"""获取热门文章"""
-	sidebar_articles = Article.objects.order_by('-views')[:3]  # 侧边栏
+	sidebar_articles = Article.objects.order_by('-views')[:5]  # 侧边栏
 	return sidebar_articles
 
 
@@ -18,4 +18,14 @@ def get_tags():
 	tags = Tag.objects.all()
 	return tags
 
-# todo 每日一句
+
+@register.filter()
+def type_filter(value):
+	if value == 'category':
+		return '分类'
+	elif value == 'tag':
+		return '标签'
+	else:
+		return ''
+
+	# todo 每日一句
