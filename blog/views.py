@@ -33,8 +33,8 @@ class IndexView(View):
 			articles_set = []
 		articles = JuncheePaginator.paging(request, articles_set, ARTICLE_PAGINATE_BY)
 		if articles:
-			context["articles"] = articles
-		return render(request, "index_test.html", context)
+			context["articles"] = articles[0]
+		return render(request, "index.html", context)
 
 
 class ArticleView(View):
@@ -63,8 +63,8 @@ class ArticleView(View):
 			comments_set = []
 		comments = JuncheePaginator.paging(request, comments_set, COMMENT_PAGINATE_BY)
 		if comments:
-			context["comments"] = comments
-		return render(request, "article_test.html", context)
+			context["comments"] = comments[0]
+		return render(request, "article.html", context)
 
 
 class ArticleListView(View):
@@ -97,8 +97,8 @@ class ArticleListView(View):
 		}
 		articles = JuncheePaginator.paging(request, articles_set, TYPE_PAGINATE_BY)
 		if articles:
-			context["articles"] = articles
-		return render(request, "tags.html", context)
+			context["articles"] = articles[0]
+		return render(request, "type.html", context)
 
 
 class ArchivesView(View):
@@ -138,7 +138,7 @@ class ArchivesView(View):
 class BlogListView(View):
 
 	def get(self, request):
-		return render(request, "bloglist.html")
+		return render(request, "allblog.html")
 
 
 class BlogListDataView(View):

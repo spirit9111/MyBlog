@@ -2605,7 +2605,7 @@ body, input, button, textarea, select {
 .pagination a {
 	display: inline-block;
 	line-height: 38px;
-	padding: 0 15px;
+	padding: 0 10px;
 	margin-right: 4px;
 	text-align: center;
 	background-color: #fff;

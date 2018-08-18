@@ -4,7 +4,7 @@ from utils.constants import PAGE_RANGE_NUM
 
 
 class JuncheePaginator(Paginator):
-	"""分页拓展,默认左右当前页左右个3条"""
+	"""分页拓展,默认左右当前页左右个PAGE_RANGE_NUM条"""
 
 	def __init__(self, object_list, per_page, range_num=PAGE_RANGE_NUM, orphans=0, allow_empty_first_page=True):
 		Paginator.__init__(self, object_list, per_page, orphans, allow_empty_first_page)
@@ -48,5 +48,5 @@ class JuncheePaginator(Paginator):
 			except EmptyPage:
 				# 如果用户请求的页码号超过了最大页码号，显示最后一页
 				page_obj = paginator.page(paginator.num_pages)
-			return page_obj
+			return page_obj, paginator
 		return

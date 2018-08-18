@@ -117,7 +117,7 @@
 				{% get_tags as tags %}
 				<h3>标签</h3>
 				{% for tag in tags %}
-					<a href="{% url 'blog:type' tag tag.id %}"
+					<a href="{% url 'blog:type' 'tag' tag.id %}"
 					   class="tags">{{ tag.name|capfirst }}({{ tag.article_set.count }})</a>
 				{% endfor %}
 			</div>
