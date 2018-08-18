@@ -11,8 +11,6 @@ class User(AbstractUser):
 	icon = models.ImageField(upload_to='icon', null=True, blank=True,
 							 verbose_name='头像(36*36)')
 
-	# password = models.CharField(max_length=256, verbose_name='密码')
-	# created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
 	def icon_url(self):
 		if not self.icon:
 			return '/static/images/icon/icon.png'

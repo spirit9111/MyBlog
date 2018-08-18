@@ -14,9 +14,9 @@ class Comment(models.Model):
 	"""评论表,自关联多对多"""
 	content = models.CharField(max_length=256, verbose_name='评论')
 	created_time = models.DateTimeField(auto_now_add=True, verbose_name='评论时间')
-	user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='评论人')
-	article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name='文章')
-	parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True,
+	user = models.ForeignKey(User, default=None, on_delete=models.CASCADE, verbose_name='评论人')
+	article = models.ForeignKey(Article, default=None, on_delete=models.CASCADE, verbose_name='文章')
+	parent = models.ForeignKey('self', default=None, on_delete=models.CASCADE, null=True, blank=True,
 							   verbose_name='父评论')
 	floor = models.IntegerField(default=0, verbose_name='楼层')
 

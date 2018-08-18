@@ -38,11 +38,11 @@ class TagAdmin(object):
 xadmin.site.register(models.Tag, TagAdmin)
 
 
+@xadmin.sites.register(models.Article)
 class ArticleAdmin(object):
 	list_display = ['id', 'title', 'author', 'category', 'views', 'created_time', ]
 	list_per_page = 10
 	search_fields = ['title', 'category__name', 'tags__name']
 	list_filter = ['is_show', 'is_banner']
 
-
-xadmin.site.register(models.Article, ArticleAdmin)
+# list_editable = ['views', 'created_time'] #有bug

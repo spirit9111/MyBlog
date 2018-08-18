@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block titleBlcok %}
+	About | 联系
+{% endblock %}
+
+{% block content00Block %}
+	<div id="focusslide" class="carousel slide" data-ride="carousel">
+
+	</div>
+	<div class="title">
+	<h3>About | 联系</h3>
+{% endblock %}
+{% block content01Block %}
+	</div>
+	<div class="panel">
+		<div class="text-center">
+			{% for content in contents %}
+				<h1 class="about">{{ content }}</h1>
+			{% endfor %}
+			<div>
+				<div class="float-right"><img src="/static/images/404/right.png" width="260" class="hidden-xs" alt=""/>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</div>
+{% endblock %}
+
+
+{% block jsBlock %}
+	<script src="/static/js/other.js"></script>
+{% endblock %}

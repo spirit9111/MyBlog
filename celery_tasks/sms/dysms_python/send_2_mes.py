@@ -21,7 +21,7 @@ class SendMes(object):
 
 	def send_2_mes(self, phone_numbers, code):
 		# 申请的短信签名 和 短信模板
-		sign_name = 'SpiritBlog'
+		sign_name = 'SpiritのBlog'
 		template_code = 'SMS_137657397'
 		business_id = uuid.uuid1()
 		template_param = '{"code":"%s"}' % code

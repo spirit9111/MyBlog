@@ -24,6 +24,7 @@ urlpatterns = [
 	url(r'', include('blog.urls')),
 	url(r'', include('user.urls')),
 	url(r'', include('comment.urls')),  # 评论,
+	url(r'', include('other.urls')),  # 评论,
 	url(r'mdeditor/', include('mdeditor.urls')),  # markdown
 	# url(r'^captcha/', include('captcha.urls')),  # captcha,
 	url(r'^search/', include('haystack.urls')),

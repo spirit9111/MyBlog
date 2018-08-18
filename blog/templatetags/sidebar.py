@@ -1,8 +1,10 @@
 import logging
+import random
 
 from django import template
 
 from blog.models import Tag, Article
+from other.models import MottoList
 
 register = template.Library()
 
@@ -11,7 +13,7 @@ register = template.Library()
 def get_hot_articles():
 	"""获取热门文章"""
 	try:
-		sidebar_articles = Article.objects.order_by('-views').filter(is_show=True)[:5]  # 侧边栏
+		sidebar_articles = Article.objects.order_by('-views').filter(is_show=True, views__gt=0)[:5]  # 侧边栏
 	except Exception as e:
 		logging.error(e)
 		sidebar_articles = []
@@ -38,4 +40,17 @@ def type_filter(value):
 	else:
 		return ''
 
-# todo 每日一句
+
+# todo
+@register.simple_tag
+def everyday_motto():
+	"""每日一句"""
+	try:
+		mottos = MottoList.objects.all()
+		num = random.randint(0, mottos.count())
+		result = mottos[num].content
+	except Exception as e:
+		logging.error(e)
+		result = '这不是一个bug,这只是一个未列出来的特性.'
+
+	return result
