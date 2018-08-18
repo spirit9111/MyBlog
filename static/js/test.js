@@ -109,7 +109,7 @@ $('.switch').click(function () {
 	// alert('弹出输入框')
 
 })
-//回复文章
+//回复评论
 $('.reply').click(function (event) {
 	//阻止跳转
 	event.preventDefault();
@@ -142,7 +142,15 @@ $('.reply').click(function (event) {
 			// alert('success')
 			//
 			if (resp.error == 'OK') {
-				// alert('返回评论数据,拼接字符串!')
+				// alert(resp.data.created_time)
+				// // alert('返回评论数据,拼接字符串!')
+				// var content = ''
+				// content += '<div class="comment-main"><p><span class="address">' + resp.data.user + '</span><span></span>'
+				// content += '<span class="time">' + resp.data.created_time + '</span><br>' + resp.data.content + '</p><form class="innerhidden">'
+				// content += '<div id="div00"><textarea class="textarea"></textarea><div id="div01" comment_id="' + resp.data.id + '" article_id="' + resp.data.article_id + '">'
+				// content += '<input type="button" value="确定" class="reply"></div></div></form></div>'
+				// console.log(content)
+				// $('.comment-content').append(content)
 				window.location.reload()
 			}
 			else {
@@ -152,7 +160,7 @@ $('.reply').click(function (event) {
 		},
 	});
 });
-//回复评论
+//回复文章
 $('#comment-submit').click(function (event) {
 	//阻止跳转
 	event.preventDefault();
@@ -182,7 +190,6 @@ $('#comment-submit').click(function (event) {
 		success: function (resp) {
 			console.log(resp.error)
 			if (resp.error == 'OK') {
-				// alert('返回评论数据,拼接字符串!')
 				window.location.reload()
 			}
 			else {

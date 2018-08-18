@@ -4088,3 +4088,635 @@ INFO 2018-08-18 01:48:06,205 basehttp 124 "GET /search/?q=&search= HTTP/1.1" 200
 INFO 2018-08-18 01:48:43,142 basehttp 124 "GET / HTTP/1.1" 200 8301
 INFO 2018-08-18 01:48:46,261 basehttp 124 "GET /article/2 HTTP/1.1" 200 7540
 INFO 2018-08-18 01:48:57,541 basehttp 124 "GET /search/?q=&search= HTTP/1.1" 200 5352
+INFO 2018-08-18 08:30:35,945 basehttp 124 "GET / HTTP/1.1" 200 8296
+INFO 2018-08-18 08:30:36,023 basehttp 124 "GET /static/images/logo.png HTTP/1.1" 304 0
+INFO 2018-08-18 08:30:36,044 basehttp 124 "GET /static/css/style.css HTTP/1.1" 304 0
+INFO 2018-08-18 08:30:36,050 basehttp 124 "GET /static/images/upload/default_image.png HTTP/1.1" 304 0
+INFO 2018-08-18 08:30:36,059 basehttp 124 "GET /static/js/scripts.js HTTP/1.1" 304 0
+INFO 2018-08-18 08:30:36,324 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 08:30:38,193 basehttp 124 "GET /search/?q=&search= HTTP/1.1" 200 5371
+INFO 2018-08-18 08:30:51,148 basehttp 124 "GET /search/?q=&search= HTTP/1.1" 200 5328
+INFO 2018-08-18 08:30:51,303 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 08:30:51,953 basehttp 124 "GET /search/?q=&search= HTTP/1.1" 200 5328
+INFO 2018-08-18 08:30:52,103 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 08:30:52,763 basehttp 124 "GET / HTTP/1.1" 200 8296
+INFO 2018-08-18 08:31:37,966 basehttp 124 "GET / HTTP/1.1" 200 8301
+INFO 2018-08-18 08:31:38,224 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+ERROR 2018-08-18 08:31:39,536 exception 135 Internal Server Error: /search/
+Traceback (most recent call last):
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 507, in parse
+    compile_func = self.tags[command]
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/haystack/views.py", line 51, in __call__
+    return self.create_response()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/haystack/views.py", line 152, in create_response
+    return render(self.request, self.template, context)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loader.py", line 67, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loader.py", line 21, in get_template
+    return engine.get_template(template_name)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/backends/django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/engine.py", line 162, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/engine.py", line 136, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loaders/base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 230, in compile_nodelist
+    return parser.parse()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loader_tags.py", line 312, in do_extends
+    nodelist = parser.parse()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loader_tags.py", line 255, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 509, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 565, in invalid_block_tag
+    get_text_list(["'%s'" % p for p in parse_until], 'or'),
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 64: 'endif', expected 'endblock'. Did you forget to register or load this tag?
+ERROR 2018-08-18 08:31:39,710 basehttp 124 "GET /search/?q=&search= HTTP/1.1" 500 175517
+INFO 2018-08-18 08:32:02,594 basehttp 124 "GET / HTTP/1.1" 200 8301
+INFO 2018-08-18 08:32:02,882 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 08:32:03,747 basehttp 124 "GET / HTTP/1.1" 200 8301
+INFO 2018-08-18 08:32:03,822 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 08:32:05,331 basehttp 124 "GET /search/?q=&search= HTTP/1.1" 200 5582
+INFO 2018-08-18 08:32:07,647 basehttp 124 "GET /search/?q=&search= HTTP/1.1" 200 5582
+INFO 2018-08-18 08:32:14,633 basehttp 124 "GET /search/?q=hello&search= HTTP/1.1" 200 6513
+ERROR 2018-08-18 08:32:47,311 exception 135 Internal Server Error: /search/
+Traceback (most recent call last):
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/haystack/views.py", line 51, in __call__
+    return self.create_response()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/haystack/views.py", line 152, in create_response
+    return render(self.request, self.template, context)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loader.py", line 67, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loader.py", line 21, in get_template
+    return engine.get_template(template_name)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/backends/django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/engine.py", line 162, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/engine.py", line 136, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loaders/base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 230, in compile_nodelist
+    return parser.parse()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loader_tags.py", line 312, in do_extends
+    nodelist = parser.parse()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loader_tags.py", line 255, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/defaulttags.py", line 983, in do_if
+    nodelist = parser.parse(('endif',))
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/haystack/templatetags/highlight.py", line 99, in highlight
+    raise template.TemplateSyntaxError(u"'%s' tag requires an object and a query provided by 'with'." % tag_name)
+django.template.exceptions.TemplateSyntaxError: 'highlight' tag requires an object and a query provided by 'with'.
+ERROR 2018-08-18 08:32:47,464 basehttp 124 "GET /search/?q=hello&search= HTTP/1.1" 500 194131
+ERROR 2018-08-18 08:32:48,655 exception 135 Internal Server Error: /search/
+Traceback (most recent call last):
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/haystack/views.py", line 51, in __call__
+    return self.create_response()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/haystack/views.py", line 152, in create_response
+    return render(self.request, self.template, context)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loader.py", line 67, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loader.py", line 21, in get_template
+    return engine.get_template(template_name)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/backends/django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/engine.py", line 162, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/engine.py", line 136, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loaders/base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 230, in compile_nodelist
+    return parser.parse()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loader_tags.py", line 312, in do_extends
+    nodelist = parser.parse()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loader_tags.py", line 255, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/defaulttags.py", line 983, in do_if
+    nodelist = parser.parse(('endif',))
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/haystack/templatetags/highlight.py", line 99, in highlight
+    raise template.TemplateSyntaxError(u"'%s' tag requires an object and a query provided by 'with'." % tag_name)
+django.template.exceptions.TemplateSyntaxError: 'highlight' tag requires an object and a query provided by 'with'.
+ERROR 2018-08-18 08:32:48,798 basehttp 124 "GET /search/?q=hello&search= HTTP/1.1" 500 194131
+INFO 2018-08-18 08:33:09,965 basehttp 124 "GET /search/?q=hello&search= HTTP/1.1" 200 6513
+INFO 2018-08-18 08:33:10,358 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 08:33:12,979 basehttp 124 "GET /search/?q=&search= HTTP/1.1" 200 5584
+INFO 2018-08-18 08:33:20,155 basehttp 124 "GET /search/?q=hhhhhh&search= HTTP/1.1" 200 5609
+INFO 2018-08-18 08:33:23,823 basehttp 124 "GET / HTTP/1.1" 200 8301
+INFO 2018-08-18 09:18:17,724 basehttp 124 "GET / HTTP/1.1" 200 8328
+INFO 2018-08-18 09:18:22,121 basehttp 124 "GET /article/2 HTTP/1.1" 200 7567
+INFO 2018-08-18 09:18:22,166 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 09:18:26,838 basehttp 124 "GET /article/1 HTTP/1.1" 200 40984
+INFO 2018-08-18 09:18:26,871 basehttp 124 "GET /static/images/icon/icon.png HTTP/1.1" 304 0
+INFO 2018-08-18 09:35:26,821 basehttp 124 "GET /article/1 HTTP/1.1" 200 40984
+INFO 2018-08-18 09:35:36,184 basehttp 124 "GET / HTTP/1.1" 200 8328
+INFO 2018-08-18 09:35:38,801 basehttp 124 "GET /article/2 HTTP/1.1" 200 7567
+INFO 2018-08-18 09:35:40,377 basehttp 124 "GET /login/ HTTP/1.1" 200 6454
+ERROR 2018-08-18 09:35:47,439 exception 135 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django_redis/cache.py", line 32, in _decorator
+    return method(self, *args, **kwargs)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django_redis/cache.py", line 124, in has_key
+    return self.client.has_key(*args, **kwargs)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django_redis/client/default.py", line 477, in has_key
+    raise ConnectionInterrupted(connection=client, parent=e)
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/utils/deprecation.py", line 142, in __call__
+    response = self.process_response(request, response)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/contrib/sessions/middleware.py", line 58, in process_response
+    request.session.save()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/contrib/sessions/backends/cache.py", line 57, in save
+    return self.create()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/contrib/sessions/backends/cache.py", line 44, in create
+    self._session_key = self._get_new_session_key()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/contrib/sessions/backends/base.py", line 164, in _get_new_session_key
+    if not self.exists(session_key):
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/contrib/sessions/backends/cache.py", line 71, in exists
+    return session_key and (self.cache_key_prefix + session_key) in self._cache
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/core/cache/backends/base.py", line 203, in __contains__
+    return self.has_key(key)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django_redis/cache.py", line 39, in _decorator
+    raise e.parent
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django_redis/client/default.py", line 475, in has_key
+    return client.exists(key)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/redis/client.py", line 951, in exists
+    return self.execute_command('EXISTS', name)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/redis/client.py", line 673, in execute_command
+    connection.send_command(*args)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/redis/connection.py", line 610, in send_command
+    self.send_packed_command(self.pack_command(*args))
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/redis/connection.py", line 585, in send_packed_command
+    self.connect()
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/redis/connection.py", line 489, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+ERROR 2018-08-18 09:35:47,497 basehttp 124 "POST /login/ HTTP/1.1" 500 20559
+INFO 2018-08-18 09:36:17,070 basehttp 124 "POST /login/ HTTP/1.1" 200 15
+INFO 2018-08-18 09:36:17,103 basehttp 124 "GET /login/ HTTP/1.1" 302 0
+INFO 2018-08-18 09:36:17,137 basehttp 124 "GET / HTTP/1.1" 200 8301
+INFO 2018-08-18 09:36:19,512 basehttp 124 "GET /article/2 HTTP/1.1" 200 7540
+INFO 2018-08-18 09:36:22,323 basehttp 124 "POST /comment HTTP/1.1" 200 167
+INFO 2018-08-18 09:36:22,437 basehttp 124 "GET /article/2 HTTP/1.1" 200 8466
+INFO 2018-08-18 09:36:27,341 basehttp 124 "POST /comment HTTP/1.1" 200 166
+INFO 2018-08-18 09:36:27,522 basehttp 124 "GET /article/2 HTTP/1.1" 200 9306
+INFO 2018-08-18 09:37:01,579 basehttp 124 "GET /article/2 HTTP/1.1" 200 9306
+INFO 2018-08-18 09:37:01,607 basehttp 124 "GET /static/css/github-markdown.css HTTP/1.1" 200 5585
+INFO 2018-08-18 09:37:01,624 basehttp 124 "GET /static/css/bootstrap.min.css HTTP/1.1" 200 121200
+INFO 2018-08-18 09:37:01,639 basehttp 124 "GET /static/css/style.css HTTP/1.1" 200 49054
+INFO 2018-08-18 09:37:01,644 basehttp 124 "GET /static/css/nprogress.css HTTP/1.1" 200 1410
+INFO 2018-08-18 09:37:01,649 basehttp 124 "GET /static/js/nprogress.js HTTP/1.1" 200 8933
+INFO 2018-08-18 09:37:01,651 basehttp 124 "GET /static/css/highlights/github.css HTTP/1.1" 200 4015
+INFO 2018-08-18 09:37:01,661 basehttp 124 "GET /static/js/jquery-2.1.4.min.js HTTP/1.1" 200 84345
+INFO 2018-08-18 09:37:01,667 basehttp 124 "GET /static/js/jquery.lazyload.min.js HTTP/1.1" 200 4134
+INFO 2018-08-18 09:37:01,681 basehttp 124 "GET /static/images/logo.png HTTP/1.1" 200 2317
+INFO 2018-08-18 09:37:01,686 basehttp 124 "GET /static/images/icon/icon.png HTTP/1.1" 200 10991
+INFO 2018-08-18 09:37:01,718 basehttp 124 "GET /static/js/bootstrap.min.js HTTP/1.1" 200 36816
+INFO 2018-08-18 09:37:01,723 basehttp 124 "GET /static/js/jquery.ias.js HTTP/1.1" 200 6669
+INFO 2018-08-18 09:37:01,746 basehttp 124 "GET /static/js/scripts.js HTTP/1.1" 200 2649
+INFO 2018-08-18 09:37:01,755 basehttp 124 "GET /static/js/test.js HTTP/1.1" 200 9211
+INFO 2018-08-18 09:37:01,761 basehttp 124 "GET /static/images/upload/default_image.png HTTP/1.1" 200 39227
+INFO 2018-08-18 09:37:01,771 basehttp 124 "GET /static/images/backtop.png HTTP/1.1" 200 1123
+INFO 2018-08-18 09:37:01,777 basehttp 124 "GET /static/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1" 200 18028
+INFO 2018-08-18 09:37:06,126 basehttp 124 "POST /comment HTTP/1.1" 200 167
+INFO 2018-08-18 09:37:06,269 basehttp 124 "GET /article/2 HTTP/1.1" 200 10147
+INFO 2018-08-18 09:37:06,304 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 09:37:23,979 basehttp 124 "POST /comment HTTP/1.1" 200 165
+INFO 2018-08-18 09:37:24,151 basehttp 124 "GET /article/2 HTTP/1.1" 200 10986
+INFO 2018-08-18 09:37:24,202 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 09:37:41,135 basehttp 124 "GET /article/2 HTTP/1.1" 200 10986
+INFO 2018-08-18 09:37:41,175 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 09:37:46,516 basehttp 124 "POST /comment HTTP/1.1" 200 166
+INFO 2018-08-18 09:37:46,670 basehttp 124 "GET /article/2 HTTP/1.1" 200 11826
+INFO 2018-08-18 09:37:46,689 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 09:38:14,287 basehttp 124 "POST /comment HTTP/1.1" 200 166
+INFO 2018-08-18 09:38:58,289 basehttp 124 "POST /comment HTTP/1.1" 200 167
+INFO 2018-08-18 09:39:15,523 basehttp 124 "GET /article/2 HTTP/1.1" 200 11898
+INFO 2018-08-18 09:39:15,563 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 09:46:55,314 basehttp 124 "GET /article/2 HTTP/1.1" 200 11898
+INFO 2018-08-18 09:46:55,345 basehttp 124 "GET /static/js/test.js HTTP/1.1" 200 9106
+INFO 2018-08-18 09:47:02,310 basehttp 124 "POST /comment HTTP/1.1" 200 197
+INFO 2018-08-18 09:51:50,199 basehttp 124 "GET /article/2 HTTP/1.1" 200 11900
+INFO 2018-08-18 09:51:50,229 basehttp 124 "GET /static/css/github-markdown.css HTTP/1.1" 200 5585
+INFO 2018-08-18 09:51:50,242 basehttp 124 "GET /static/css/nprogress.css HTTP/1.1" 200 1410
+INFO 2018-08-18 09:51:50,250 basehttp 124 "GET /static/css/bootstrap.min.css HTTP/1.1" 200 121200
+INFO 2018-08-18 09:51:50,253 basehttp 124 "GET /static/css/style.css HTTP/1.1" 200 49054
+INFO 2018-08-18 09:51:50,264 basehttp 124 "GET /static/css/highlights/github.css HTTP/1.1" 200 4015
+INFO 2018-08-18 09:51:50,272 basehttp 124 "GET /static/js/nprogress.js HTTP/1.1" 200 8933
+INFO 2018-08-18 09:51:50,275 basehttp 124 "GET /static/js/jquery-2.1.4.min.js HTTP/1.1" 200 84345
+INFO 2018-08-18 09:51:50,277 basehttp 124 "GET /static/js/jquery.lazyload.min.js HTTP/1.1" 200 4134
+INFO 2018-08-18 09:51:50,331 basehttp 124 "GET /static/images/icon/icon.png HTTP/1.1" 200 10991
+INFO 2018-08-18 09:51:50,336 basehttp 124 "GET /static/images/logo.png HTTP/1.1" 200 2317
+INFO 2018-08-18 09:51:50,359 basehttp 124 "GET /static/js/bootstrap.min.js HTTP/1.1" 200 36816
+INFO 2018-08-18 09:51:50,380 basehttp 124 "GET /static/js/jquery.ias.js HTTP/1.1" 200 6669
+INFO 2018-08-18 09:51:50,477 basehttp 124 "GET /static/js/scripts.js HTTP/1.1" 200 2649
+INFO 2018-08-18 09:51:50,494 basehttp 124 "GET /static/images/upload/default_image.png HTTP/1.1" 200 39227
+INFO 2018-08-18 09:51:50,504 basehttp 124 "GET /static/js/test.js HTTP/1.1" 200 9148
+INFO 2018-08-18 09:51:50,525 basehttp 124 "GET /static/images/backtop.png HTTP/1.1" 200 1123
+INFO 2018-08-18 09:51:50,537 basehttp 124 "GET /static/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1" 200 18028
+INFO 2018-08-18 09:51:55,613 basehttp 124 "POST /comment HTTP/1.1" 200 199
+INFO 2018-08-18 09:52:14,462 basehttp 124 "GET /article/2 HTTP/1.1" 200 11906
+INFO 2018-08-18 09:52:14,505 basehttp 124 "GET /static/css/nprogress.css HTTP/1.1" 200 1410
+INFO 2018-08-18 09:52:14,509 basehttp 124 "GET /static/css/github-markdown.css HTTP/1.1" 200 5585
+INFO 2018-08-18 09:52:14,530 basehttp 124 "GET /static/css/highlights/github.css HTTP/1.1" 200 4015
+INFO 2018-08-18 09:52:14,539 basehttp 124 "GET /static/js/jquery-2.1.4.min.js HTTP/1.1" 200 84345
+INFO 2018-08-18 09:52:14,546 basehttp 124 "GET /static/js/nprogress.js HTTP/1.1" 200 8933
+INFO 2018-08-18 09:52:14,549 basehttp 124 "GET /static/js/jquery.lazyload.min.js HTTP/1.1" 200 4134
+INFO 2018-08-18 09:52:14,551 basehttp 124 "GET /static/css/style.css HTTP/1.1" 200 49054
+INFO 2018-08-18 09:52:14,555 basehttp 124 "GET /static/css/bootstrap.min.css HTTP/1.1" 200 121200
+INFO 2018-08-18 09:52:14,578 basehttp 124 "GET /static/images/logo.png HTTP/1.1" 200 2317
+INFO 2018-08-18 09:52:14,581 basehttp 124 "GET /static/images/icon/icon.png HTTP/1.1" 200 10991
+INFO 2018-08-18 09:52:14,656 basehttp 124 "GET /static/js/bootstrap.min.js HTTP/1.1" 200 36816
+INFO 2018-08-18 09:52:14,669 basehttp 124 "GET /static/js/jquery.ias.js HTTP/1.1" 200 6669
+INFO 2018-08-18 09:52:14,671 basehttp 124 "GET /static/js/test.js HTTP/1.1" 200 9148
+INFO 2018-08-18 09:52:14,672 basehttp 124 "GET /static/js/scripts.js HTTP/1.1" 200 2649
+INFO 2018-08-18 09:52:14,673 basehttp 124 "GET /static/images/upload/default_image.png HTTP/1.1" 200 39227
+INFO 2018-08-18 09:52:14,684 basehttp 124 "GET /static/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1" 200 18028
+INFO 2018-08-18 09:52:14,688 basehttp 124 "GET /static/images/backtop.png HTTP/1.1" 200 1123
+INFO 2018-08-18 09:52:20,955 basehttp 124 "POST /comment HTTP/1.1" 200 195
+INFO 2018-08-18 09:52:29,661 basehttp 124 "GET /article/2 HTTP/1.1" 200 11909
+INFO 2018-08-18 09:52:29,691 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 09:52:29,872 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:05:26,963 basehttp 124 "GET /article/2 HTTP/1.1" 200 11909
+INFO 2018-08-18 10:05:26,988 basehttp 124 "GET /static/js/test.js HTTP/1.1" 200 9172
+INFO 2018-08-18 10:05:27,186 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:05:31,403 basehttp 124 "POST /comment HTTP/1.1" 200 197
+INFO 2018-08-18 10:05:31,542 basehttp 124 "GET /article/2 HTTP/1.1" 200 11985
+INFO 2018-08-18 10:05:31,552 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 10:05:35,418 basehttp 124 "GET /article/2?page=2 HTTP/1.1" 200 12090
+INFO 2018-08-18 10:05:35,446 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 10:05:37,679 basehttp 124 "GET /article/2?page=3 HTTP/1.1" 200 8673
+INFO 2018-08-18 10:05:37,716 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 10:05:42,548 basehttp 124 "GET /article/2?page=1 HTTP/1.1" 200 11985
+INFO 2018-08-18 10:05:42,588 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 10:05:53,692 basehttp 124 "GET /article/blog HTTP/1.1" 200 5431
+INFO 2018-08-18 10:05:53,742 basehttp 124 "GET /static/js/bloglist.js HTTP/1.1" 304 0
+INFO 2018-08-18 10:05:53,864 basehttp 124 "GET /article/blogdata?page=1 HTTP/1.1" 200 679
+INFO 2018-08-18 10:05:58,569 basehttp 124 "GET /article/archives HTTP/1.1" 200 5951
+INFO 2018-08-18 10:05:58,596 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 10:05:59,547 basehttp 124 "GET / HTTP/1.1" 200 8304
+INFO 2018-08-18 10:06:01,473 basehttp 124 "GET / HTTP/1.1" 200 8304
+INFO 2018-08-18 10:20:29,087 basehttp 124 "GET / HTTP/1.1" 200 8398
+INFO 2018-08-18 10:20:29,217 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:20:32,226 basehttp 124 "GET /?page=000 HTTP/1.1" 200 8398
+INFO 2018-08-18 10:20:34,498 basehttp 124 "GET /?page=999 HTTP/1.1" 200 8398
+INFO 2018-08-18 10:20:44,893 basehttp 124 "GET /?page=999 HTTP/1.1" 200 8398
+INFO 2018-08-18 10:22:08,129 basehttp 124 "GET /article/1 HTTP/1.1" 200 41056
+INFO 2018-08-18 10:22:08,159 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 10:22:08,361 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:22:11,159 basehttp 124 "GET /article/2 HTTP/1.1" 200 12083
+INFO 2018-08-18 10:22:18,274 basehttp 124 "GET /article/2?page=2 HTTP/1.1" 200 12188
+INFO 2018-08-18 10:22:20,238 basehttp 124 "GET /article/2?page=3 HTTP/1.1" 200 8771
+INFO 2018-08-18 10:24:54,305 basehttp 124 "GET /article/2?page=3 HTTP/1.1" 200 8784
+INFO 2018-08-18 10:24:54,317 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 10:24:54,530 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:24:57,523 basehttp 124 "GET /article/2?page=3 HTTP/1.1" 200 8784
+INFO 2018-08-18 10:24:57,560 basehttp 124 "GET /static/css/github-markdown.css HTTP/1.1" 200 5585
+INFO 2018-08-18 10:24:57,562 basehttp 124 "GET /static/css/nprogress.css HTTP/1.1" 200 1410
+INFO 2018-08-18 10:24:57,569 basehttp 124 "GET /static/css/bootstrap.min.css HTTP/1.1" 200 121200
+INFO 2018-08-18 10:24:57,579 basehttp 124 "GET /static/css/style.css HTTP/1.1" 200 49054
+INFO 2018-08-18 10:24:57,581 basehttp 124 "GET /static/js/nprogress.js HTTP/1.1" 200 8933
+INFO 2018-08-18 10:24:57,585 basehttp 124 "GET /static/js/jquery-2.1.4.min.js HTTP/1.1" 200 84345
+INFO 2018-08-18 10:24:57,588 basehttp 124 "GET /static/css/highlights/github.css HTTP/1.1" 200 4015
+INFO 2018-08-18 10:24:57,592 basehttp 124 "GET /static/js/jquery.lazyload.min.js HTTP/1.1" 200 4134
+INFO 2018-08-18 10:24:57,610 basehttp 124 "GET /static/images/logo.png HTTP/1.1" 200 2317
+INFO 2018-08-18 10:24:57,612 basehttp 124 "GET /static/images/icon/icon.png HTTP/1.1" 200 10991
+INFO 2018-08-18 10:24:57,628 basehttp 124 "GET /static/js/bootstrap.min.js HTTP/1.1" 200 36816
+INFO 2018-08-18 10:24:57,633 basehttp 124 "GET /static/js/jquery.ias.js HTTP/1.1" 200 6669
+INFO 2018-08-18 10:24:57,642 basehttp 124 "GET /static/js/scripts.js HTTP/1.1" 200 2649
+INFO 2018-08-18 10:24:57,646 basehttp 124 "GET /static/js/test.js HTTP/1.1" 200 9172
+INFO 2018-08-18 10:24:57,649 basehttp 124 "GET /static/images/upload/default_image.png HTTP/1.1" 200 39227
+INFO 2018-08-18 10:24:57,652 basehttp 124 "GET /static/images/backtop.png HTTP/1.1" 200 1123
+INFO 2018-08-18 10:24:57,652 basehttp 124 "GET /static/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1" 200 18028
+INFO 2018-08-18 10:24:57,793 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:24:59,105 basehttp 124 "GET /article/2?page=3 HTTP/1.1" 200 8784
+INFO 2018-08-18 10:24:59,155 basehttp 124 "GET /static/css/highlights/github.css HTTP/1.1" 200 4015
+INFO 2018-08-18 10:24:59,162 basehttp 124 "GET /static/css/github-markdown.css HTTP/1.1" 200 5585
+INFO 2018-08-18 10:24:59,171 basehttp 124 "GET /static/css/nprogress.css HTTP/1.1" 200 1410
+INFO 2018-08-18 10:24:59,175 basehttp 124 "GET /static/css/style.css HTTP/1.1" 200 49054
+INFO 2018-08-18 10:24:59,176 basehttp 124 "GET /static/css/bootstrap.min.css HTTP/1.1" 200 121200
+INFO 2018-08-18 10:24:59,177 basehttp 124 "GET /static/js/nprogress.js HTTP/1.1" 200 8933
+INFO 2018-08-18 10:24:59,179 basehttp 124 "GET /static/js/jquery-2.1.4.min.js HTTP/1.1" 200 84345
+INFO 2018-08-18 10:24:59,204 basehttp 124 "GET /static/js/jquery.lazyload.min.js HTTP/1.1" 200 4134
+INFO 2018-08-18 10:24:59,206 basehttp 124 "GET /static/images/logo.png HTTP/1.1" 200 2317
+INFO 2018-08-18 10:24:59,219 basehttp 124 "GET /static/images/icon/icon.png HTTP/1.1" 200 10991
+INFO 2018-08-18 10:24:59,255 basehttp 124 "GET /static/js/jquery.ias.js HTTP/1.1" 200 6669
+INFO 2018-08-18 10:24:59,255 basehttp 124 "GET /static/js/scripts.js HTTP/1.1" 200 2649
+INFO 2018-08-18 10:24:59,259 basehttp 124 "GET /static/js/bootstrap.min.js HTTP/1.1" 200 36816
+INFO 2018-08-18 10:24:59,263 basehttp 124 "GET /static/images/upload/default_image.png HTTP/1.1" 200 39227
+INFO 2018-08-18 10:24:59,263 basehttp 124 "GET /static/js/test.js HTTP/1.1" 200 9172
+INFO 2018-08-18 10:24:59,266 basehttp 124 "GET /static/images/backtop.png HTTP/1.1" 200 1123
+INFO 2018-08-18 10:24:59,274 basehttp 124 "GET /static/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1" 200 18028
+INFO 2018-08-18 10:24:59,364 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:25:00,446 basehttp 124 "GET /article/2?page=1 HTTP/1.1" 200 12040
+INFO 2018-08-18 10:25:04,187 basehttp 124 "GET /article/2?page=999 HTTP/1.1" 200 8784
+INFO 2018-08-18 10:29:31,376 basehttp 124 "GET /article/2?page=999 HTTP/1.1" 200 8741
+INFO 2018-08-18 10:29:31,401 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 10:29:31,601 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:29:33,545 basehttp 124 "GET /article/2?page=999 HTTP/1.1" 200 8741
+INFO 2018-08-18 10:29:33,676 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:29:34,769 basehttp 124 "GET /article/2?page=999 HTTP/1.1" 200 8741
+INFO 2018-08-18 10:29:34,954 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:29:40,553 basehttp 124 "GET /article/2?page=2 HTTP/1.1" 200 12214
+INFO 2018-08-18 10:29:44,468 basehttp 124 "GET /article/2?page=000 HTTP/1.1" 200 8741
+INFO 2018-08-18 10:29:46,287 basehttp 124 "GET /article/2?page=2 HTTP/1.1" 200 12214
+INFO 2018-08-18 10:29:53,418 basehttp 124 "GET /article/2?page=1 HTTP/1.1" 200 12053
+INFO 2018-08-18 10:31:36,664 basehttp 124 "GET /article/2?page=1 HTTP/1.1" 200 12054
+INFO 2018-08-18 10:31:36,699 basehttp 124 "GET /static/css/github-markdown.css HTTP/1.1" 200 5585
+INFO 2018-08-18 10:31:36,709 basehttp 124 "GET /static/css/bootstrap.min.css HTTP/1.1" 200 121200
+INFO 2018-08-18 10:31:36,711 basehttp 124 "GET /static/css/nprogress.css HTTP/1.1" 200 1410
+INFO 2018-08-18 10:31:36,713 basehttp 124 "GET /static/css/highlights/github.css HTTP/1.1" 200 4015
+INFO 2018-08-18 10:31:36,722 basehttp 124 "GET /static/css/style.css HTTP/1.1" 200 49054
+INFO 2018-08-18 10:31:36,732 basehttp 124 "GET /static/js/nprogress.js HTTP/1.1" 200 8933
+INFO 2018-08-18 10:31:36,736 basehttp 124 "GET /static/images/logo.png HTTP/1.1" 200 2317
+INFO 2018-08-18 10:31:36,742 basehttp 124 "GET /static/js/jquery.lazyload.min.js HTTP/1.1" 200 4134
+INFO 2018-08-18 10:31:36,743 basehttp 124 "GET /static/js/jquery-2.1.4.min.js HTTP/1.1" 200 84345
+INFO 2018-08-18 10:31:36,745 basehttp 124 "GET /static/images/icon/icon.png HTTP/1.1" 200 10991
+INFO 2018-08-18 10:31:36,752 basehttp 124 "GET /static/js/bootstrap.min.js HTTP/1.1" 200 36816
+INFO 2018-08-18 10:31:36,753 basehttp 124 "GET /static/js/jquery.ias.js HTTP/1.1" 200 6669
+INFO 2018-08-18 10:31:36,780 basehttp 124 "GET /static/js/test.js HTTP/1.1" 200 9172
+INFO 2018-08-18 10:31:36,781 basehttp 124 "GET /static/js/scripts.js HTTP/1.1" 200 2649
+INFO 2018-08-18 10:31:36,786 basehttp 124 "GET /static/images/upload/default_image.png HTTP/1.1" 200 39227
+INFO 2018-08-18 10:31:36,788 basehttp 124 "GET /static/images/backtop.png HTTP/1.1" 200 1123
+INFO 2018-08-18 10:31:36,802 basehttp 124 "GET /static/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1" 200 18028
+INFO 2018-08-18 10:31:36,927 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:31:38,603 basehttp 124 "GET /article/2?page=1 HTTP/1.1" 200 12054
+INFO 2018-08-18 10:31:38,843 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:31:42,045 basehttp 124 "GET /article/2?page=1002 HTTP/1.1" 200 8743
+INFO 2018-08-18 10:31:48,948 basehttp 124 "GET / HTTP/1.1" 200 8398
+INFO 2018-08-18 10:34:09,882 basehttp 124 "GET / HTTP/1.1" 200 8366
+INFO 2018-08-18 10:34:10,139 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:34:12,071 basehttp 124 "GET / HTTP/1.1" 200 8366
+INFO 2018-08-18 10:34:12,217 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:34:14,173 basehttp 124 "GET /?page=first HTTP/1.1" 200 8366
+INFO 2018-08-18 10:34:18,574 basehttp 124 "GET /article/2 HTTP/1.1" 200 12054
+INFO 2018-08-18 10:34:18,593 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 10:34:22,067 basehttp 124 "GET /article/2?page=2 HTTP/1.1" 200 12217
+INFO 2018-08-18 10:34:24,245 basehttp 124 "GET /article/2?page=1 HTTP/1.1" 200 12054
+INFO 2018-08-18 10:34:26,468 basehttp 124 "GET / HTTP/1.1" 200 8366
+INFO 2018-08-18 10:34:42,630 basehttp 124 "GET / HTTP/1.1" 200 8312
+INFO 2018-08-18 10:34:42,778 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:34:46,000 basehttp 124 "GET /article/2 HTTP/1.1" 200 12054
+INFO 2018-08-18 10:34:50,715 basehttp 124 "GET /article/archives HTTP/1.1" 200 5951
+INFO 2018-08-18 10:34:51,810 basehttp 124 "GET /article/blog HTTP/1.1" 200 5431
+INFO 2018-08-18 10:34:52,047 basehttp 124 "GET /article/blogdata?page=1 HTTP/1.1" 200 679
+INFO 2018-08-18 10:34:54,648 basehttp 124 "GET /article/tag/1 HTTP/1.1" 200 7114
+INFO 2018-08-18 10:36:01,157 basehttp 124 "GET /article/tag/1 HTTP/1.1" 200 7120
+INFO 2018-08-18 10:36:01,391 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:36:07,663 basehttp 124 "GET / HTTP/1.1" 200 8312
+INFO 2018-08-18 10:36:09,909 basehttp 124 "GET /article/2 HTTP/1.1" 200 12054
+INFO 2018-08-18 10:36:37,639 basehttp 124 "GET /article/2 HTTP/1.1" 200 12054
+INFO 2018-08-18 10:36:37,867 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 10:36:39,105 basehttp 124 "GET /article/tag/1 HTTP/1.1" 200 7161
+INFO 2018-08-18 10:36:42,201 basehttp 124 "GET / HTTP/1.1" 200 8312
+INFO 2018-08-18 10:36:48,272 basehttp 124 "GET /article/blog HTTP/1.1" 200 5431
+INFO 2018-08-18 10:36:48,369 basehttp 124 "GET /article/blogdata?page=1 HTTP/1.1" 200 679
+INFO 2018-08-18 10:36:51,791 basehttp 124 "GET /article/archives HTTP/1.1" 200 5951
+INFO 2018-08-18 10:36:56,718 basehttp 124 "GET / HTTP/1.1" 200 8312
+INFO 2018-08-18 10:37:02,405 basehttp 124 "GET / HTTP/1.1" 200 8312
+ERROR 2018-08-18 11:09:42,641 exception 135 Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/spirit/Desktop/MyBlog/blog/views.py", line 37, in get
+    return render(request, "index_test.html", context)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/backends/django.py", line 66, in render
+    return self.template.render(context)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 207, in render
+    return self._render(context)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/template/defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/urls/base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "/home/spirit/.virtualenvs/blog/lib/python3.6/site-packages/django/urls/resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'type' with arguments '(1,)' not found. 1 pattern(s) tried: ['article/(?P<type>\\w+)/(?P<id>\\w+)$']
+ERROR 2018-08-18 11:09:42,787 basehttp 124 "GET / HTTP/1.1" 500 179021
+WARNING 2018-08-18 11:09:43,170 base 152 Not Found: /favicon.ico
+WARNING 2018-08-18 11:09:43,171 basehttp 124 "GET /favicon.ico HTTP/1.1" 404 4241
+INFO 2018-08-18 11:10:05,843 basehttp 124 "GET / HTTP/1.1" 200 8261
+INFO 2018-08-18 11:10:06,156 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 11:10:08,471 basehttp 124 "GET /article/python/1 HTTP/1.1" 302 0
+INFO 2018-08-18 11:10:08,596 basehttp 124 "GET / HTTP/1.1" 200 8261
+INFO 2018-08-18 11:10:14,742 basehttp 124 "GET /article/2 HTTP/1.1" 200 12003
+INFO 2018-08-18 11:10:14,852 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 11:10:29,557 basehttp 124 "GET /article/tag/1 HTTP/1.1" 200 7110
+INFO 2018-08-18 11:10:32,846 basehttp 124 "GET / HTTP/1.1" 200 8261
+INFO 2018-08-18 11:10:34,494 basehttp 124 "GET /article/blog HTTP/1.1" 200 5380
+INFO 2018-08-18 11:10:34,963 basehttp 124 "GET /article/blogdata?page=1 HTTP/1.1" 200 679
+INFO 2018-08-18 11:10:36,064 basehttp 124 "GET /article/archives HTTP/1.1" 200 5900
+INFO 2018-08-18 11:10:37,980 basehttp 124 "GET / HTTP/1.1" 200 8261
+INFO 2018-08-18 11:10:39,685 basehttp 124 "GET /logout/ HTTP/1.1" 302 0
+INFO 2018-08-18 11:10:39,738 basehttp 124 "GET / HTTP/1.1" 200 8288
+INFO 2018-08-18 11:10:41,929 basehttp 124 "GET / HTTP/1.1" 200 8288
+INFO 2018-08-18 11:10:45,137 basehttp 124 "GET /login/ HTTP/1.1" 200 6404
+INFO 2018-08-18 11:10:46,854 basehttp 124 "GET /register HTTP/1.1" 200 7378
+INFO 2018-08-18 11:19:10,581 basehttp 124 "GET /article/blog HTTP/1.1" 200 5398
+INFO 2018-08-18 11:19:10,720 basehttp 124 "GET /article/blogdata?page=1 HTTP/1.1" 200 679
+INFO 2018-08-18 11:19:17,816 basehttp 124 "GET /article/blog HTTP/1.1" 200 5393
+INFO 2018-08-18 11:19:18,070 basehttp 124 "GET /article/blogdata?page=1 HTTP/1.1" 200 679
+INFO 2018-08-18 11:19:18,077 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 11:19:20,146 basehttp 124 "GET /article/blog HTTP/1.1" 200 5393
+INFO 2018-08-18 11:19:20,333 basehttp 124 "GET /article/blogdata?page=1 HTTP/1.1" 200 679
+INFO 2018-08-18 11:19:30,164 basehttp 124 "GET /article/blog HTTP/1.1" 200 5407
+INFO 2018-08-18 11:19:30,326 basehttp 124 "GET /article/blogdata?page=1 HTTP/1.1" 200 679
+INFO 2018-08-18 11:19:30,344 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 11:19:39,972 basehttp 124 "GET /article/blog HTTP/1.1" 200 5412
+INFO 2018-08-18 11:19:40,146 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 11:19:40,188 basehttp 124 "GET /article/blogdata?page=1 HTTP/1.1" 200 679
+INFO 2018-08-18 11:19:41,163 basehttp 124 "GET /article/blog HTTP/1.1" 200 5412
+INFO 2018-08-18 11:19:41,336 basehttp 124 "GET /article/blogdata?page=1 HTTP/1.1" 200 679
+INFO 2018-08-18 11:19:41,378 basehttp 124 "GET /static/images/icon/favicon.ico HTTP/1.1" 200 9817
+INFO 2018-08-18 11:22:02,753 basehttp 124 "GET /register HTTP/1.1" 200 7378
+INFO 2018-08-18 11:22:02,770 basehttp 124 "GET /static/js/test.js HTTP/1.1" 304 0
+INFO 2018-08-18 11:22:13,169 basehttp 124 "GET /article/tag/1 HTTP/1.1" 200 7137
+INFO 2018-08-18 11:22:49,342 basehttp 124 "GET /article/tag/1 HTTP/1.1" 200 7137
+INFO 2018-08-18 11:24:11,969 basehttp 124 "GET /article/tag/1 HTTP/1.1" 200 7137
+INFO 2018-08-18 11:24:12,031 basehttp 124 "GET /static/css/github-markdown.css HTTP/1.1" 200 5585
+INFO 2018-08-18 11:24:12,037 basehttp 124 "GET /static/css/bootstrap.min.css HTTP/1.1" 200 121200
+INFO 2018-08-18 11:24:12,048 basehttp 124 "GET /static/css/style.css HTTP/1.1" 200 49054
+INFO 2018-08-18 11:24:12,050 basehttp 124 "GET /static/css/nprogress.css HTTP/1.1" 200 1410
+INFO 2018-08-18 11:24:12,071 basehttp 124 "GET /static/css/font-awesome.min.css HTTP/1.1" 200 26711
+INFO 2018-08-18 11:24:12,075 basehttp 124 "GET /static/css/highlights/github.css HTTP/1.1" 200 4015
+INFO 2018-08-18 11:24:12,085 basehttp 124 "GET /static/js/jquery-2.1.4.min.js HTTP/1.1" 200 84345
+INFO 2018-08-18 11:24:12,087 basehttp 124 "GET /static/js/nprogress.js HTTP/1.1" 200 8933
+INFO 2018-08-18 11:24:12,120 basehttp 124 "GET /static/js/jquery.lazyload.min.js HTTP/1.1" 200 4134
+INFO 2018-08-18 11:24:12,126 basehttp 124 "GET /static/images/logo.png HTTP/1.1" 200 2317
+INFO 2018-08-18 11:24:12,134 basehttp 124 "GET /static/images/upload/default_image.png HTTP/1.1" 200 39227
+INFO 2018-08-18 11:24:12,156 basehttp 124 "GET /static/js/bootstrap.min.js HTTP/1.1" 200 36816
+INFO 2018-08-18 11:24:12,205 basehttp 124 "GET /static/js/jquery.ias.js HTTP/1.1" 200 6669
+INFO 2018-08-18 11:24:12,208 basehttp 124 "GET /static/js/scripts.js HTTP/1.1" 200 2649
+INFO 2018-08-18 11:24:12,251 basehttp 124 "GET /static/images/backtop.png HTTP/1.1" 200 1123
+INFO 2018-08-18 11:24:12,305 basehttp 124 "GET /static/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1" 200 18028
+INFO 2018-08-18 11:24:13,951 basehttp 124 "GET /article/tag/1 HTTP/1.1" 200 7137
+INFO 2018-08-18 11:24:15,744 basehttp 124 "GET /article/tag/1 HTTP/1.1" 200 7137
+INFO 2018-08-18 11:24:20,585 basehttp 124 "GET /login/ HTTP/1.1" 200 6404
+INFO 2018-08-18 11:24:22,712 basehttp 124 "GET /register HTTP/1.1" 200 7378
+INFO 2018-08-18 11:24:48,367 basehttp 124 "GET /register HTTP/1.1" 200 7378
+INFO 2018-08-18 11:24:48,429 basehttp 124 "GET /static/css/github-markdown.css HTTP/1.1" 200 5585
+INFO 2018-08-18 11:24:48,430 basehttp 124 "GET /static/css/style.css HTTP/1.1" 200 49054
+INFO 2018-08-18 11:24:48,433 basehttp 124 "GET /static/css/bootstrap.min.css HTTP/1.1" 200 121200
+INFO 2018-08-18 11:24:48,435 basehttp 124 "GET /static/css/nprogress.css HTTP/1.1" 200 1410
+INFO 2018-08-18 11:24:48,437 basehttp 124 "GET /static/css/font-awesome.min.css HTTP/1.1" 200 26711
+INFO 2018-08-18 11:24:48,454 basehttp 124 "GET /static/css/highlights/github.css HTTP/1.1" 200 4015
+INFO 2018-08-18 11:24:48,462 basehttp 124 "GET /static/js/jquery-2.1.4.min.js HTTP/1.1" 200 84345
+INFO 2018-08-18 11:24:48,475 basehttp 124 "GET /static/js/nprogress.js HTTP/1.1" 200 8933
+INFO 2018-08-18 11:24:48,489 basehttp 124 "GET /static/images/logo.png HTTP/1.1" 200 2317
+INFO 2018-08-18 11:24:48,493 basehttp 124 "GET /static/js/jquery.lazyload.min.js HTTP/1.1" 200 4134
+INFO 2018-08-18 11:24:48,496 basehttp 124 "GET /static/images/upload/default_image.png HTTP/1.1" 200 39227
+INFO 2018-08-18 11:24:48,567 basehttp 124 "GET /static/js/bootstrap.min.js HTTP/1.1" 200 36816
+INFO 2018-08-18 11:24:48,569 basehttp 124 "GET /static/js/jquery.ias.js HTTP/1.1" 200 6669
+INFO 2018-08-18 11:24:48,579 basehttp 124 "GET /static/js/scripts.js HTTP/1.1" 200 2649
+INFO 2018-08-18 11:24:48,588 basehttp 124 "GET /static/js/test.js HTTP/1.1" 200 9172
+INFO 2018-08-18 11:24:48,602 basehttp 124 "GET /static/images/backtop.png HTTP/1.1" 200 1123
+INFO 2018-08-18 11:24:48,647 basehttp 124 "GET /static/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1" 200 18028
+INFO 2018-08-18 11:24:50,652 basehttp 124 "GET /login/ HTTP/1.1" 200 6404
+INFO 2018-08-18 11:24:52,281 basehttp 124 "GET /article/tag/1 HTTP/1.1" 200 7137
+INFO 2018-08-18 11:24:54,881 basehttp 124 "GET /register HTTP/1.1" 200 7378
+INFO 2018-08-18 11:26:46,514 basehttp 124 "GET / HTTP/1.1" 200 8310
+INFO 2018-08-18 11:26:48,427 basehttp 124 "GET / HTTP/1.1" 200 8310
+INFO 2018-08-18 11:26:49,610 basehttp 124 "GET /article/2 HTTP/1.1" 200 12030
+INFO 2018-08-18 11:26:53,142 basehttp 124 "GET /article/2 HTTP/1.1" 200 12030
+INFO 2018-08-18 11:26:58,763 basehttp 124 "GET /article/python/1 HTTP/1.1" 302 0
+INFO 2018-08-18 11:26:58,855 basehttp 124 "GET / HTTP/1.1" 200 8310
+INFO 2018-08-18 11:26:59,659 basehttp 124 "GET /article/2 HTTP/1.1" 200 12030
+INFO 2018-08-18 11:27:00,436 basehttp 124 "GET /article/1 HTTP/1.1" 200 40946
+INFO 2018-08-18 11:27:01,168 basehttp 124 "GET /article/1 HTTP/1.1" 200 40946
+INFO 2018-08-18 11:27:02,608 basehttp 124 "GET /article/2 HTTP/1.1" 200 12030
+INFO 2018-08-18 11:27:03,413 basehttp 124 "GET /article/category/2 HTTP/1.1" 200 7137
+INFO 2018-08-18 11:27:09,217 basehttp 124 "GET /article/2 HTTP/1.1" 200 12030
+INFO 2018-08-18 11:27:11,601 basehttp 124 "GET / HTTP/1.1" 200 8310
+INFO 2018-08-18 11:27:12,800 basehttp 124 "GET /article/2 HTTP/1.1" 200 12030
+INFO 2018-08-18 11:27:14,739 basehttp 124 "GET /login/ HTTP/1.1" 200 6400
+INFO 2018-08-18 11:27:15,585 basehttp 124 "GET /register HTTP/1.1" 200 7378
+INFO 2018-08-18 11:27:16,451 basehttp 124 "GET / HTTP/1.1" 200 8310
+INFO 2018-08-18 11:27:17,010 basehttp 124 "GET /article/blog HTTP/1.1" 200 5396
+INFO 2018-08-18 11:27:17,144 basehttp 124 "GET /static/js/bloglist.js HTTP/1.1" 304 0
+INFO 2018-08-18 11:27:17,690 basehttp 124 "GET /article/archives HTTP/1.1" 200 5927
+INFO 2018-08-18 11:27:17,749 basehttp 124 "GET /article/blogdata?page=1 HTTP/1.1" 200 679
+INFO 2018-08-18 11:27:18,438 basehttp 124 "GET / HTTP/1.1" 200 8310
+INFO 2018-08-18 11:27:20,919 basehttp 124 "GET /article/1 HTTP/1.1" 200 40946
+INFO 2018-08-18 11:27:21,127 basehttp 124 "GET /article/2 HTTP/1.1" 200 12030
+INFO 2018-08-18 11:27:21,685 basehttp 124 "GET /article/python/1 HTTP/1.1" 302 0
+INFO 2018-08-18 11:27:21,861 basehttp 124 "GET / HTTP/1.1" 200 8310
+INFO 2018-08-18 11:27:24,119 basehttp 124 "GET /article/tag/1 HTTP/1.1" 200 7137
+INFO 2018-08-18 11:27:32,343 basehttp 124 "GET /article/blog HTTP/1.1" 200 5396
+INFO 2018-08-18 11:27:32,524 basehttp 124 "GET /article/blogdata?page=1 HTTP/1.1" 200 679
+INFO 2018-08-18 11:27:34,170 basehttp 124 "GET /article/2 HTTP/1.1" 200 12030
+INFO 2018-08-18 11:27:34,876 basehttp 124 "GET /article/category/2 HTTP/1.1" 200 7137
+INFO 2018-08-18 11:27:40,717 basehttp 124 "GET /article/archives HTTP/1.1" 200 5927
+INFO 2018-08-18 11:27:42,518 basehttp 124 "GET /article/2 HTTP/1.1" 200 12030
+INFO 2018-08-18 11:27:43,526 basehttp 124 "GET /article/1 HTTP/1.1" 200 40946

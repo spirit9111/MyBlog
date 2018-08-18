@@ -9,12 +9,16 @@
 
 	</div>
 	<div class="title">
-	<h3>关键词:{% highlight query with query %}</h3>
+	{% if query %}
+		<h3>关键词:{% highlight query with query %}</h3>
+	{% else %}
+		<h3>关键词: 请输入关键词 </h3>
+	{% endif %}
 {% endblock %}
 
 
 {% block content01Block %}
-	{% if query %}
+{#	{% if query %}#}
 		</div>
 		{% for result in page.object_list %}
 			<article class="excerpt excerpt-1"><a class="focus" href="/article/{{ result.object.id }}" title="">
@@ -57,5 +61,5 @@
 			{% endif %}
 		</div>
 		</div>
-	{% endif %}
+{#	{% endif %}#}
 {% endblock %}

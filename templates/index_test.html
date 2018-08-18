@@ -17,7 +17,7 @@
 			{% else %}
 				<div class="item">
 			{% endif %}
-		<a href="/article/{{ article.id }}" target="_blank">
+		<a href="{% url 'blog:article'  article.id %}" target="_blank">
 			<img src="{{ article.image_url }}"
 				 alt="" class="img-responsive"></a>
 		</div>
@@ -35,13 +35,14 @@
 {% block content01Block %}
 	</div>
 	{% for article in articles %}
-		<article class="excerpt excerpt-1"><a class="focus" href="article/{{ article.id }}" title="">
+		<article class="excerpt excerpt-1"><a class="focus" href="{% url 'blog:article'  article.id %}" title="">
 			<img class="thumb"
 				 data-original="{{ article.image_url }}"
 				 src="{{ article.image_url }}"
 				 alt=""></a>
-			<header><a class="cat" href="/article/category/{{ article.category.id }}">{{ article.category }}<i></i></a>
-				<h2><a href="article/{{ article.id }}" title="">{{ article.title }}</a></h2>
+			<header><a class="cat"
+					   href="{% url 'blog:type' 'category' article.category.id %} ">{{ article.category }}<i></i></a>
+				<h2><a href="{% url 'blog:article' article.id %}" title="">{{ article.title }}</a></h2>
 			</header>
 			<p class="meta">
 				<time class="time"><i class="glyphicon glyphicon-time"></i>{{ article.created_time }}</time>
@@ -56,6 +57,9 @@
 	{#分页,articles当前页#}
 	<div class='pagination'>
 		{% if articles %}
+			{% if articles.number != 1 %}
+				<a href='?page=first'><span>首页</span></a>
+			{% endif %}
 			{% if articles.has_previous %}
 				<a href='?page={{ articles.previous_page_number }}'><span>上一页</span></a>
 			{% endif %}
@@ -68,6 +72,9 @@
 			{% endfor %}
 			{% if articles.has_next %}
 				<a href='?page={{ articles.next_page_number }}'><span>下一页</span></a>
+			{% endif %}
+			{% if articles.number != articles.paginator.num_pages %}
+				<a href='?page={{ articles.paginator.num_pages|add:999 }}'><span>末页</span></a>
 			{% endif %}
 		{% endif %}
 	</div>

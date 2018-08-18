@@ -13,21 +13,6 @@
 {% endblock %}
 {% block content01Block %}
 	</div>
-	{#分页#}
-		{% if articles.has_previous %}
-			<a href='?page={{ articles.previous_page_number }}'><span>上一页</span></a>
-		{% endif %}
-		{% for page in articles.paginator.page_range %}
-			{% if page == articles.number %}
-				<a title='当前页:{{ page }}'><span>{{ page }}</span></a>
-			{% else %}
-				<a href='?page={{ page }}' title='{{ page }}'
-				><span>{{ page }}</span></a>
-			{% endif %}
-		{% endfor %}
-		{% if articles.has_next %}
-			<a href='?page={{ articles.next_page_number }}'><span>下一页</span></a>
-		{% endif %}
 	</div>
 {% endblock %}
 

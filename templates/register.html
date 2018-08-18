@@ -8,11 +8,6 @@
 	<div class="title">
 	<h3>注册</h3>
 {% endblock %}
-<div class="more">
-	{% for tag in tags %}
-		<a href="/article/{{ tag.name }}" tag="{{ tag.name }}">{{ tag.name }}</a>
-	{% endfor %}
-</div>
 {% block content01Block %}
 	</div>
 	<div id="login">

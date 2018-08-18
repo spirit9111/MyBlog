@@ -9,7 +9,7 @@
 
 {% block content00Block %}
 	<header class="article-header">
-		<h1 class="article-title"><a href="/article/{{ article.id }}">{{ article.title }}</a></h1>
+		<h1 class="article-title"><a href="{% url 'blog:article' article.id %}">{{ article.title }}</a></h1>
 		<div class="article-meta"> <span class="item article-meta-time">
 <time class="time" data-toggle="tooltip" data-placement="bottom" title="时间：{{ article.created_time }}"><i
 		class="glyphicon glyphicon-time"></i> {{ article.created_time }}</time>
@@ -37,7 +37,7 @@
 	</article>
 	<div class="article-tags">标签：
 		{% for tag in article.tags.all %}
-			<a href="/article/tag/{{ tag.id }}" rel="tag">
+			<a href="{% url 'blog:type' 'tag' tag.id %}" rel="tag">
 				{{ tag }}
 			</a>
 		{% endfor %}
@@ -100,6 +100,9 @@
 			{% endfor %}
 			<div class='pagination'>
 				{% if comments %}
+					{% if comments.number != 1 %}
+						<a href='?page=first'><span>首页</span></a>
+					{% endif %}
 					{% if comments.has_previous %}
 						<a href='?page={{ comments.previous_page_number }}'><span>上一页</span></a>
 					{% endif %}
@@ -113,6 +116,9 @@
 					{% endfor %}
 					{% if comments.has_next %}
 						<a href='?page={{ comments.next_page_number }}'><span>下一页</span></a>
+					{% endif %}
+					{% if comments.number != comments.paginator.num_pages %}
+						<a href='?page={{ comments.paginator.num_pages|add:999 }}'><span>末页</span></a>
 					{% endif %}
 				{% endif %}
 			</div>

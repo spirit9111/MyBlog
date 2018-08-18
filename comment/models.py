@@ -49,7 +49,16 @@ class Comment(models.Model):
 			logging.error(e)
 			return JsonResponse({'error': ErrorCode.DATAERR})
 
-		return JsonResponse({"error": ErrorCode.OK})
+		data = dict()
+		data['id'] = comment.id
+		data['article_id'] = comment.article_id
+		data['content'] = comment.content
+		data['user'] = comment.user.username
+		data['img_url'] = comment.user.icon_url()
+		data['floor'] = comment.floor
+		data['created_time'] = comment.created_time.strftime('%Y年%m月%d日 %H:%S')
+		print(data)
+		return JsonResponse({"error": ErrorCode.OK, 'data': data})
 
 	class Meta:
 		ordering = ["-created_time", ]
