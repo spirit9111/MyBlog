@@ -61,7 +61,7 @@
 		{% if page.has_next %}
 			<a href='?q={{ query }}&page={{ page.next_page_number }}'><span>下一页</span></a>
 		{% endif %}
-		{% if page.number|add:3 < page.paginator.num_pages %}
+		{% if page.number|add:2 < page.paginator.num_pages %}
 			<a href='?q={{ query }}&page={{ page.paginator.num_pages|add:999 }}'><span>末页</span></a>
 		{% endif %}
 	</div>

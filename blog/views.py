@@ -146,7 +146,6 @@ class BlogListDataView(View):
 
 	def get(self, request):
 		page = request.GET.get("page", 1)
-		print(page)
 		try:
 			page = int(page)
 		except Exception as e:

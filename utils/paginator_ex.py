@@ -37,6 +37,7 @@ class JuncheePaginator(Paginator):
 
 	@staticmethod
 	def paging(request, query_set, paginate_by):
+		page_obj, paginator = [], []
 		if query_set:
 			page = request.GET.get('page')
 			paginator = JuncheePaginator(query_set, paginate_by)
@@ -48,5 +49,4 @@ class JuncheePaginator(Paginator):
 			except EmptyPage:
 				# 如果用户请求的页码号超过了最大页码号，显示最后一页
 				page_obj = paginator.page(paginator.num_pages)
-			return page_obj, paginator
-		return
+		return page_obj, paginator

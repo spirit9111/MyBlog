@@ -1,9 +1,6 @@
 # 索引
-from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
-from django.http import HttpResponse
 from haystack import indexes
-
-from utils.constants import ARTICLE_PAGINATE_BY
+from utils.constants import SEARCH_ARTICLE_COUNT
 from utils.paginator_ex import JuncheePaginator
 from .models import Article
 
@@ -27,6 +24,9 @@ class MySearchView(SearchView):
 
 	def build_page(self):
 		"""重写搜索页分页的逻辑"""
-		page, paginator = JuncheePaginator.paging(self.request, self.results, 2)
+		# todo 不循环查询出的结果就不对,bug不明
+		for i in self.results:
+			pass
+		page, paginator = JuncheePaginator.paging(self.request, self.results, SEARCH_ARTICLE_COUNT)
 
 		return paginator, page

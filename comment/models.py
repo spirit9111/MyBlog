@@ -57,7 +57,6 @@ class Comment(models.Model):
 		data['img_url'] = comment.user.icon_url()
 		data['floor'] = comment.floor
 		data['created_time'] = comment.created_time.strftime('%Y年%m月%d日 %H:%S')
-		print(data)
 		return JsonResponse({"error": ErrorCode.OK, 'data': data})
 
 	class Meta:
