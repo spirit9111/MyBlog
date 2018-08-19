@@ -132,6 +132,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
 	os.path.join(BASE_DIR, 'static'),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, "server_static")
 
 # MEDIA_ROOT
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
@@ -217,4 +218,3 @@ LOGGING = {
 		},
 	}
 }
-
