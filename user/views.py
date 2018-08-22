@@ -1,6 +1,8 @@
 import logging
 import random
 import re
+
+from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
@@ -28,10 +30,12 @@ class SendToMes(View):
 			return JsonResponse({'error': ErrorCode.REQERR})
 		sms_code = '%06d' % random.randint(0, 999999)
 		logging.error(sms_code)
-		print(sms_code)
 		# celery异步发送短信,
 		# todo 返回值未做判断
-		send_to_mes.delay(mobile, sms_code)
+		if not settings.DEBUG:
+			send_to_mes.delay(mobile, sms_code)
+		else:
+			print(sms_code)
 		redis_conn.setex("is_send_%s" % mobile, SEND_SMS_CODE_INTERVAL, True)  # 60s一次
 		redis_conn.setex("sms_%s" % mobile, SMS_CODE_REDIS_EXPIRES, sms_code)  # 300s内有效
 		return JsonResponse({'error': ErrorCode.OK})
@@ -55,7 +59,6 @@ class RegisterView(View):
 		data = User.check_create(mobile, username, password, password2, sms_code)
 		error = data['error']
 		if error != 'OK':
-			# return render(request, 'register.html', data)
 			return JsonResponse({'error': error})
 		user = data['user']
 		request.session['is_login'] = True

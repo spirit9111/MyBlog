@@ -16,5 +16,4 @@ class CommentView(View):
 		article_id = request.POST.get('article_id', None)
 		comment_id = request.POST.get('comment_id', None)  # 可以为空,为空时返回''
 		response = Comment.check_create(user_id, content, article_id, comment_id)
-		# todo ajax,返回数据
 		return response

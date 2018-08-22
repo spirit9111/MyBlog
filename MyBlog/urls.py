@@ -28,8 +28,7 @@ urlpatterns = [
 	url(r'mdeditor/', include('mdeditor.urls')),  # markdown
 	# url(r'^captcha/', include('captcha.urls')),  # captcha,
 	url(r'^search/', include('haystack.urls')),
-	url(r'xadmin/', include(xadmin.site.urls)),  # xadmin
+	url(r'blogadmin/', include(xadmin.site.urls)),  # xadmin
 ]
 if settings.DEBUG:
-	# static files (images, css, javascript, etc.)
 	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

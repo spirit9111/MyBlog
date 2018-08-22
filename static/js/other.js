@@ -128,7 +128,7 @@ $('.reply').click(function (event) {
 	};
 
 	$.ajax({
-		url: 'http://127.0.0.1:8000/comment',
+		url: '/comment',
 		type: 'post',
 		data: params,
 		dataType: 'json',
@@ -179,7 +179,7 @@ $('#comment-submit').click(function (event) {
 	};
 
 	$.ajax({
-		url: 'http://127.0.0.1:8000/comment',
+		url: '/comment',
 		type: 'post',
 		data: params,
 		dataType: 'json',
@@ -235,7 +235,7 @@ $('#login_submit').click(function (event) {
 		};
 
 		$.ajax({
-			url: 'http://127.0.0.1:8000/login/',
+			url: '/login/',
 			type: 'post',
 			data: params,
 			// contentType: 'application/json',
@@ -346,7 +346,7 @@ $('#re_submit').click(function (event) {
 		};
 
 		$.ajax({
-			url: 'http://127.0.0.1:8000/register',
+			url: '/register',
 			type: 'post',
 			data: params,
 			dataType: 'json',

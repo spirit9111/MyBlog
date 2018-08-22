@@ -1,7 +1,12 @@
+import logging
+import os
+
 import markdown
 from django.db import models
 from django.utils.html import strip_tags
 from mdeditor.fields import MDTextField
+
+from MyBlog.settings import BASE_DIR
 from user.models import User
 from utils.constants import EXCERPT_LENGTH
 import django.utils.timezone as timezone
@@ -76,6 +81,13 @@ class Article(models.Model):
 
 		# 调用父类的 save 方法将数据保存到数据库中
 		super(Article, self).save(*args, **kwargs)
+
+		if self.image:
+			"""如果上传图片,更新静态资源"""
+			sh_file = os.path.join(BASE_DIR, 'py_collecte.sh')
+			status = os.system('bash %s' % sh_file)
+			if status != 0:
+				logging.error('静态文件更新状态:%s' % status)
 
 	def __str__(self):
 		return self.title

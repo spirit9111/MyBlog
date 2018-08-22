@@ -2,9 +2,9 @@ import uuid
 from aliyunsdkcore.client import AcsClient
 from aliyunsdkcore.profile import region_provider
 
-
 # 注意：不要更改
 from celery_tasks.sms.dysms_python.build.lib.aliyunsdkdysmsapi.request.v20170525 import SendSmsRequest
+from utils.constants import AILIYUN_ACCESS_KEY_ID, AILIYUN_ACCESS_KEY_SECRET
 
 
 class SendMes(object):
@@ -13,15 +13,15 @@ class SendMes(object):
 	DOMAIN = "dysmsapi.aliyuncs.com"
 
 	# 申请的ACCESS_KEY_ID和ACCESS_KEY_SECRET
-	ACCESS_KEY_ID = "LTAIYEeWFSUAFcYy"
-	ACCESS_KEY_SECRET = "FeuGEGSeHXHJ7A4uFIO0mMLoGjKiiY"
+	ACCESS_KEY_ID = AILIYUN_ACCESS_KEY_ID
+	ACCESS_KEY_SECRET = AILIYUN_ACCESS_KEY_SECRET
 
 	acs_client = AcsClient(ACCESS_KEY_ID, ACCESS_KEY_SECRET, REGION)
 	region_provider.add_endpoint(PRODUCT_NAME, REGION, DOMAIN)
 
 	def send_2_mes(self, phone_numbers, code):
 		# 申请的短信签名 和 短信模板
-		sign_name = 'SpiritのBlog'
+		sign_name = 'SpiritBlog'
 		template_code = 'SMS_137657397'
 		business_id = uuid.uuid1()
 		template_param = '{"code":"%s"}' % code
@@ -45,6 +45,7 @@ class SendMes(object):
 		# 调用短信发送接口，返回json
 		smsResponse = self.acs_client.do_action_with_exception(smsRequest)
 		return smsResponse
+
 
 # sm = SendMes()
 # sm.send_2_mes(15071176826, 333333)
