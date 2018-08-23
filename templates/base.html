@@ -68,7 +68,7 @@
 			{% block tagBlock %}
 				{% get_tags as tags %}
 				<div class="more">
-					{% for tag in tags|slice:':6' %}
+					{% for tag in tags %}
 						<a href="{% url 'blog:type' 'tag' tag.id %}" tag="{{ tag.name }}">{{ tag.name|capfirst }}</a>
 					{% endfor %}
 				</div>
