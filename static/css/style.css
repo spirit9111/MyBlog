@@ -789,7 +789,7 @@ body, input, button, textarea, select {
 }
 
 .excerpt .note {
-	font-size: 16px;
+	font-size: 12px;
 	color: #999;
 	word-wrap: break-word;
 	line-height: 20px;
@@ -948,7 +948,7 @@ body, input, button, textarea, select {
 
 /*文章内容*/
 .article-content {
-	font-size: 24px;
+	font-size: 18px;
 	line-height: 30px;
 	word-wrap: break-word;
 	cursor: default;

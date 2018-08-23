@@ -69,7 +69,7 @@
 				{% get_tags as tags %}
 				<div class="more">
 					{% for tag in tags %}
-						<a href="{% url 'blog:type' 'tag' tag.id %}" tag="{{ tag.name }}">{{ tag.name|capfirst }}</a>
+						<a href="{% url 'blog:type' 'tag' tag.id %}" tag="{{ tag.name }}">{{ tag.name|capfirst|slice:":5" }}</a>
 					{% endfor %}
 				</div>
 			{% endblock %}
@@ -133,9 +133,9 @@
 </section>
 <footer class="footer">
 	<div class="container">
-		<p>&copy; 2016 <a href="#">spiritblog.com</a> &nbsp; <a href="#" target="_blank"
-																rel="nofollow">豫ICP备20151109-1</a> &nbsp; <a
-				href="#" target="_blank" class="sitemap">网站地图</a></p>
+{#		<p>&copy; 2016 <a href="#">spiritblog.com</a> &nbsp; <a href="#" target="_blank"#}
+{#																rel="nofollow">豫ICP备20151109-1</a> &nbsp; <a#}
+{#				href="#" target="_blank" class="sitemap">网站地图</a></p>#}
 	</div>
 	<div id="gotop"><a class="gotop"></a></div>
 </footer>

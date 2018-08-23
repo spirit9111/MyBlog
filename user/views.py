@@ -74,7 +74,7 @@ class LoginView(View):
 	def get(self, request):
 		if request.session.get('is_login', None):
 			return redirect("/")
-		return render(request, 'login.html')
+		return render(request, 'login00.html')
 
 	def post(self, request):
 		if request.session.get('is_login', None):
@@ -84,7 +84,7 @@ class LoginView(View):
 		data = User.check_user(mobile, password)
 		error = data['error']
 		if error != 'OK':
-			# return render(request, 'login.html', data)
+			# return render(request, 'login00.html', data)
 			return JsonResponse({'error': error})
 		user = data['user']
 		request.session['is_login'] = True

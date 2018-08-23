@@ -37,6 +37,12 @@ class JuncheePaginator(Paginator):
 
 	@staticmethod
 	def paging(request, query_set, paginate_by):
+		"""
+		:param request: django的request的对象
+		:param query_set: Query_Set对象
+		:param paginate_by: 每一页显示的数量
+		:return:
+		"""
 		page_obj, paginator = [], []
 		if query_set:
 			page = request.GET.get('page')
