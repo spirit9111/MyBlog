@@ -49,11 +49,11 @@
 			</div>
 			<div class="collapse navbar-collapse" id="header-navbar">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="hidden-index active"><a data-cont="首 页" href="{% url 'blog:index' %}">首 页</a></li>
-					<li><a href="{% url 'blog:blog' %}">博 客</a></li>
-					<li><a href="{% url 'blog:archives' %}">归 档</a></li>
+					<li class="hidden-index active"><a data-cont="首 页" href="{% url 'blog:index' %}"><i class="fa fa-home mr-1"></i> 首 页</a></li>
+					<li><a href="{% url 'blog:blog' %}"><i class="fa fa-book mr-1"></i> 博 客</a></li>
+					<li><a href="{% url 'blog:archives' %}"><i class="fa fa-sitemap mr-1"></i> 归 档</a></li>
 					{#					<li><a href="/">学习笔记</a></li>#}
-					<li><a href="{% url 'other:about' %}">About</a></li>
+					<li><a href="{% url 'other:about' %}"><i class="fa fa-hand-o-right mr-1"></i> About</a></li>
 				</ul>
 			</div>
 		</div>
@@ -66,10 +66,10 @@
 			{% endblock %}
 
 			{% block tagBlock %}
-				{% get_tags as tags %}
+				{% get_category as categories %}
 				<div class="more">
-					{% for tag in tags %}
-						<a href="{% url 'blog:type' 'tag' tag.id %}" tag="{{ tag.name }}">{{ tag.name|capfirst }}</a>
+					{% for category in categories %}
+						<a href="{% url 'blog:type' 'category' category.id %}" category="{{ category.name }}">{{ category.name|capfirst }}</a>
 					{% endfor %}
 				</div>
 			{% endblock %}
@@ -90,7 +90,7 @@
 				</form>
 			</div>
 			<div class="widget widget_sentence">
-				<h3>每日一句</h3>
+				<h3><i class="fa fa-calendar mr-1"></i> 每日一句</h3>
 				<div class="widget-sentence-content">
 					<h4> {% now "Y年m月d日 H:i" %} </h4>
 					{% everyday_motto as mottos %}
@@ -103,7 +103,7 @@
 				</div>
 			</div>
 			<div class="widget widget_hot">
-				<h3>热门文章</h3>
+				<h3><i class="fa fa-fire mr-1"></i> 热门文章</h3>
 				{% get_hot_articles as sidebar_articles %}
 				<ul>
 					{% for article in sidebar_articles %}
@@ -120,7 +120,7 @@
 			<div class="widget">
 				{# article-tags #}
 				{% get_tags as tags %}
-				<h3>标签</h3>
+				<h3><i class="fa fa-tags mr-1"></i> 标签</h3>
 				{% for tag in tags %}
 					<a href="{% url 'blog:type' 'tag' tag.id %}"
 					   class="tags">{{ tag.name|capfirst }}({{ tag.article_set.count }})</a>

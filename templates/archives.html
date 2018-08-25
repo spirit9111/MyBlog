@@ -8,7 +8,7 @@
 
 	</div>
 	<div class="title">
-	<h3>归档</h3>
+	<h3><i class="fa fa-archive mr-1"></i> 归档</h3>
 {% endblock %}
 {% block content01Block %}
 	</div>
@@ -16,7 +16,7 @@
 	<div class="lists">
 		{% for year,month_list in year_month.items %}
 			<div class="div0">
-				<a href="javascript:;">{{ year }}年</a>
+				<a href="javascript:;"><i class="fa fa-caret-right mr-1"></i> {{ year }}年</a>
 				{% if forloop.first %}
 					<ul style="display: block;">
 				{% else %}
@@ -24,7 +24,7 @@
 				{% endif %}
 				{% for month in month_list %}
 					<div class="div01">
-						<a href="javascript:;">{{ month }}月</a>
+						<a href="javascript:;"><i class="fa fa-caret-right mr-1"></i> {{ month }}月</a>
 						{% for article in articles %}
 							{% if article.year == year and article.month == month %}
 								<li style="display: block;"><a

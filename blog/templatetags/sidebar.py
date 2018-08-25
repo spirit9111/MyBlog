@@ -3,7 +3,7 @@ import random
 
 from django import template
 
-from blog.models import Tag, Article
+from blog.models import Tag, Article,Category
 from other.models import MottoList
 
 register = template.Library()
@@ -29,6 +29,18 @@ def get_tags():
 		logging.error(e)
 		tags = []
 	return tags
+
+
+@register.simple_tag
+def get_category():
+	"""categories"""
+	try:
+		categories = Category.objects.all()
+	except Exception as e:
+		logging.error(e)
+		categories = []
+	return categories
+
 
 
 @register.filter()

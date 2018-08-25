@@ -35,7 +35,7 @@
 		</p>
 		{{ article.body | safe }}
 	</article>
-	<div class="article-tags">标签：
+	<div class="article-tags"><i class="fa fa-tags mr-1"></i> 标签：
 		{% for tag in article.tags.all %}
 			<a href="{% url 'blog:type' 'tag' tag.id %}" rel="tag">
 				{{ tag }}
@@ -69,7 +69,7 @@
 			{% for comment in comments %}
 				<li class="comment-content">
 					<p style="float: right;"><a href="javascript:;" style="text-decoration:none;"
-												class="switch">回复</a> {{ comment.floor }}楼
+												class="switch"><i class="fa fa-mail-reply mr-1"></i> 回复</a> {{ comment.floor }}楼
 					</p>
 					<div class="comment-avatar"><img class="avatar" src="{{ comment.user.icon_url }}" alt=""/></div>
 					<div class="comment-main">
@@ -77,7 +77,8 @@
 							<span>
 								{#如果是评论-评论#}
 								{% if comment.parent %}
-									回复: <span class="address">{{ comment.parent.user.username }}</span>
+									回复:
+									<span class="address">{{ comment.parent.user.username }}</span>
 								{% endif %}
 							</span>
 							<span class="time">{{ comment.created_time }}</span><br/>{{ comment.content }}
@@ -85,8 +86,6 @@
 						<form class="innerhidden">
 							<div id="div00">
 								<textarea class="textarea"></textarea>
-								{#								<input type="hidden" name="article_id" value=""#}
-								{#									   class="articleid"/>#}
 								<div id="div01" comment_id="{{ comment.id }}" article_id="{{ article.id }}">
 									<input type="button" value="确定" class="reply"/>
 								</div>
