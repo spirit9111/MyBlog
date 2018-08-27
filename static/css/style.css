@@ -2805,3 +2805,10 @@ span.highlighted {
 	display: none;
 }
 
+.about{
+	text-align: left;
+	line-height: 35px;
+}
+.about p{
+	font-size: 18px;
+}

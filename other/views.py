@@ -7,7 +7,6 @@ from django.shortcuts import render
 from django.views import View
 
 from MyBlog.settings import BASE_DIR
-from utils.constants import ABOUT_CONTENT
 
 
 def page_not_found(request):
@@ -18,10 +17,7 @@ class AboutMeView(View):
 	"""AboutMe"""
 
 	def get(self, request):
-		context = {
-			"contents": ABOUT_CONTENT
-		}
-		return render(request, 'about.html', context=context)
+		return render(request, 'about.html')
 
 
 class UpdateStaticFileView(View):

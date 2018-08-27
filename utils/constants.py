@@ -33,9 +33,6 @@ BOLG_ARTICLE_COUNT = 5
 # 搜索页每次请求加载的数量
 SEARCH_ARTICLE_COUNT = 5
 
-# about内容
-ABOUT_CONTENT = ["如果遇到BUG请联系:", "邮箱:15071176826@163.com", "手机:15071176826"]
-
 # 阿里云
 AILIYUN_ACCESS_KEY_ID = "LTAIbZ9JUZ1fr5n2"
 

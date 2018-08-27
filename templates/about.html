@@ -14,9 +14,17 @@
 	</div>
 	<div class="panel">
 		<div class="text-center">
-			{% for content in contents %}
-				<h1 class="about">{{ content }}</h1>
-			{% endfor %}
+			<div class="about">
+				<h2>关于网站:</h2>
+				<p>本网站是本人利用闲暇之余独立打造的个人博客,</p>
+				<p>主要用于技术交流和学习总结,</p>
+				<p>网站现在是基于Django框架打造(以前使用Flask)</p>
+				<p>并使用Nginx+uWSGI在阿里云上完成部署.</p>
+				<p>主要的功能包括登录/注册/评论/搜索/后台管理等.</p>
+				<h2>如果遇到BUG请联系:</h2>
+				<p>邮箱:15071176826@163.com</p>
+				<p>手机:15071176826</p>
+			</div>
 			<div>
 				<div class="float-right"><img src="/static/images/404/right.png" width="260" class="hidden-xs" alt=""/>
 				</div>
